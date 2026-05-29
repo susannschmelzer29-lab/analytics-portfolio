@@ -30,7 +30,8 @@ Fields:
 
 - Mean is highly sensitive to outliers
 - Median better represents typical customer behavior
-- Business decisions should not rely only on averages
+- A small number of large transactions can distort management reporting
+- Distribution analysis is necessary before drawing business conclusions
 
 ---
 
