@@ -49,3 +49,26 @@ Fields:
 
 - Python (pandas)
 - Jupyter Notebook
+
+## Hypothesis
+
+H0: The new version has no effect on conversion rate.
+H1: The new version changes the conversion rate.
+
+## Results
+
+Group A Conversion Rate: 30%
+Group B Conversion Rate: 70%
+Observed Difference: +40 Percentage Points
+
+## Key Insights
+
+- Variant B achieved a higher conversion rate.
+- The sample size is very small.
+- Statistical significance should be evaluated before rollout.
+- Business decisions should not rely solely on observed conversion differences.
+
+## Recommendation
+
+Variant B shows promising performance. However, due to the small sample size, 
+additional testing with a larger user base is recommended before a full rollout decision.
