@@ -1,4 +1,4 @@
-﻿# Statistics Foundations - Business Analytics
+# Statistics Foundations - Business Analytics
 
 ## Business Problem
 Companies often rely on averages to understand performance. However, averages can be misleading when data contains extreme values.
@@ -11,9 +11,9 @@ This project explores how statistical measures affect business interpretation.
 Simulated e-commerce transaction data (`ecommerce_orders.csv`).
 
 Fields:
-- order_value
+- order_id
 - customer_id
-- date
+- order_value
 
 ---
 
