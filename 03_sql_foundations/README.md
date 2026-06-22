@@ -7,7 +7,7 @@ This project focuses on answering business questions using SQL on e-commerce ord
 ---
 
 ## Dataset
-E-commerce order data (`datasets/ecommerce_orders.csv`), loaded into a SQLite table.
+E-commerce order data (`../01_statistics_foundations/ecommerce_orders.csv`), loaded into a SQLite table.
 
 Fields:
 - `order_id`
