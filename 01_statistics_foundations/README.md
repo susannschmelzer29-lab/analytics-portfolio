@@ -1,14 +1,14 @@
-﻿# Statistics Foundations â€“ Business Analytics
+﻿# Statistics Foundations - Business Analytics
 
-## ðŸŽ¯ Business Problem
+## Business Problem
 Companies often rely on averages to understand performance. However, averages can be misleading when data contains extreme values.
 
 This project explores how statistical measures affect business interpretation.
 
 ---
 
-## ðŸ“Š Dataset
-Simulated e-commerce transaction data.
+## Dataset
+Simulated e-commerce transaction data (`ecommerce_orders.csv`).
 
 Fields:
 - order_value
@@ -17,7 +17,7 @@ Fields:
 
 ---
 
-## ðŸ§  Methods
+## Methods
 
 - Mean vs Median comparison
 - Outlier detection
@@ -26,7 +26,7 @@ Fields:
 
 ---
 
-## ðŸ“ˆ Key Insights
+## Key Insights
 
 - Mean is highly sensitive to outliers
 - Median better represents typical customer behavior
@@ -37,7 +37,7 @@ Fields:
 
 ---
 
-## ðŸ’¡ Business Impact
+## Business Impact
 
 - Reporting should include median values
 - Outliers must be analyzed separately
@@ -45,7 +45,7 @@ Fields:
 
 ---
 
-## ðŸ›  Tools
+## Tools
 
 - Python (pandas)
 - Jupyter Notebook
