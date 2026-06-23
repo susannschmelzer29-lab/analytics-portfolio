@@ -1,39 +1,39 @@
 # 04 – SQL Advanced Cases
 
-Fortgeschrittene SQL-Auswertungen auf einem kleinen E-Commerce-Datenmodell:
-Umsatzanalysen, Kundensegmentierung und Churn-Erkennung mit SQLite.
+Advanced SQL analyses on a small e-commerce data model:
+revenue analysis, customer segmentation, and churn detection with SQLite.
 
-## Datenmodell
+## Data model
 
-Drei Tabellen mit referenzieller Integrität:
+Three tables with referential integrity:
 
-| Tabelle     | Inhalt                               | Datensätze |
-|-------------|--------------------------------------|------------|
-| `customers` | Kundenstamm (Name, Stadt)            | 5          |
-| `products`  | Produktkatalog (Name, Preis)         | 4          |
-| `orders`    | Bestellungen (Kunde, Produkt, Menge) | 14         |
+| Table       | Content                              | Records |
+|-------------|--------------------------------------|---------|
+| `customers` | Customer master data (name, city)    | 5       |
+| `products`  | Product catalog (name, price)        | 4       |
+| `orders`    | Orders (customer, product, quantity) | 14      |
 
-Hinweis: Eine Kundin (Eva Lange) hat bewusst **keine** Bestellung – als Testfall für die Churn-Analyse.
+Note: One customer (Eva Lange) deliberately has **no** order – as a test case for the churn analysis.
 
 ## Queries
 
-| Query                  | Fragestellung                        |
-|------------------------|--------------------------------------|
-| `revenue_total`        | Gesamtumsatz über alle Bestellungen  |
-| `revenue_by_customer`  | Umsatz je Kunde, absteigend          |
-| `revenue_by_city`      | Umsatz je Stadt inkl. Kundenanzahl   |
-| `high_value_customers` | Kunden mit Umsatz > 500 €            |
-| `product_analysis`     | Produkte nach Umsatz, mit Rang       |
-| `churn_analysis`       | Kunden ohne Bestellung (LEFT JOIN)   |
+| Query                  | Question                              |
+|------------------------|---------------------------------------|
+| `revenue_total`        | Total revenue across all orders       |
+| `revenue_by_customer`  | Revenue per customer, descending      |
+| `revenue_by_city`      | Revenue per city incl. customer count |
+| `high_value_customers` | Customers with revenue > 500 €        |
+| `product_analysis`     | Products by revenue, with rank        |
+| `churn_analysis`       | Customers without orders (LEFT JOIN)  |
 
-## Kernergebnisse
+## Key results
 
-- **Gesamtumsatz:** 5.586 €
-- **Top-Kundin:** Carla (2.633 €), gefolgt von Anna (1.329 €) und Bernd (1.279 €)
-- **Umsatzstärkste Stadt:** Berlin (3.962 € / 2 Kunden), vor Hamburg (1.279 €) und München (345 €)
-- **Top-Produkt:** Notebook (3.596 €), vor Monitor, Tastatur und Maus
-- **Churn:** Eva Lange (Hamburg) – 0 Bestellungen
+- **Total revenue:** 5,586 €
+- **Top customer:** Carla (2,633 €), followed by Anna (1,329 €) and Bernd (1,279 €)
+- **Highest-revenue city:** Berlin (3,962 € / 2 customers), ahead of Hamburg (1,279 €) and Munich (345 €)
+- **Top product:** Notebook (3,596 €), ahead of Monitor, Tastatur and Maus
+- **Churn:** Eva Lange (Hamburg) – 0 orders
 
 ## Stack
 
-SQLite · VS Code mit SQLTools · reines SQL (keine externen Abhängigkeiten)
+SQLite · VS Code with SQLTools · pure SQL (no external dependencies)
