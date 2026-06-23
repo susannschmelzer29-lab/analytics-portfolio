@@ -37,3 +37,19 @@ Note: One customer (Eva Lange) deliberately has **no** order – as a test case 
 ## Stack
 
 SQLite · VS Code with SQLTools · pure SQL (no external dependencies)
+
+## How to run
+
+The database is built from the SQL files (no `.db` file is stored in the repo).
+From this folder, create and populate the database, then run any query:
+
+```bash
+# Build the database (schema + seed data)
+Get-Content schema.sql, seed_data.sql | sqlite3 advanced.db
+
+# Run a query
+Get-Content queries\churn_analysis.sql | sqlite3 advanced.db
+```
+
+Requires SQLite 3. On other shells, concatenate the files instead, e.g.
+`cat schema.sql seed_data.sql | sqlite3 advanced.db`.
