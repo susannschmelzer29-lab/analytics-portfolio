@@ -63,3 +63,19 @@ run the queries interactively.
 ## Tools
 - SQL (SQLite)
 - VS Code + SQLTools
+
+## How to run
+
+The database is built from the SQL files (no `.db` file is stored in the repo).
+From this folder, create and populate the database, then run any query:
+
+```bash
+# Build the database (schema + seed data)
+Get-Content schema.sql, seed_data.sql | sqlite3 foundations.db
+
+# Run a query
+Get-Content queries\01_select_basics.sql | sqlite3 foundations.db
+```
+
+Requires SQLite 3. On other shells, concatenate the files instead, e.g.
+`cat schema.sql seed_data.sql | sqlite3 foundations.db`.
