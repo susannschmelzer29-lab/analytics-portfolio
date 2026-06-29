@@ -80,7 +80,6 @@ topics matter, when, and how two very different newsrooms set their agenda.
 |---|---|
 | `README.md` | This overview |
 | `METHODOLOGY.md` | Canonical figures + methodological notes (DE & EN) |
-| `Tableau_Bauanleitung.pdf` | Step-by-step guide to rebuild the dashboard |
 | `data/00_kategorie_mapping.csv` | Documents the label harmonisation |
 | `data/01_tableau_aggregiert.csv` | Counts & word lengths per source/year/month/category |
 | `data/02_tableau_keywords.csv` | Top keywords per category & source |
