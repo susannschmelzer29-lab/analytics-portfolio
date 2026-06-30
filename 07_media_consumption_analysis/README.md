@@ -15,13 +15,13 @@ topics matter, when, and how two very different newsrooms set their agenda.
 | | |
 |---|---|
 | **📊 Interactive dashboard** | [View on Tableau Public →](TABLEAU_VIEW_LINK_HERE) |
-| **🎤 Narrated presentation** | [View on Prezi →](PREZI_VIEW_LINK_HERE) |
-
+| **🎤 Narrated presentation** | [View on Prezi →](https://prezi.com/view/LqAgJegDiX5cM839IIjB/) |
+ 
 <!--
   Replace the two placeholders above AFTER publishing:
   - Tableau: publish to Tableau Public, then copy the public view URL
     (looks like https://public.tableau.com/views/...).
-  - Prezi:  use the SHARE VIEW link (https://prezi.com/view/...),
+  - Prezi:  use the SHARE VIEW link (https://prezi.com/view/LqAgJegDiX5cM839IIjB/),
     NOT the /p/edit/ link, and set visibility to public.
 -->
 
@@ -79,7 +79,7 @@ topics matter, when, and how two very different newsrooms set their agenda.
 | File | Purpose |
 |---|---|
 | `README.md` | This overview |
-| `METHODOLOGY.md` | Canonical figures + methodological notes (DE & EN) |
+| `METHODOLOGY.md` | Canonical figures + methodological notes (DE & EN)
 | `data/00_kategorie_mapping.csv` | Documents the label harmonisation |
 | `data/01_tableau_aggregiert.csv` | Counts & word lengths per source/year/month/category |
 | `data/02_tableau_keywords.csv` | Top keywords per category & source |
