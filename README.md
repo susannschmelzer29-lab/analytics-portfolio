@@ -1,55 +1,45 @@
 # Data Analytics Portfolio
 
-## 🎯 Purpose
-This portfolio demonstrates end-to-end data analytics skills including statistics, SQL, Python, and automation with a strong focus on business decision-making.
+**Career changer from pedagogy & social economy into data analytics.** This repository documents my transition through a structured vocational retraining (LTA), showing progression from statistics and SQL fundamentals to a full end-to-end analytics project.
 
 ---
 
-## 🧠 Focus Areas
+## 🏆 Featured Project
 
-- Business Statistics
-- SQL for data extraction and analysis
-- Python for data cleaning and visualization
-- Automation of reporting workflows
+### [07 · Media Consumption Analysis](07_media_consumption_analysis/)
+End-to-end content strategy analysis on **1.45M news headlines** from ABC News (AU) and HuffPost (US), spanning 20 years. Python data pipeline → Tableau dashboard → stakeholder presentation.
+**Stack:** Python (pandas), Tableau, Prezi | [Dashboard preview](07_media_consumption_analysis/dashboard_preview.png) · [Presentation](https://prezi.com/view/LqAgJegDiX5cM839IIjB/)
 
 ---
 
-## 📊 Projects
+## 📊 All Projects
 
-### 1. Statistics Foundations
-Understanding mean, median, outliers, and distributions in business data.
-
-### 2. A/B Testing & Experimentation
-Statistical testing for business decisions and conversion optimization.
-
-### 3. SQL Foundations
-Business queries using joins, aggregations, and KPI analysis.
-
-### 4. Advanced SQL Analytics
-Funnels, cohorts, retention, and window functions.
-
-### 5. Python Analytics Workflow
-End-to-end data analysis using pandas and visualization.
-
-### 6. Automation & Reporting
-Automated KPI reporting and reusable analytics pipelines.
+| # | Project | Focus | Key Skills |
+|---|---------|-------|------------|
+| 01 | [Statistics Foundations](01_statistics_foundations/) | Mean/median/outliers in business data | Descriptive statistics |
+| 02 | [A/B Testing & Experimentation](02_ab_testing_statistics/) | Conversion testing for business decisions | Hypothesis testing |
+| 03 | [SQL Foundations](03_sql_foundations/) | Joins, aggregations, KPI queries | SQL (SQLite) |
+| 04 | [Advanced SQL Analytics](04_sql_advanced_cases/) | Multi-table schema, churn detection | Window functions, CTEs |
+| 05 | [Python Analytics Workflow](05_python_analytics_workflow/) | Data cleaning & validation pipeline | pandas |
+| 06 | [Automation & Reporting](06_automation_reporting/) | Automated KPI report generation | Python automation |
+| 07 | [Media Consumption Analysis](07_media_consumption_analysis/) | Full pipeline to interactive dashboard | Python, Tableau, storytelling |
 
 ---
 
 ## 🛠 Skills
 
-- SQL (Intermediate–Advanced)
-- Python (pandas, numpy, matplotlib)
-- Statistics for Business
-- Data Cleaning & Analysis
-- KPI Design
+**Languages & Tools:** SQL (SQLite) · Python (pandas, numpy, matplotlib) · Tableau · Power BI · Jupyter
+**Techniques:** Data cleaning & validation · Statistical testing · Window functions & CTEs · Dashboard design · Automated reporting
+**Approach:** Business-problem-first — every project starts from a decision-making question, not just a dataset.
 
 ---
 
-## 🎯 Goal
-Transform raw data into actionable business insights.
+## 🎓 Background
+
+Coming from pedagogy and social economy, I bring strong stakeholder communication and training experience alongside newly built technical analytics skills — a combination that's valuable in roles that bridge data and people (digitalization, internal training, change management).
 
 ---
 
 ## 📫 Contact
-LinkedIn / GitHub profile link will be added later.
+
+[LinkedIn](YOUR_LINKEDIN_URL_HERE) · [GitHub](https://github.com/susannschmelzer29-lab)
