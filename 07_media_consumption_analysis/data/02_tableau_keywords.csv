@@ -1,261 +1,421 @@
 ﻿source,category,keyword,haeufigkeit,rang
-HuffPost (US),US News,california,70,1
+ABC News (AU),Gesellschaft,indigenous,5343,1
+ABC News (AU),Gesellschaft,family,4435,2
+ABC News (AU),Gesellschaft,community,4045,3
+ABC News (AU),Gesellschaft,protest,2719,4
+ABC News (AU),Gesellschaft,education,1883,5
+ABC News (AU),Gesellschaft,rights,1625,6
+ABC News (AU),Gesellschaft,protesters,1542,7
+ABC News (AU),Gesellschaft,protests,1385,8
+ABC News (AU),Gesellschaft,social,1253,9
+ABC News (AU),Gesellschaft,refugee,997,10
+ABC News (AU),Gesellschaft,refugees,823,11
+ABC News (AU),Gesellschaft,immigration,744,12
+ABC News (AU),Gesellschaft,against,685,13
+ABC News (AU),Gesellschaft,media,675,14
+ABC News (AU),Gesellschaft,culture,638,15
+ABC News (AU),Gesundheit,health,9443,1
+ABC News (AU),Gesundheit,hospital,8343,2
+ABC News (AU),Gesundheit,covid,4411,3
+ABC News (AU),Gesundheit,cancer,2709,4
+ABC News (AU),Gesundheit,doctors,2253,5
+ABC News (AU),Gesundheit,doctor,1967,6
+ABC News (AU),Gesundheit,mental,1934,7
+ABC News (AU),Gesundheit,coronavirus,1792,8
+ABC News (AU),Gesundheit,medical,1577,9
+ABC News (AU),Gesundheit,vaccine,1438,10
+ABC News (AU),Gesundheit,disease,1401,11
+ABC News (AU),Gesundheit,treatment,1354,12
+ABC News (AU),Gesundheit,patients,1276,13
+ABC News (AU),Gesundheit,virus,955,14
+ABC News (AU),Gesundheit,hospitals,921,15
+ABC News (AU),Kriminalität,police,39852,1
+ABC News (AU),Kriminalität,court,18187,2
+ABC News (AU),Kriminalität,man,13499,3
+ABC News (AU),Kriminalität,murder,10553,4
+ABC News (AU),Kriminalität,trial,7387,5
+ABC News (AU),Kriminalität,guilty,5789,6
+ABC News (AU),Kriminalität,assault,4944,7
+ABC News (AU),Kriminalität,arrested,4919,8
+ABC News (AU),Kriminalität,jail,4874,9
+ABC News (AU),Kriminalität,charged,4490,10
+ABC News (AU),Kriminalität,shooting,4197,11
+ABC News (AU),Kriminalität,accused,3938,12
+ABC News (AU),Kriminalität,death,3266,13
+ABC News (AU),Kriminalität,woman,3209,14
+ABC News (AU),Kriminalität,prison,3027,15
+ABC News (AU),Politik,government,9748,1
+ABC News (AU),Politik,election,9044,2
+ABC News (AU),Politik,minister,7565,3
+ABC News (AU),Politik,campaign,3968,4
+ABC News (AU),Politik,vote,3399,5
+ABC News (AU),Politik,president,3374,6
+ABC News (AU),Politik,parliament,3189,7
+ABC News (AU),Politik,policy,2831,8
+ABC News (AU),Politik,senate,2268,9
+ABC News (AU),Politik,labor,1902,10
+ABC News (AU),Politik,federal,1710,11
+ABC News (AU),Politik,nsw,1597,12
+ABC News (AU),Politik,cabinet,1534,13
+ABC News (AU),Politik,qld,1222,14
+ABC News (AU),Politik,calls,1147,15
+ABC News (AU),Sonstiges,man,15743,1
+ABC News (AU),Sonstiges,interview,14513,2
+ABC News (AU),Sonstiges,council,13315,3
+ABC News (AU),Sonstiges,fire,12785,4
+ABC News (AU),Sonstiges,govt,12545,5
+ABC News (AU),Sonstiges,australia,12467,6
+ABC News (AU),Sonstiges,more,11108,7
+ABC News (AU),Sonstiges,water,10470,8
+ABC News (AU),Sonstiges,nsw,9965,9
+ABC News (AU),Sonstiges,crash,9801,10
+ABC News (AU),Sonstiges,off,9349,11
+ABC News (AU),Sonstiges,plan,9145,12
+ABC News (AU),Sonstiges,sydney,9126,13
+ABC News (AU),Sonstiges,australian,9030,14
+ABC News (AU),Sonstiges,back,8435,15
+ABC News (AU),Sport,afl,4280,1
+ABC News (AU),Sport,world,3620,2
+ABC News (AU),Sport,nrl,3444,3
+ABC News (AU),Sport,cup,3439,4
+ABC News (AU),Sport,coach,2589,5
+ABC News (AU),Sport,cricket,2175,6
+ABC News (AU),Sport,match,2141,7
+ABC News (AU),Sport,rugby,2061,8
+ABC News (AU),Sport,olympic,1865,9
+ABC News (AU),Sport,final,1626,10
+ABC News (AU),Sport,grand,1190,11
+ABC News (AU),Sport,olympics,1166,12
+ABC News (AU),Sport,football,1087,13
+ABC News (AU),Sport,australia,1025,14
+ABC News (AU),Sport,tennis,732,15
+ABC News (AU),Umwelt,drought,4588,1
+ABC News (AU),Umwelt,weather,4497,2
+ABC News (AU),Umwelt,study,4472,3
+ABC News (AU),Umwelt,flood,4439,4
+ABC News (AU),Umwelt,bushfire,4239,5
+ABC News (AU),Umwelt,climate,3470,6
+ABC News (AU),Umwelt,research,3107,7
+ABC News (AU),Umwelt,change,2130,8
+ABC News (AU),Umwelt,floods,2114,9
+ABC News (AU),Umwelt,scientists,1878,10
+ABC News (AU),Umwelt,flooding,1582,11
+ABC News (AU),Umwelt,nsw,1404,12
+ABC News (AU),Umwelt,bushfires,1355,13
+ABC News (AU),Umwelt,space,1312,14
+ABC News (AU),Umwelt,more,1083,15
+ABC News (AU),Welt,national,6210,1
+ABC News (AU),Welt,world,5176,2
+ABC News (AU),Welt,iraq,5044,3
+ABC News (AU),Welt,war,3871,4
+ABC News (AU),Welt,international,1957,5
+ABC News (AU),Welt,israel,1662,6
+ABC News (AU),Welt,foreign,1524,7
+ABC News (AU),Welt,afghanistan,1518,8
+ABC News (AU),Welt,rural,1416,9
+ABC News (AU),Welt,news,1407,10
+ABC News (AU),Welt,gaza,1296,11
+ABC News (AU),Welt,nationals,1247,12
+ABC News (AU),Welt,global,1228,13
+ABC News (AU),Welt,killed,896,14
+ABC News (AU),Welt,nations,852,15
+ABC News (AU),Wirtschaft,market,7250,1
+ABC News (AU),Wirtschaft,budget,5795,2
+ABC News (AU),Wirtschaft,business,5791,3
+ABC News (AU),Wirtschaft,industry,5540,4
+ABC News (AU),Wirtschaft,jobs,4500,5
+ABC News (AU),Wirtschaft,tax,4401,6
+ABC News (AU),Wirtschaft,job,3747,7
+ABC News (AU),Wirtschaft,trade,3413,8
+ABC News (AU),Wirtschaft,markets,3183,9
+ABC News (AU),Wirtschaft,share,3183,10
+ABC News (AU),Wirtschaft,company,2882,11
+ABC News (AU),Wirtschaft,bank,2675,12
+ABC News (AU),Wirtschaft,shares,2068,13
+ABC News (AU),Wirtschaft,cuts,1851,14
+ABC News (AU),Wirtschaft,economic,1829,15
+HuffPost (US),Bildung,college,291,1
+HuffPost (US),Bildung,education,179,2
+HuffPost (US),Bildung,students,169,3
+HuffPost (US),Bildung,school,167,4
+HuffPost (US),Bildung,student,120,5
+HuffPost (US),Bildung,how,116,6
+HuffPost (US),Bildung,what,114,7
+HuffPost (US),Bildung,you,113,8
+HuffPost (US),Bildung,your,106,9
+HuffPost (US),Bildung,university,104,10
+HuffPost (US),Bildung,why,100,11
+HuffPost (US),Bildung,schools,82,12
+HuffPost (US),Bildung,campus,76,13
+HuffPost (US),Bildung,sexual,73,14
+HuffPost (US),Bildung,teachers,68,15
+HuffPost (US),Entertainment,trump,1932,1
+HuffPost (US),Entertainment,you,1284,2
+HuffPost (US),Entertainment,her,1029,3
+HuffPost (US),Entertainment,donald,1021,4
+HuffPost (US),Entertainment,video,995,5
+HuffPost (US),Entertainment,his,865,6
+HuffPost (US),Entertainment,star,667,7
+HuffPost (US),Entertainment,show,646,8
+HuffPost (US),Entertainment,what,598,9
+HuffPost (US),Entertainment,snl,593,10
+HuffPost (US),Entertainment,first,581,11
+HuffPost (US),Entertainment,all,557,12
+HuffPost (US),Entertainment,how,548,13
+HuffPost (US),Entertainment,your,540,14
+HuffPost (US),Entertainment,jimmy,493,15
+HuffPost (US),Essen,you,969,1
+HuffPost (US),Essen,recipes,945,2
+HuffPost (US),Essen,photos,729,3
+HuffPost (US),Essen,how,682,4
+HuffPost (US),Essen,your,671,5
+HuffPost (US),Essen,food,656,6
+HuffPost (US),Essen,best,621,7
+HuffPost (US),Essen,make,544,8
+HuffPost (US),Essen,recipe,490,9
+HuffPost (US),Essen,day,431,10
+HuffPost (US),Essen,video,291,11
+HuffPost (US),Essen,what,273,12
+HuffPost (US),Essen,cooking,211,13
+HuffPost (US),Essen,eat,210,14
+HuffPost (US),Essen,ways,194,15
+HuffPost (US),Familie,your,2018,1
+HuffPost (US),Familie,wedding,1688,2
+HuffPost (US),Familie,you,1647,3
+HuffPost (US),Familie,kids,1600,4
+HuffPost (US),Familie,divorce,1390,5
+HuffPost (US),Familie,how,1323,6
+HuffPost (US),Familie,what,1119,7
+HuffPost (US),Familie,video,1103,8
+HuffPost (US),Familie,mom,940,9
+HuffPost (US),Familie,parents,936,10
+HuffPost (US),Familie,why,839,11
+HuffPost (US),Familie,day,801,12
+HuffPost (US),Familie,baby,777,13
+HuffPost (US),Familie,marriage,705,14
+HuffPost (US),Familie,photos,668,15
+HuffPost (US),Gesellschaft,gay,1489,1
+HuffPost (US),Gesellschaft,women,1300,2
+HuffPost (US),Gesellschaft,trump,1130,3
+HuffPost (US),Gesellschaft,black,1111,4
+HuffPost (US),Gesellschaft,how,979,5
+HuffPost (US),Gesellschaft,you,977,6
+HuffPost (US),Gesellschaft,why,894,7
+HuffPost (US),Gesellschaft,what,876,8
+HuffPost (US),Gesellschaft,who,577,9
+HuffPost (US),Gesellschaft,her,557,10
+HuffPost (US),Gesellschaft,people,551,11
+HuffPost (US),Gesellschaft,day,522,12
+HuffPost (US),Gesellschaft,his,520,13
+HuffPost (US),Gesellschaft,your,507,14
+HuffPost (US),Gesellschaft,video,497,15
+HuffPost (US),Gesundheit,your,3170,1
+HuffPost (US),Gesundheit,you,3071,2
+HuffPost (US),Gesundheit,how,2061,3
+HuffPost (US),Gesundheit,what,1311,4
+HuffPost (US),Gesundheit,health,1187,5
+HuffPost (US),Gesundheit,why,1035,6
+HuffPost (US),Gesundheit,can,1023,7
+HuffPost (US),Gesundheit,life,1003,8
+HuffPost (US),Gesundheit,study,968,9
+HuffPost (US),Gesundheit,cancer,838,10
+HuffPost (US),Gesundheit,sleep,830,11
+HuffPost (US),Gesundheit,more,769,12
+HuffPost (US),Gesundheit,ways,732,13
+HuffPost (US),Gesundheit,could,693,14
+HuffPost (US),Gesundheit,day,618,15
+HuffPost (US),Kriminalität,police,480,1
+HuffPost (US),Kriminalität,man,448,2
+HuffPost (US),Kriminalität,shooting,281,3
+HuffPost (US),Kriminalität,cops,189,4
+HuffPost (US),Kriminalität,who,188,5
+HuffPost (US),Kriminalität,killed,184,6
+HuffPost (US),Kriminalität,year,181,7
+HuffPost (US),Kriminalität,suspect,174,8
+HuffPost (US),Kriminalität,dead,170,9
+HuffPost (US),Kriminalität,woman,168,10
+HuffPost (US),Kriminalität,allegedly,165,11
+HuffPost (US),Kriminalität,old,162,12
+HuffPost (US),Kriminalität,accused,161,13
+HuffPost (US),Kriminalität,death,159,14
+HuffPost (US),Kriminalität,arrested,157,15
+HuffPost (US),Kunst,art,443,1
+HuffPost (US),Kunst,photos,352,2
+HuffPost (US),Kunst,you,229,3
+HuffPost (US),Kunst,artist,224,4
+HuffPost (US),Kunst,your,128,5
+HuffPost (US),Kunst,world,120,6
+HuffPost (US),Kunst,how,113,7
+HuffPost (US),Kunst,artists,113,8
+HuffPost (US),Kunst,what,112,9
+HuffPost (US),Kunst,women,110,10
+HuffPost (US),Kunst,book,108,11
+HuffPost (US),Kunst,trump,101,12
+HuffPost (US),Kunst,first,98,13
+HuffPost (US),Kunst,imageblog,94,14
+HuffPost (US),Kunst,video,88,15
+HuffPost (US),Politik,trump,10033,1
+HuffPost (US),Politik,donald,3122,2
+HuffPost (US),Politik,gop,1928,3
+HuffPost (US),Politik,clinton,1764,4
+HuffPost (US),Politik,obama,1679,5
+HuffPost (US),Politik,his,1346,6
+HuffPost (US),Politik,house,1332,7
+HuffPost (US),Politik,hillary,1304,8
+HuffPost (US),Politik,what,1108,9
+HuffPost (US),Politik,white,976,10
+HuffPost (US),Politik,how,924,11
+HuffPost (US),Politik,you,913,12
+HuffPost (US),Politik,court,909,13
+HuffPost (US),Politik,republicans,883,14
+HuffPost (US),Politik,bill,842,15
+HuffPost (US),Reisen,photos,1708,1
+HuffPost (US),Reisen,travel,951,2
+HuffPost (US),Reisen,you,850,3
+HuffPost (US),Reisen,world,679,4
+HuffPost (US),Reisen,best,607,5
+HuffPost (US),Reisen,your,601,6
+HuffPost (US),Reisen,how,398,7
+HuffPost (US),Reisen,most,360,8
+HuffPost (US),Reisen,video,351,9
+HuffPost (US),Reisen,hotel,326,10
+HuffPost (US),Reisen,hotels,300,11
+HuffPost (US),Reisen,america,268,12
+HuffPost (US),Reisen,top,232,13
+HuffPost (US),Reisen,vacation,230,14
+HuffPost (US),Reisen,what,226,15
+HuffPost (US),Religion,pope,276,1
+HuffPost (US),Religion,francis,161,2
+HuffPost (US),Religion,church,134,3
+HuffPost (US),Religion,meditation,133,4
+HuffPost (US),Religion,daily,131,5
+HuffPost (US),Religion,muslim,118,6
+HuffPost (US),Religion,what,109,7
+HuffPost (US),Religion,why,99,8
+HuffPost (US),Religion,you,91,9
+HuffPost (US),Religion,how,91,10
+HuffPost (US),Religion,faith,90,11
+HuffPost (US),Religion,religious,85,12
+HuffPost (US),Religion,god,81,13
+HuffPost (US),Religion,christian,73,14
+HuffPost (US),Religion,religion,73,15
+HuffPost (US),Sonstiges,you,657,1
+HuffPost (US),Sonstiges,your,445,2
+HuffPost (US),Sonstiges,man,373,3
+HuffPost (US),Sonstiges,how,325,4
+HuffPost (US),Sonstiges,watch,275,5
+HuffPost (US),Sonstiges,can,271,6
+HuffPost (US),Sonstiges,why,269,7
+HuffPost (US),Sonstiges,apple,252,8
+HuffPost (US),Sonstiges,his,244,9
+HuffPost (US),Sonstiges,what,228,10
+HuffPost (US),Sonstiges,facebook,224,11
+HuffPost (US),Sonstiges,dog,216,12
+HuffPost (US),Sonstiges,woman,202,13
+HuffPost (US),Sonstiges,who,199,14
+HuffPost (US),Sonstiges,life,177,15
+HuffPost (US),Sport,nfl,362,1
+HuffPost (US),Sport,video,281,2
+HuffPost (US),Sport,game,262,3
+HuffPost (US),Sport,world,212,4
+HuffPost (US),Sport,his,200,5
+HuffPost (US),Sport,football,198,6
+HuffPost (US),Sport,olympic,189,7
+HuffPost (US),Sport,team,186,8
+HuffPost (US),Sport,player,183,9
+HuffPost (US),Sport,nba,172,10
+HuffPost (US),Sport,olympics,154,11
+HuffPost (US),Sport,first,150,12
+HuffPost (US),Sport,bowl,146,13
+HuffPost (US),Sport,win,145,14
+HuffPost (US),Sport,super,141,15
+HuffPost (US),Style & Beauty,photos,4178,1
+HuffPost (US),Style & Beauty,fashion,1242,2
+HuffPost (US),Style & Beauty,style,996,3
+HuffPost (US),Style & Beauty,week,958,4
+HuffPost (US),Style & Beauty,you,759,5
+HuffPost (US),Style & Beauty,video,658,6
+HuffPost (US),Style & Beauty,dress,636,7
+HuffPost (US),Style & Beauty,more,632,8
+HuffPost (US),Style & Beauty,your,624,9
+HuffPost (US),Style & Beauty,beauty,624,10
+HuffPost (US),Style & Beauty,her,622,11
+HuffPost (US),Style & Beauty,photo,620,12
+HuffPost (US),Style & Beauty,how,590,13
+HuffPost (US),Style & Beauty,best,590,14
+HuffPost (US),Style & Beauty,look,578,15
+HuffPost (US),US News,california,72,1
 HuffPost (US),US News,dead,66,2
 HuffPost (US),US News,shooting,63,3
 HuffPost (US),US News,police,62,4
-HuffPost (US),US News,covid,52,5
-HuffPost (US),US News,death,48,6
-HuffPost (US),US News,school,43,7
-HuffPost (US),US News,florida,41,8
-HuffPost (US),US News,trump,41,9
-HuffPost (US),US News,woman,37,10
-HuffPost (US),Entertainment,trump,1966,1
-HuffPost (US),Entertainment,donald,1276,2
-HuffPost (US),Entertainment,video,1144,3
-HuffPost (US),Entertainment,'the,910,4
-HuffPost (US),Entertainment,watch,681,5
-HuffPost (US),Entertainment,first,640,6
-HuffPost (US),Entertainment,all,635,7
-HuffPost (US),Entertainment,just,595,8
-HuffPost (US),Entertainment,news,552,9
-HuffPost (US),Entertainment,trump's,532,10
-HuffPost (US),Familie,wedding,1678,1
-HuffPost (US),Familie,kids,1460,2
-HuffPost (US),Familie,divorce,1371,3
-HuffPost (US),Familie,video,1103,4
-HuffPost (US),Familie,parents,888,5
-HuffPost (US),Familie,mom,794,6
-HuffPost (US),Familie,day,788,7
-HuffPost (US),Familie,baby,703,8
-HuffPost (US),Familie,marriage,700,9
-HuffPost (US),Familie,photos,667,10
-HuffPost (US),Welt,trump,385,1
-HuffPost (US),Welt,north,369,2
-HuffPost (US),Welt,korea,350,3
-HuffPost (US),Welt,isis,314,4
-HuffPost (US),Welt,attack,311,5
-HuffPost (US),Welt,china,281,6
-HuffPost (US),Welt,world,257,7
-HuffPost (US),Welt,president,246,8
-HuffPost (US),Welt,syria,236,9
-HuffPost (US),Welt,war,234,10
-HuffPost (US),Kunst,art,435,1
-HuffPost (US),Kunst,photos,352,2
-HuffPost (US),Kunst,artist,202,3
-HuffPost (US),Kunst,artists,110,4
-HuffPost (US),Kunst,book,107,5
-HuffPost (US),Kunst,first,98,6
-HuffPost (US),Kunst,world,94,7
-HuffPost (US),Kunst,imageblog,94,8
-HuffPost (US),Kunst,women,88,9
-HuffPost (US),Kunst,video,88,10
-HuffPost (US),Umwelt,climate,526,1
-HuffPost (US),Umwelt,video,367,2
-HuffPost (US),Umwelt,photos,357,3
-HuffPost (US),Umwelt,change,323,4
-HuffPost (US),Umwelt,week,302,5
-HuffPost (US),Umwelt,may,243,6
-HuffPost (US),Umwelt,apple,220,7
-HuffPost (US),Umwelt,watch,216,8
-HuffPost (US),Umwelt,could,214,9
-HuffPost (US),Umwelt,facebook,192,10
-HuffPost (US),Sport,nfl,343,1
-HuffPost (US),Sport,video,281,2
-HuffPost (US),Sport,game,257,3
-HuffPost (US),Sport,world,203,4
-HuffPost (US),Sport,olympic,189,5
-HuffPost (US),Sport,football,188,6
-HuffPost (US),Sport,team,177,7
-HuffPost (US),Sport,player,173,8
-HuffPost (US),Sport,nba,166,9
-HuffPost (US),Sport,olympics,151,10
-HuffPost (US),Politik,trump,8087,1
-HuffPost (US),Politik,donald,3108,2
-HuffPost (US),Politik,trump's,1906,3
-HuffPost (US),Politik,gop,1823,4
-HuffPost (US),Politik,clinton,1578,5
-HuffPost (US),Politik,obama,1390,6
-HuffPost (US),Politik,house,1308,7
-HuffPost (US),Politik,hillary,1275,8
-HuffPost (US),Politik,white,958,9
-HuffPost (US),Politik,court,889,10
-HuffPost (US),Bildung,college,288,1
-HuffPost (US),Bildung,education,178,2
-HuffPost (US),Bildung,school,165,3
-HuffPost (US),Bildung,students,162,4
-HuffPost (US),Bildung,student,115,5
-HuffPost (US),Bildung,university,102,6
-HuffPost (US),Bildung,schools,82,7
-HuffPost (US),Bildung,campus,76,8
-HuffPost (US),Bildung,sexual,72,9
-HuffPost (US),Bildung,teachers,66,10
-HuffPost (US),Kriminalität,police,475,1
-HuffPost (US),Kriminalität,shooting,281,2
-HuffPost (US),Kriminalität,cops,188,3
-HuffPost (US),Kriminalität,killed,184,4
-HuffPost (US),Kriminalität,dead,170,5
-HuffPost (US),Kriminalität,year,170,6
-HuffPost (US),Kriminalität,allegedly,165,7
-HuffPost (US),Kriminalität,suspect,162,8
-HuffPost (US),Kriminalität,accused,161,9
-HuffPost (US),Kriminalität,old,159,10
-HuffPost (US),Gesundheit,health,1180,1
-HuffPost (US),Gesundheit,life,974,2
-HuffPost (US),Gesundheit,study,967,3
-HuffPost (US),Gesundheit,cancer,820,4
-HuffPost (US),Gesundheit,sleep,819,5
-HuffPost (US),Gesundheit,ways,732,6
-HuffPost (US),Gesundheit,could,690,7
-HuffPost (US),Gesundheit,day,615,8
-HuffPost (US),Gesundheit,weight,583,9
-HuffPost (US),Gesundheit,healthy,532,10
-HuffPost (US),Wirtschaft,business,404,1
-HuffPost (US),Wirtschaft,women,302,2
-HuffPost (US),Wirtschaft,wall,240,3
-HuffPost (US),Wirtschaft,most,213,4
-HuffPost (US),Wirtschaft,tax,207,5
-HuffPost (US),Wirtschaft,money,204,6
-HuffPost (US),Wirtschaft,ceo,178,7
-HuffPost (US),Wirtschaft,credit,170,8
-HuffPost (US),Wirtschaft,ways,157,9
-HuffPost (US),Wirtschaft,get,148,10
-HuffPost (US),Style & Beauty,photos,4178,1
-HuffPost (US),Style & Beauty,fashion,1193,2
-HuffPost (US),Style & Beauty,style,987,3
-HuffPost (US),Style & Beauty,week,774,4
-HuffPost (US),Style & Beauty,video,655,5
-HuffPost (US),Style & Beauty,dress,631,6
-HuffPost (US),Style & Beauty,photo,620,7
-HuffPost (US),Style & Beauty,beauty,615,8
-HuffPost (US),Style & Beauty,best,582,9
-HuffPost (US),Style & Beauty,look,576,10
-HuffPost (US),Essen,recipes,945,1
-HuffPost (US),Essen,photos,729,2
-HuffPost (US),Essen,food,648,3
-HuffPost (US),Essen,best,616,4
-HuffPost (US),Essen,make,542,5
-HuffPost (US),Essen,recipe,490,6
-HuffPost (US),Essen,day,430,7
-HuffPost (US),Essen,video,291,8
-HuffPost (US),Essen,cooking,211,9
-HuffPost (US),Essen,eat,210,10
-HuffPost (US),Gesellschaft,gay,1422,1
-HuffPost (US),Gesellschaft,women,1117,2
-HuffPost (US),Gesellschaft,black,996,3
-HuffPost (US),Gesellschaft,day,523,4
-HuffPost (US),Gesellschaft,people,512,5
-HuffPost (US),Gesellschaft,trump,476,6
-HuffPost (US),Gesellschaft,video,443,7
-HuffPost (US),Gesellschaft,lgbt,427,8
-HuffPost (US),Gesellschaft,queer,413,9
-HuffPost (US),Gesellschaft,woman,401,10
+HuffPost (US),US News,who,54,5
+HuffPost (US),US News,covid,52,6
+HuffPost (US),US News,trump,49,7
+HuffPost (US),US News,death,48,8
+HuffPost (US),US News,school,44,9
+HuffPost (US),US News,woman,41,10
+HuffPost (US),US News,man,41,11
+HuffPost (US),US News,florida,41,12
+HuffPost (US),US News,coronavirus,37,13
+HuffPost (US),US News,killed,34,14
+HuffPost (US),US News,dies,32,15
+HuffPost (US),Umwelt,climate,527,1
+HuffPost (US),Umwelt,photos,335,2
+HuffPost (US),Umwelt,change,312,3
+HuffPost (US),Umwelt,video,305,4
+HuffPost (US),Umwelt,you,274,5
+HuffPost (US),Umwelt,how,246,6
+HuffPost (US),Umwelt,may,214,7
+HuffPost (US),Umwelt,week,201,8
+HuffPost (US),Umwelt,what,192,9
+HuffPost (US),Umwelt,more,191,10
+HuffPost (US),Umwelt,scientists,183,11
+HuffPost (US),Umwelt,why,180,12
+HuffPost (US),Umwelt,your,179,13
+HuffPost (US),Umwelt,world,172,14
+HuffPost (US),Umwelt,space,171,15
+HuffPost (US),Welt,trump,477,1
+HuffPost (US),Welt,korea,388,2
+HuffPost (US),Welt,north,371,3
+HuffPost (US),Welt,china,327,4
+HuffPost (US),Welt,isis,316,5
+HuffPost (US),Welt,attack,313,6
+HuffPost (US),Welt,world,302,7
+HuffPost (US),Welt,syria,273,8
+HuffPost (US),Welt,iran,263,9
+HuffPost (US),Welt,president,262,10
+HuffPost (US),Welt,russia,246,11
+HuffPost (US),Welt,war,242,12
+HuffPost (US),Welt,south,222,13
+HuffPost (US),Welt,killed,219,14
+HuffPost (US),Welt,how,213,15
+HuffPost (US),Wirtschaft,your,617,1
+HuffPost (US),Wirtschaft,you,608,2
+HuffPost (US),Wirtschaft,how,493,3
+HuffPost (US),Wirtschaft,business,406,4
+HuffPost (US),Wirtschaft,why,319,5
+HuffPost (US),Wirtschaft,women,313,6
+HuffPost (US),Wirtschaft,what,287,7
+HuffPost (US),Wirtschaft,can,246,8
+HuffPost (US),Wirtschaft,wall,240,9
+HuffPost (US),Wirtschaft,more,225,10
+HuffPost (US),Wirtschaft,most,214,11
+HuffPost (US),Wirtschaft,tax,208,12
+HuffPost (US),Wirtschaft,money,206,13
+HuffPost (US),Wirtschaft,america,188,14
+HuffPost (US),Wirtschaft,ceo,181,15
 HuffPost (US),Wohnen,photos,1365,1
-HuffPost (US),Wohnen,home,880,2
-HuffPost (US),Wohnen,video,383,3
-HuffPost (US),Wohnen,ideas,336,4
-HuffPost (US),Wohnen,day,284,5
-HuffPost (US),Wohnen,house,254,6
-HuffPost (US),Wohnen,make,238,7
-HuffPost (US),Wohnen,diy,237,8
-HuffPost (US),Wohnen,craft,200,9
-HuffPost (US),Wohnen,photo,171,10
-HuffPost (US),Reisen,photos,1708,1
-HuffPost (US),Reisen,travel,947,2
-HuffPost (US),Reisen,best,604,3
-HuffPost (US),Reisen,world,426,4
-HuffPost (US),Reisen,most,359,5
-HuffPost (US),Reisen,video,351,6
-HuffPost (US),Reisen,hotel,324,7
-HuffPost (US),Reisen,hotels,299,8
-HuffPost (US),Reisen,world's,246,9
-HuffPost (US),Reisen,top,232,10
-HuffPost (US),Religion,pope,246,1
-HuffPost (US),Religion,francis,141,2
-HuffPost (US),Religion,meditation,133,3
-HuffPost (US),Religion,daily,131,4
-HuffPost (US),Religion,church,123,5
-HuffPost (US),Religion,muslim,111,6
-HuffPost (US),Religion,faith,89,7
-HuffPost (US),Religion,religious,83,8
-HuffPost (US),Religion,christian,72,9
-HuffPost (US),Religion,religion,69,10
-ABC News (AU),Umwelt,fire,13157,1
-ABC News (AU),Umwelt,water,10672,2
-ABC News (AU),Umwelt,drought,4197,3
-ABC News (AU),Umwelt,flood,4113,4
-ABC News (AU),Umwelt,study,3821,5
-ABC News (AU),Umwelt,storm,3542,6
-ABC News (AU),Umwelt,climate,3221,7
-ABC News (AU),Umwelt,change,1981,8
-ABC News (AU),Umwelt,under,1107,9
-ABC News (AU),Umwelt,house,1075,10
-ABC News (AU),Sport,win,8415,1
-ABC News (AU),Sport,cup,8048,2
-ABC News (AU),Sport,final,6198,3
-ABC News (AU),Sport,afl,4425,4
-ABC News (AU),Sport,world,3800,5
-ABC News (AU),Sport,league,3696,6
-ABC News (AU),Sport,team,3096,7
-ABC News (AU),Sport,match,2234,8
-ABC News (AU),Sport,cricket,2222,9
-ABC News (AU),Sport,olympic,1966,10
-ABC News (AU),Politik,govt,17092,1
-ABC News (AU),Politik,council,16966,2
-ABC News (AU),Politik,government,10003,3
-ABC News (AU),Politik,election,9255,4
-ABC News (AU),Politik,minister,8096,5
-ABC News (AU),Politik,labor,7274,6
-ABC News (AU),Politik,trump,5303,7
-ABC News (AU),Politik,president,3521,8
-ABC News (AU),Politik,vote,3482,9
-ABC News (AU),Politik,parliament,3292,10
-ABC News (AU),Welt,china,6629,1
-ABC News (AU),Welt,world,5048,2
-ABC News (AU),Welt,iraq,4769,3
-ABC News (AU),Welt,war,3783,4
-ABC News (AU),Welt,iran,1886,5
-ABC News (AU),Welt,russia,1626,6
-ABC News (AU),Welt,global,1461,7
-ABC News (AU),Welt,syria,1336,8
-ABC News (AU),Welt,afghanistan,1304,9
-ABC News (AU),Welt,australia,732,10
-ABC News (AU),Wirtschaft,market,7334,1
-ABC News (AU),Wirtschaft,business,5817,2
-ABC News (AU),Wirtschaft,budget,5549,3
-ABC News (AU),Wirtschaft,jobs,4461,4
-ABC News (AU),Wirtschaft,tax,4378,5
-ABC News (AU),Wirtschaft,price,4006,6
-ABC News (AU),Wirtschaft,trade,3374,7
-ABC News (AU),Wirtschaft,bank,2991,8
-ABC News (AU),Wirtschaft,dollar,2289,9
-ABC News (AU),Wirtschaft,money,2140,10
-ABC News (AU),Entertainment,show,3376,1
-ABC News (AU),Entertainment,star,1858,2
-ABC News (AU),Entertainment,film,1600,3
-ABC News (AU),Entertainment,music,1372,4
-ABC News (AU),Entertainment,festival,462,5
-ABC News (AU),Entertainment,actor,403,6
-ABC News (AU),Entertainment,movie,391,7
-ABC News (AU),Entertainment,dies,267,8
-ABC News (AU),Entertainment,wins,193,9
-ABC News (AU),Entertainment,royal,190,10
-ABC News (AU),Kriminalität,police,38327,1
-ABC News (AU),Kriminalität,court,17197,2
-ABC News (AU),Kriminalität,charged,10951,3
-ABC News (AU),Kriminalität,murder,10409,4
-ABC News (AU),Kriminalität,killed,8656,5
-ABC News (AU),Kriminalität,accused,7903,6
-ABC News (AU),Kriminalität,trial,6925,7
-ABC News (AU),Kriminalität,assault,4781,8
-ABC News (AU),Kriminalität,jail,4656,9
-ABC News (AU),Kriminalität,woman,2977,10
-ABC News (AU),Gesundheit,health,9823,1
-ABC News (AU),Gesundheit,hospital,8398,2
-ABC News (AU),Gesundheit,covid,4192,3
-ABC News (AU),Gesundheit,cancer,2962,4
-ABC News (AU),Gesundheit,mental,2366,5
-ABC News (AU),Gesundheit,disease,1599,6
-ABC News (AU),Gesundheit,vaccine,1547,7
-ABC News (AU),Gesundheit,coronavirus,1330,8
-ABC News (AU),Gesundheit,virus,1038,9
-ABC News (AU),Gesundheit,service,731,10
+HuffPost (US),Wohnen,home,900,2
+HuffPost (US),Wohnen,your,636,3
+HuffPost (US),Wohnen,video,383,4
+HuffPost (US),Wohnen,how,356,5
+HuffPost (US),Wohnen,you,349,6
+HuffPost (US),Wohnen,ideas,336,7
+HuffPost (US),Wohnen,day,285,8
+HuffPost (US),Wohnen,house,266,9
+HuffPost (US),Wohnen,make,238,10
+HuffPost (US),Wohnen,diy,237,11
+HuffPost (US),Wohnen,craft,203,12
+HuffPost (US),Wohnen,photo,171,13
+HuffPost (US),Wohnen,ways,150,14
+HuffPost (US),Wohnen,vintage,145,15

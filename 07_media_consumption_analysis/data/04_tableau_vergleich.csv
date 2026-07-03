@@ -1,17 +1,19 @@
 ﻿category,source,anteil_prozent
-Politik,ABC News (AU),22.9
-Gesundheit,ABC News (AU),8.5
-Entertainment,ABC News (AU),2.8
-Kriminalität,ABC News (AU),23.6
-Wirtschaft,ABC News (AU),12.6
-Umwelt,ABC News (AU),10.6
-Sport,ABC News (AU),12.0
-Welt,ABC News (AU),6.9
-Politik,HuffPost (US),28.5
-Gesundheit,HuffPost (US),20.0
-Entertainment,HuffPost (US),24.0
+Gesellschaft,ABC News (AU),2.3
+Gesellschaft,HuffPost (US),18.2
+Gesundheit,ABC News (AU),3.2
+Gesundheit,HuffPost (US),20.3
+Kriminalität,ABC News (AU),8.4
 Kriminalität,HuffPost (US),2.9
-Wirtschaft,HuffPost (US),6.3
-Umwelt,HuffPost (US),6.8
+Politik,ABC News (AU),5.7
+Politik,HuffPost (US),29.0
+Sonstiges,ABC News (AU),66.1
+Sonstiges,HuffPost (US),6.3
+Sport,ABC News (AU),2.6
 Sport,HuffPost (US),4.1
-Welt,HuffPost (US),7.6
+Umwelt,ABC News (AU),3.7
+Umwelt,HuffPost (US),5.1
+Welt,ABC News (AU),2.8
+Welt,HuffPost (US),7.7
+Wirtschaft,ABC News (AU),5.3
+Wirtschaft,HuffPost (US),6.4
