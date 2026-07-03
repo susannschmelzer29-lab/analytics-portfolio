@@ -58,6 +58,23 @@ The Tableau inputs are deliberately pre-aggregated (< 250 KB total instead of
 fast and is the reason absolute counts, not raw rows, appear in Tableau.
 
 ---
+### 2a. ABC News Categorization — Keyword-Based (Updated)
+
+ABC News does not provide native categories. Each headline is assigned to
+one of 8 content categories via keyword matching; anything that cannot be
+matched unambiguously falls into `Sonstiges` (Other).
+
+**Current value: 67.7% `Sonstiges`.**
+
+Version history note: An earlier version of this document listed 60.0%
+here. The original keyword rules that produced that value are no longer
+available (code loss). The current pipeline uses a reconstructed,
+documented keyword list (see `01_media_pipeline_1.ipynb`, section 3a) and
+reproducibly yields a different value. An "Other" share of this magnitude
+is plausible for pure headline-based keyword classification without full
+text or context, and is treated as a methodological limitation, not a
+data quality problem: short news headlines (avg. 7 words) often provide
+too little context for unambiguous keyword matches.
 
 ## 3. Slide text — German (für das Deck)
 
