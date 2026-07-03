@@ -12,9 +12,13 @@ topics matter, when, and how two very different newsrooms set their agenda.
 
 ## 🔗 Presentations
 
+
+
+![Dashboard: Medienanalyse ABC News vs. HuffPost](dashboard_preview.png)
+
+*Interaktive Tableau-Public-Version folgt.* 
 | | |
 |---|---|
-| **📊 Interactive dashboard** | [View on Tableau Public →](TABLEAU_VIEW_LINK_HERE) |
 | **🎤 Narrated presentation** | [View on Prezi →](https://prezi.com/view/LqAgJegDiX5cM839IIjB/) |
  
 <!--
