@@ -1,0 +1,22 @@
+# --- Raw data (not in repo, download from Kaggle & mount) --------------------
+data/*.csv
+!data/train_sample.csv
+
+# --- Generated outputs ---------------------------------------------------------
+output/
+figures/
+executed.ipynb
+executed_test.ipynb
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- OS / Editor -------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
