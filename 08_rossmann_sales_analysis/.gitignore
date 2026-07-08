@@ -1,8 +1,8 @@
-# --- Rohdaten (nicht ins Repo, per Kaggle laden & mounten) -------------------
-daten/*.csv
-!daten/train_sample.csv
+# --- Raw data (not in repo, download from Kaggle & mount) --------------------
+data/*.csv
+!data/train_sample.csv
 
-# --- Generierte Outputs ------------------------------------------------------
+# --- Generated outputs ---------------------------------------------------------
 output/
 figures/
 executed.ipynb

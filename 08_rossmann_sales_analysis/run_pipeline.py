@@ -1,14 +1,14 @@
 """
-Headless-Runner: führt das Analyse-Notebook aus und erzeugt alle CSVs in ./output.
-Wird als Docker-Default aufgerufen (CMD im Dockerfile).
+Headless runner: executes the analysis notebook and generates all CSVs in ./output.
+Called as the Docker default (CMD in the Dockerfile).
 """
 import subprocess
 import sys
 
-NOTEBOOK = "Rossmann_Analyse_mit_Ergebnissen.ipynb"
+NOTEBOOK = "rossmann_sales_analysis.ipynb"
 
 def main():
-    print(f"[run_pipeline] Führe {NOTEBOOK} aus ...", flush=True)
+    print(f"[run_pipeline] Running {NOTEBOOK} ...", flush=True)
     result = subprocess.run(
         [
             "jupyter", "nbconvert",
@@ -24,7 +24,7 @@ def main():
     if result.returncode != 0:
         print(result.stderr, file=sys.stderr)
         sys.exit(result.returncode)
-    print("[run_pipeline] Fertig. Ergebnisse liegen in ./output", flush=True)
+    print("[run_pipeline] Done. Results are in ./output", flush=True)
 
 if __name__ == "__main__":
     main()
