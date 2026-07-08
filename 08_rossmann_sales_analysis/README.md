@@ -4,6 +4,18 @@ Exploratory data analysis of the [Rossmann Store Sales](https://www.kaggle.com/c
 dataset (1,017,209 sales rows, 1,115 stores). The pipeline answers six
 strategic questions and exports prepared CSVs for Tableau.
 
+## Presentations
+
+| | |
+|---|---|
+| **🎤 Narrated presentation** | [View on Prezi →](https://prezi.com/view/LqAgJegDiX5cM839IIjB/) |
+| **📊 Tableau dashboard** | _to be added_ |
+
+<!--
+  Tableau: publish to Tableau Public, then replace the placeholder above with
+  the public view URL (looks like https://public.tableau.com/views/...).
+-->
+
 ## Contents
 
 | Question | Output |
