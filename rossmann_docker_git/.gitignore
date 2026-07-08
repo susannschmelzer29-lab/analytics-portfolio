@@ -1,0 +1,22 @@
+# --- Rohdaten (nicht ins Repo, per Kaggle laden & mounten) -------------------
+daten/*.csv
+!daten/train_sample.csv
+
+# --- Generierte Outputs ------------------------------------------------------
+output/
+figures/
+executed.ipynb
+executed_test.ipynb
+
+# --- Python ------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# --- OS / Editor -------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
