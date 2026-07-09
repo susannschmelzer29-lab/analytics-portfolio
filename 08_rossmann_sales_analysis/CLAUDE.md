@@ -50,9 +50,12 @@ Portfolio project `08_rossmann_sales_analysis`.
 ## Still open / possible next steps
 1. Prezi presentation: a share-view link (`https://prezi.com/view/...`) is
    still needed for the README — the link found in "Prezi Link.odt" was a
-   private `/p/edit/...` link and should not be published as-is.
-2. Optional: add `docker-compose.yml` with Postgres if a SQL part is desired.
-3. Tableau dashboard link to be added later (user's own request).
+   private `/p/edit/...` link and should not be published as-is. A Prezi
+   template package (slides + narration script) exists in
+   "Prezi Vorlage.zip" on the user's Desktop, not yet built into an actual
+   Prezi presentation. User will add the real link later.
+2. Tableau dashboard link to be added later (user's own request).
+3. Optional: add `docker-compose.yml` with Postgres if a SQL part is desired.
 
 ## Files in this folder
 Dockerfile, .dockerignore, .gitignore, requirements.txt, run_pipeline.py,

@@ -8,10 +8,13 @@ strategic questions and exports prepared CSVs for Tableau.
 
 | | |
 |---|---|
-| **🎤 Narrated presentation** | [View on Prezi →](https://prezi.com/view/LqAgJegDiX5cM839IIjB/) |
+| **🎤 Narrated presentation** | _to be added_ |
 | **📊 Tableau dashboard** | _to be added_ |
 
 <!--
+  Prezi: publish the presentation, use the SHARE VIEW link
+  (https://prezi.com/view/...), NOT the /p/edit/ link, and set visibility
+  to public. Then replace the placeholder above.
   Tableau: publish to Tableau Public, then replace the placeholder above with
   the public view URL (looks like https://public.tableau.com/views/...).
 -->
