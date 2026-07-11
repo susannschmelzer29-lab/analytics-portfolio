@@ -33,8 +33,8 @@ Portfolio project `08_rossmann_sales_analysis`.
 - Bug fixed: the holiday label `"None"` collided with pandas' default NA
   tokens and was silently read back as missing data. Renamed to
   `"No Holiday"`.
-- Analytical correction (found via the Prezi presentation template, which
-  had already been fact-checked): the naive Q1/Q4 findings were misleading.
+- Analytical correction (found while cross-checking against previously
+  fact-checked reference material): the naive Q1/Q4 findings were misleading.
   - **Q1:** raw min/max ratio (factor 8) is outlier-driven. The notebook now
     reports the robust top-decile vs. bottom-decile ratio (factor ~3) as the
     headline KPI, with the outlier figure kept as context.
@@ -46,16 +46,16 @@ Portfolio project `08_rossmann_sales_analysis`.
     `q4_holidays_within_store.csv`.
 - `docker build -t rossmann-sales-analysis .`, the headless Docker run, and
   the JupyterLab Docker run have all been verified successfully.
+- Built a standalone interactive HTML/JS dashboard in `dashboard/` (5 pages
+  mirroring the original build plan: Executive Overview, Time Series, Promo
+  & Holiday Analysis, Store Segments, Store Ranking). `dashboard/build_dashboard.py`
+  regenerates `dashboard/data.js` from the CSVs in `output/`; `dashboard/index.html`
+  opens standalone in any browser (no server required, Chart.js via CDN).
+  This replaces the earlier plan to publish to Tableau Public / Prezi for
+  this project.
 
 ## Still open / possible next steps
-1. Prezi presentation: a share-view link (`https://prezi.com/view/...`) is
-   still needed for the README — the link found in "Prezi Link.odt" was a
-   private `/p/edit/...` link and should not be published as-is. A Prezi
-   template package (slides + narration script) exists in
-   "Prezi Vorlage.zip" on the user's Desktop, not yet built into an actual
-   Prezi presentation. User will add the real link later.
-2. Tableau dashboard link to be added later (user's own request).
-3. Optional: add `docker-compose.yml` with Postgres if a SQL part is desired.
+1. Optional: add `docker-compose.yml` with Postgres if a SQL part is desired.
 
 ## Files in this folder
 Dockerfile, .dockerignore, .gitignore, requirements.txt, run_pipeline.py,

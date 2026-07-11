@@ -2,3 +2,6 @@
 *.db
 07_media_consumption_analysis/Rohdaten/
 07_media_consumption_analysis/News_Category_Dataset_v3.json
+
+# Local Claude Code tooling (machine-specific, not project config)
+.claude/

@@ -2,22 +2,14 @@
 
 Exploratory data analysis of the [Rossmann Store Sales](https://www.kaggle.com/c/rossmann-store-sales)
 dataset (1,017,209 sales rows, 1,115 stores). The pipeline answers six
-strategic questions and exports prepared CSVs for Tableau.
+strategic questions and exports prepared CSVs for the dashboard.
 
 ## Presentations
 
 | | |
 |---|---|
 | **🎤 Narrated presentation** | _to be added_ |
-| **📊 Tableau dashboard** | _to be added_ |
-
-<!--
-  Prezi: publish the presentation, use the SHARE VIEW link
-  (https://prezi.com/view/...), NOT the /p/edit/ link, and set visibility
-  to public. Then replace the placeholder above.
-  Tableau: publish to Tableau Public, then replace the placeholder above with
-  the public view URL (looks like https://public.tableau.com/views/...).
--->
+| **🖥️ Interactive dashboard** | [`dashboard/index.html`](dashboard/index.html) — standalone HTML/JS build, open directly in a browser |
 
 ## Contents
 

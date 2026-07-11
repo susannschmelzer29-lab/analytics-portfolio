@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rossmann Store Sales — Interactive Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-title">Rossmann Store Sales</span>
+    <span class="brand-sub">1,115 stores · 2013–2015 · analytics-portfolio / 08_rossmann_sales_analysis</span>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-page="overview">Executive Overview</button>
+    <button class="tab-btn" data-page="timeseries">Time Series</button>
+    <button class="tab-btn" data-page="promo">Promo &amp; Holiday Analysis</button>
+    <button class="tab-btn" data-page="segments">Store Segments</button>
+    <button class="tab-btn" data-page="ranking">Store Ranking</button>
+  </nav>
+</header>
+
+<main id="app">
+
+  <!-- ================= PAGE 1: EXECUTIVE OVERVIEW ================= -->
+  <section class="page active" id="page-overview">
+    <h1>Executive Overview</h1>
+    <div class="kpi-grid" id="kpi-grid"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Total sales over time <span class="hint">7-day moving average</span></h2>
+        <div class="chart-wrap chart-wrap-sm"><canvas id="chart-overview-trend"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Top 5 / Bottom 5 stores <span class="hint">by avg. sales/day</span></h2>
+        <table class="mini-table" id="mini-ranking-table"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 2: TIME SERIES ================= -->
+  <section class="page" id="page-timeseries">
+    <h1>Time Series</h1>
+    <div class="card">
+      <div class="card-header-row">
+        <h2>Daily total sales <span class="hint">raw vs. 7-day moving average</span></h2>
+        <div class="filter-chips" id="year-filter"></div>
+      </div>
+      <div class="chart-wrap"><canvas id="chart-daily"></canvas></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Seasonality — Month <span class="hint">avg. sales/day, December highlighted</span></h2>
+        <div class="chart-wrap"><canvas id="chart-month"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Seasonality — Weekday <span class="hint">avg. sales/day, Mon–Sun</span></h2>
+        <div class="chart-wrap"><canvas id="chart-weekday"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 3: PROMO & HOLIDAY ================= -->
+  <section class="page" id="page-promo">
+    <h1>Promo &amp; Holiday Analysis</h1>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Promo uplift — overall</h2>
+        <div class="chart-wrap chart-wrap-sm"><canvas id="chart-promo-overall"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Promo uplift — by store type <span class="hint">dashed line = overall avg. 38.8%</span></h2>
+        <div class="chart-wrap chart-wrap-sm"><canvas id="chart-promo-storetype"></canvas></div>
+      </div>
+    </div>
+    <div class="card highlight-card">
+      <h2>Holiday uplift — naive vs. corrected <span class="badge-signature">key analytical finding</span></h2>
+      <div class="grid-2">
+        <div>
+          <div class="chart-wrap chart-wrap-sm"><canvas id="chart-holiday-naive"></canvas></div>
+          <p class="annotation annotation-red">Naive: all stores, uncorrected.</p>
+        </div>
+        <div>
+          <div class="chart-wrap chart-wrap-sm"><canvas id="chart-holiday-corrected"></canvas></div>
+          <p class="annotation annotation-petrol">Corrected: only the 156 stores that actually open on public holidays — store-level comparison.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>School holidays <span class="hint">moderate effect — neutral colors</span></h2>
+      <div class="chart-wrap chart-wrap-sm"><canvas id="chart-school-holidays"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 4: STORE SEGMENTS ================= -->
+  <section class="page" id="page-segments">
+    <h1>Store Segments</h1>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Store type comparison <span class="hint">bars = sales/day, dots = sales/customer · click a bar to filter Store Ranking</span></h2>
+        <div class="chart-wrap"><canvas id="chart-storetype"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Store type × assortment <span class="hint">heatmap of avg. sales/day</span></h2>
+        <div id="heatmap-storetype-assortment"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Competition proximity <span class="hint">avg. sales/day by distance class</span></h2>
+      <div class="chart-wrap chart-wrap-sm"><canvas id="chart-competition"></canvas></div>
+      <p class="annotation">r ≈ -0.05 — location beats raw distance (correlation computed in the Python notebook on store level).</p>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 5: STORE RANKING ================= -->
+  <section class="page" id="page-ranking">
+    <h1>Store Ranking</h1>
+    <div class="card">
+      <div class="ranking-controls">
+        <div class="control-group">
+          <label>Store type</label>
+          <div class="filter-chips" id="ranking-storetype-filter"></div>
+        </div>
+        <div class="control-group">
+          <label>Assortment</label>
+          <div class="filter-chips" id="ranking-assortment-filter"></div>
+        </div>
+        <div class="control-group">
+          <label for="ranking-search">Search store #</label>
+          <input type="number" id="ranking-search" placeholder="e.g. 817" />
+        </div>
+        <div class="control-group">
+          <label for="ranking-limit">Rows to show</label>
+          <input type="range" id="ranking-limit" min="10" max="1115" step="10" value="50" />
+          <span id="ranking-limit-value">50</span>
+        </div>
+        <button class="reset-btn" id="ranking-reset">Reset filters</button>
+      </div>
+      <p class="hint">Gold = top 10% (percentile ≥ 90), red = bottom 10% (percentile ≤ 10). Typical top/bottom-decile gap ≈ factor 3.1×.</p>
+      <div class="table-wrap">
+        <table class="ranking-table" id="ranking-table">
+          <thead>
+            <tr>
+              <th data-key="Rank">Rank</th>
+              <th data-key="Store">Store</th>
+              <th data-key="StoreType">Type</th>
+              <th data-key="Assortment">Assortment</th>
+              <th data-key="CompetitionProximity">Competition</th>
+              <th data-key="SalesPerDay">Sales/Day</th>
+              <th data-key="CustomersPerDay">Customers/Day</th>
+              <th data-key="SalesPerCustomer">Sales/Customer</th>
+              <th data-key="Percentile">Percentile</th>
+            </tr>
+          </thead>
+          <tbody id="ranking-tbody"></tbody>
+        </table>
+      </div>
+      <p class="hint" id="ranking-count"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Data: Kaggle Rossmann Store Sales · pre-aggregated CSVs from <code>output/</code> · see
+  <a href="../README.md">project README</a> for methodology notes.
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
