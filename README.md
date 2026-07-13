@@ -1,6 +1,6 @@
 # Data Analytics Portfolio
 
-**Career changer from pedagogy & social economy into data analytics.** This repository documents my transition through a structured vocational retraining (LTA), showing progression from statistics and SQL fundamentals to a full end-to-end analytics project.
+**Career changer from pedagogy & social economy into data analytics.** This repository documents my transition through a structured training, showing progression from statistics and SQL fundamentals to a full end-to-end analytics project.
 
 ---
 
