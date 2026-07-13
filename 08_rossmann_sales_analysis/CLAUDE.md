@@ -51,8 +51,8 @@ Portfolio project `08_rossmann_sales_analysis`.
   & Holiday Analysis, Store Segments, Store Ranking). `dashboard/build_dashboard.py`
   regenerates `dashboard/data.js` from the CSVs in `output/`; `dashboard/index.html`
   opens standalone in any browser (no server required, Chart.js via CDN).
-  This replaces the earlier plan to publish to Tableau Public / Prezi for
-  this project.
+  The dashboard is also published live via GitHub Pages and is the project's
+  canonical interactive deliverable.
 
 ## Still open / possible next steps
 1. Optional: add `docker-compose.yml` with Postgres if a SQL part is desired.
