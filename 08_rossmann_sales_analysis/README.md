@@ -9,7 +9,8 @@ strategic questions and exports prepared CSVs for the dashboard.
 | | |
 |---|---|
 | **🎤 Narrated presentation** | _to be added_ |
-| **🖥️ Interactive dashboard** | [`dashboard/index.html`](dashboard/index.html) — standalone HTML/JS build, open directly in a browser |
+| **🖥️ Interactive dashboard (live)** | [View on GitHub Pages →](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html) |
+| **🖥️ Interactive dashboard (source)** | [`dashboard/index.html`](dashboard/index.html) — standalone HTML/JS build, open directly in a browser |
 
 ## Contents
 
