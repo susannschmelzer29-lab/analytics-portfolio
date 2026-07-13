@@ -9,9 +9,9 @@ How can we determine whether a change in product or marketing improves conversio
 Simulated A/B test data.
 
 Fields:
-- group (A/B)
-- conversion (0/1)
 - user_id
+- group (A/B)
+- converted (0/1)
 
 ---
 

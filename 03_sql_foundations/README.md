@@ -22,14 +22,14 @@ extreme value affects business reporting.
 ## Setup (SQLite)
 Run the following from this folder to build the database:
 
-    sqlite3 orders.db < schema.sql
-    sqlite3 orders.db < seed_data.sql
+    sqlite3 foundations.db < schema.sql
+    sqlite3 foundations.db < seed_data.sql
 
 Then run any query file, for example:
 
-    sqlite3 orders.db < queries/03_aggregations.sql
+    sqlite3 foundations.db < queries/03_aggregations.sql
 
-In VS Code you can also open `orders.db` with the SQLTools / SQLite extension and
+In VS Code you can also open `foundations.db` with the SQLTools / SQLite extension and
 run the queries interactively.
 
 ---

@@ -109,7 +109,7 @@ def write_report(kpis: dict):
     lines.append("")
     lines.append("## Revenue by product")
     lines.append("")
-    lines.append("![Revenue by product](output/revenue_by_product.png)")
+    lines.append("![Revenue by product](revenue_by_product.png)")
     lines.append("")
     lines.append("| Product | Revenue (EUR) |")
     lines.append("|---|---|")
@@ -118,7 +118,7 @@ def write_report(kpis: dict):
     lines.append("")
     lines.append("## Revenue by city")
     lines.append("")
-    lines.append("![Revenue by city](output/revenue_by_city.png)")
+    lines.append("![Revenue by city](revenue_by_city.png)")
     lines.append("")
     lines.append("| City | Revenue (EUR) |")
     lines.append("|---|---|")
@@ -127,7 +127,7 @@ def write_report(kpis: dict):
     lines.append("")
     lines.append("## Monthly revenue trend")
     lines.append("")
-    lines.append("![Monthly revenue](output/monthly_revenue.png)")
+    lines.append("![Monthly revenue](monthly_revenue.png)")
     lines.append("")
 
     report_path = OUTPUT_DIR / "report.md"

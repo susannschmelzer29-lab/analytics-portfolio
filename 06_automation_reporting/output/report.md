@@ -1,6 +1,6 @@
 # Sales Report
 
-*Automatically generated on 2026-06-23 11:43*
+*Automatically generated on 2026-07-13 14:15*
 
 Reporting period: **2024-01-01** to **2024-12-24**
 
@@ -14,7 +14,7 @@ Reporting period: **2024-01-01** to **2024-12-24**
 
 ## Revenue by product
 
-![Revenue by product](output/revenue_by_product.png)
+![Revenue by product](revenue_by_product.png)
 
 | Product | Revenue (EUR) |
 |---|---|
@@ -25,7 +25,7 @@ Reporting period: **2024-01-01** to **2024-12-24**
 
 ## Revenue by city
 
-![Revenue by city](output/revenue_by_city.png)
+![Revenue by city](revenue_by_city.png)
 
 | City | Revenue (EUR) |
 |---|---|
@@ -36,4 +36,4 @@ Reporting period: **2024-01-01** to **2024-12-24**
 
 ## Monthly revenue trend
 
-![Monthly revenue](output/monthly_revenue.png)
+![Monthly revenue](monthly_revenue.png)
