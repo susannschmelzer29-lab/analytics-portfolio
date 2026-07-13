@@ -4,7 +4,14 @@
 
 ---
 
-## 🏆 Featured Project
+## 🏆 Featured Projects
+
+### [08 · Rossmann Store Sales Analysis](08_rossmann_sales_analysis/)
+End-to-end sales analysis of **1,115 stores / 1M+ rows** answering six strategic management questions — from raw Kaggle data through a Dockerized Python pipeline to a live interactive dashboard and a strategic management presentation.
+
+[![Interactive Rossmann dashboard — click to open the live version](08_rossmann_sales_analysis/dashboard_preview.gif)](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)
+
+**Stack:** Python (pandas), Docker, HTML/JS (Chart.js) | **[▶ Open the live interactive dashboard](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)** · [Management presentation (PPTX)](08_rossmann_sales_analysis/Rossmann_Strategische_Analyse.pptx)
 
 ### [07 · Media Consumption Analysis](07_media_consumption_analysis/)
 End-to-end content strategy analysis on **1.45M news headlines** from ABC News (AU) and HuffPost (US), spanning 20 years. Python data pipeline → Tableau dashboard → stakeholder presentation.
@@ -23,6 +30,7 @@ End-to-end content strategy analysis on **1.45M news headlines** from ABC News (
 | 05 | [Python Analytics Workflow](05_python_analytics_workflow/) | Data cleaning & validation pipeline | pandas |
 | 06 | [Automation & Reporting](06_automation_reporting/) | Automated KPI report generation | Python automation |
 | 07 | [Media Consumption Analysis](07_media_consumption_analysis/) | Full pipeline to interactive dashboard | Python, Tableau, storytelling |
+| 08 | [Rossmann Store Sales Analysis](08_rossmann_sales_analysis/) | 1M+ rows → live interactive dashboard | Python, Docker, dashboarding |
 
 ---
 

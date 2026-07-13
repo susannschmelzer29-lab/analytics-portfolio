@@ -6,6 +6,10 @@ strategic questions and exports prepared CSVs for the dashboard.
 
 ## Presentations
 
+[![Interactive Rossmann dashboard — click to open the live version](dashboard_preview.gif)](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)
+
+*Animated preview of the five dashboard pages — **[open the live interactive version →](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)***
+
 | | |
 |---|---|
 | **🎤 Narrated presentation** | _to be added_ |
