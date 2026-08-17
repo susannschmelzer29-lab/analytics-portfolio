@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rossmann Controlling — Plan/Actual, Variance & Profitability</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-title">Rossmann Controlling Cockpit</span>
+    <span class="brand-sub">Plan/Actual · Variance · Profitability · FY2014 &amp; FY2015-YTD · analytics-portfolio / 09_controlling_kpi_analysis</span>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-page="overview">Executive Overview</button>
+    <button class="tab-btn" data-page="planactual">Plan vs. Actual</button>
+    <button class="tab-btn" data-page="variance">Variance Analysis</button>
+    <button class="tab-btn" data-page="profit">Cost &amp; Profit</button>
+    <button class="tab-btn" data-page="method">Assumptions &amp; Method</button>
+  </nav>
+</header>
+
+<main id="app">
+
+  <!-- ================= PAGE 1: OVERVIEW ================= -->
+  <section class="page active" id="page-overview">
+    <div class="assump-banner">
+      <span class="icon">⚠️</span>
+      <span>The Kaggle dataset contains <b>no budget or cost data</b>. The plan is a
+      transparent derived rule and all cost/profit figures are <b>explicit model
+      assumptions</b> — a demonstration of controlling method on real sales data, not
+      real Rossmann financials. See <b>Assumptions &amp; Method</b>.</span>
+    </div>
+    <h1>Executive Overview</h1>
+    <div class="kpi-grid" id="kpi-grid"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Plan vs. actual revenue by month <span class="hint">seasonal prior-year plan (+3% target)</span></h2>
+        <div class="chart-wrap chart-wrap-sm"><canvas id="chart-overview-trend"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Modelled P&amp;L summary <span class="hint">contribution-margin accounting · assumed costs</span></h2>
+        <table class="pnl-summary" id="pnl-summary"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 2: PLAN VS ACTUAL ================= -->
+  <section class="page" id="page-planactual">
+    <h1>Plan vs. Actual</h1>
+    <div class="card">
+      <div class="card-header-row">
+        <h2>Monthly plan vs. actual revenue <span class="hint">bars = € revenue · line = variance %</span></h2>
+        <div class="filter-chips" id="year-filter"></div>
+      </div>
+      <div class="chart-wrap"><canvas id="chart-planactual"></canvas></div>
+      <p class="annotation">Plan = each store's prior-year <b>same-month</b> average daily sales × 1.03, applied to every actual trading day. The seasonal baseline is why monthly variance reflects performance, not the Jan–Dec seasonal swing.</p>
+    </div>
+    <div class="card">
+      <h2>Variance % by store type <span class="hint">actual vs. plan, per fiscal year</span></h2>
+      <div class="chart-wrap chart-wrap-sm"><canvas id="chart-variance-storetype"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 3: VARIANCE ================= -->
+  <section class="page" id="page-variance">
+    <h1>Variance Analysis</h1>
+    <p class="hint">Stores ranked by total variance vs. plan over the analysis window (stores with a full trading history only). These are the accounts a <em>Bereichscontroller</em> would follow up on first.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Top 10 over-performers <span class="hint">actual above plan</span></h2>
+        <table class="var-table" id="var-top-table"></table>
+      </div>
+      <div class="card">
+        <h2>Top 10 under-performers <span class="hint">actual below plan</span></h2>
+        <table class="var-table" id="var-bottom-table"></table>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Reading the variance <span class="badge-signature">controlling note</span></h2>
+      <p class="annotation annotation-petrol">Large single-month swings are often <b>calendar effects</b>, not performance: e.g. Easter fell in March 2013 but April 2014, so March 2014 shows a negative variance and April 2014 a positive one against a prior-year-month plan. A controller separates such timing shifts from genuine trend before acting.</p>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 4: COST & PROFIT ================= -->
+  <section class="page" id="page-profit">
+    <h1>Cost &amp; Profit <span class="hint" style="font-size:13px;">(modelled — assumed cost structure)</span></h1>
+    <div class="card">
+      <h2>P&amp;L bridge <span class="hint">revenue → contribution margin → operating profit (€ million)</span></h2>
+      <div class="chart-wrap"><canvas id="chart-pnl-bridge"></canvas></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Operating margin by store type <span class="hint">operating leverage: fixed cost is easier to cover at higher daily revenue</span></h2>
+        <div class="chart-wrap chart-wrap-sm"><canvas id="chart-margin-storetype"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Margins over time <span class="hint">contribution vs. operating margin, monthly</span></h2>
+        <div class="chart-wrap chart-wrap-sm"><canvas id="chart-margin-trend"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 5: ASSUMPTIONS & METHOD ================= -->
+  <section class="page" id="page-method">
+    <h1>Assumptions &amp; Method</h1>
+    <div class="assump-banner">
+      <span class="icon">🔍</span>
+      <span>Full transparency by design: every euro cost/profit figure in this cockpit
+      comes from the parameters below. Change one, re-run the notebook, and the whole
+      dashboard updates — the honest way to present modelled numbers.</span>
+    </div>
+    <div class="card">
+      <h2>Model assumptions <span class="hint">not real Rossmann figures</span></h2>
+      <table class="assump-table" id="assump-table"></table>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Planning method</h2>
+        <div class="formula">PlanDaily(store, year, month)<br>&nbsp;&nbsp;= mean(prior-year same-month daily sales) × (1 + 3%)</div>
+        <ul class="method-list">
+          <li><b>Baseline:</b> 2013 → plans 2014, 2014 → plans 2015.</li>
+          <li><b>Seasonal:</b> uses the <b>same month</b> a year earlier, so variance is not distorted by seasonality.</li>
+          <li><b>Variance</b> = Actual − Plan, in € and as % of plan, at day / month / store / store-type level.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Cost &amp; profit model <span class="hint">contribution-margin accounting</span></h2>
+        <ul class="method-list">
+          <li>Variable cost = <code>Sales × ratio[StoreType]</code> (COGS + variable opex).</li>
+          <li><b>Contribution margin (DB I)</b> = Sales − variable cost.</li>
+          <li>Fixed cost = <code>€900 × open trading days</code> (rent, base staffing, utilities).</li>
+          <li><b>Operating profit</b> = contribution margin − fixed cost.</li>
+          <li>Flat fixed cost means low-revenue stores can fall below break-even — surfaced as loss-making stores.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Limitations</h2>
+      <ul class="method-list">
+        <li><b>No real financials</b> — the dataset has only sales/customers/promo; plan and all costs are modelled.</li>
+        <li><b>Plan design is one valid choice</b> among several (moving average, top-down, bottom-up); results depend on it.</li>
+        <li><b>Flat growth target</b> ignores store-specific potential, cannibalisation and competition dynamics.</li>
+        <li><b>Simplified cost model</b> — one variable ratio per store type + one flat daily fixed cost.</li>
+        <li><b>2015 is year-to-date</b> (Jan–Jul); closed and zero-sales days are excluded, consistent with project 08.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Data: Kaggle Rossmann Store Sales · plan &amp; cost figures are modelled assumptions ·
+  pre-aggregated CSVs from <code>output/</code> · see the
+  <a href="../README.md">project README</a> for full methodology.
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

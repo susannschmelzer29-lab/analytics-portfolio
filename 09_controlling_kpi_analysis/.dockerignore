@@ -1,0 +1,12 @@
+data/
+output/
+figures/
+executed*.ipynb
+__pycache__/
+.ipynb_checkpoints/
+.git/
+.gitignore
+*.md
+dashboard/
+.venv/
+venv/
