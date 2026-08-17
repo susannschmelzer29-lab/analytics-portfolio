@@ -7,9 +7,19 @@
     petrolFill: "rgba(28, 114, 147, 0.15)",
     red: "#B23A48",
     gold: "#C9A227",
+    green: "#2E7D5B",
     grey: "#8A94A0",
     greyLight: "#D8DEE2",
   };
+
+  // Archetype -> theme color (keyword match, order-independent of segment ids)
+  function archetypeColor(name) {
+    if (/flagship/i.test(name)) return COLORS.gold;
+    if (/watchlist/i.test(name)) return COLORS.red;
+    if (/frequency/i.test(name)) return COLORS.petrol;
+    if (/basket/i.test(name)) return COLORS.green;
+    return COLORS.grey;
+  }
 
   const D = window.DASHBOARD_DATA;
   const charts = {}; // name -> Chart instance
@@ -663,6 +673,130 @@
   }
 
   // ---------------------------------------------------------------------
+  // Statistical confidence (Promo & Holiday page)
+  // ---------------------------------------------------------------------
+  function renderSignificance() {
+    const el = document.getElementById("significance-table");
+    if (!el || !D.significance) return;
+    const pFmt = (p) => (Number(p) < 0.001 ? "&lt;0.001" : Number(p).toFixed(2));
+    const rows = D.significance
+      .map((r) => {
+        const up = Number(r["MeanUplift_%"]);
+        const lo = Number(r["CI95_low_%"]);
+        const hi = Number(r["CI95_high_%"]);
+        const spansZero = lo <= 0 && hi >= 0;
+        const cls = spansZero ? "neutral" : up >= 0 ? "pos" : "neg";
+        return `
+        <tr>
+          <td>${r.Effect}</td>
+          <td class="num"><span class="sig-pill ${cls}">${up >= 0 ? "+" : ""}${fmtNum(up, 1)}%</span></td>
+          <td class="num">[${fmtNum(lo, 1)}%, ${fmtNum(hi, 1)}%]</td>
+          <td class="num">${pFmt(r.p_value)}</td>
+          <td class="num">${fmtNum(r.CohensD, 2)}</td>
+          <td class="num">${fmtInt(r.n_stores)}</td>
+        </tr>`;
+      })
+      .join("");
+    el.innerHTML = `
+      <thead><tr><th>Effect</th><th>Uplift</th><th>95% CI</th><th>p</th><th>Cohen's d</th><th>Stores</th></tr></thead>
+      <tbody>${rows}</tbody>`;
+  }
+
+  // ---------------------------------------------------------------------
+  // Store Archetypes page
+  // ---------------------------------------------------------------------
+  function renderArchetypeScatter() {
+    const ctx = document.getElementById("chart-archetypes");
+    if (!ctx || !D.segments) return;
+    const byArch = {};
+    D.segments.stores.forEach((s) => {
+      (byArch[s.Archetype] = byArch[s.Archetype] || []).push({
+        x: s.CustomersPerDay,
+        y: s.SalesPerCustomer,
+        r: Math.sqrt(s.SalesPerDay) / 11,
+        store: s.Store,
+        sales: s.SalesPerDay,
+      });
+    });
+    const datasets = Object.keys(byArch).map((arch) => {
+      const c = archetypeColor(arch);
+      return {
+        label: arch.replace(/ —.*$/, ""),
+        data: byArch[arch],
+        backgroundColor: c + "66",
+        borderColor: c,
+        borderWidth: 1,
+      };
+    });
+    charts.archetypes = new Chart(ctx, {
+      type: "bubble",
+      data: { datasets },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "bottom" },
+          tooltip: {
+            callbacks: {
+              label: (c) =>
+                `#${c.raw.store} · ${fmtInt(c.raw.x)} cust/day · basket €${fmtNum(c.raw.y, 2)} · ${fmtEUR(c.raw.sales)}/day`,
+            },
+          },
+        },
+        scales: {
+          x: { title: { display: true, text: "Customers per day (frequency)" }, ticks: { callback: (v) => fmtInt(v) } },
+          y: { title: { display: true, text: "Sales per customer (basket)" }, ticks: { callback: (v) => "€" + v } },
+        },
+      },
+    });
+  }
+
+  function renderSegmentTable() {
+    const el = document.getElementById("segment-table");
+    if (!el || !D.segments) return;
+    const rows = D.segments.profiles
+      .map((p) => {
+        const c = archetypeColor(p.Archetype);
+        return `
+        <tr>
+          <td><span class="seg-dot" style="background:${c}"></span>${p.Archetype.replace(/ —.*$/, "")}</td>
+          <td class="num">${fmtInt(p.Stores)}</td>
+          <td class="num">${fmtNum(p["SalesShare_%"], 1)}%</td>
+          <td class="num">${fmtEUR(p.SalesPerDay)}</td>
+          <td class="num">${fmtInt(p.CustomersPerDay)}</td>
+          <td class="num">€${fmtNum(p.SalesPerCustomer, 2)}</td>
+        </tr>`;
+      })
+      .join("");
+    el.innerHTML = `
+      <thead><tr><th>Archetype</th><th>Stores</th><th>Sales share</th><th>Sales/Day</th><th>Cust/Day</th><th>Basket</th></tr></thead>
+      <tbody>${rows}</tbody>`;
+  }
+
+  function renderArchetypePlaybook() {
+    const el = document.getElementById("archetype-playbook");
+    if (!el || !D.segments) return;
+    const PLAYS = {
+      flagship: "Protect &amp; learn — treat as best-practice benchmark; safeguard availability &amp; staffing at peak.",
+      watchlist: "Turnaround review — root-cause the low volume (location, format, execution); fix or right-size.",
+      frequency: "Grow the basket — cross-sell, bundles &amp; layout to lift €/customer where traffic is already high.",
+      basket: "Grow the traffic — local marketing &amp; promo to convert high baskets into more visits.",
+    };
+    const key = (name) =>
+      /flagship/i.test(name) ? "flagship" : /watchlist/i.test(name) ? "watchlist" : /frequency/i.test(name) ? "frequency" : "basket";
+    el.innerHTML = D.segments.profiles
+      .map((p) => {
+        const c = archetypeColor(p.Archetype);
+        return `
+        <div class="play-card" style="border-left:4px solid ${c}">
+          <div class="play-title">${p.Archetype.replace(/ —.*$/, "")} <span class="play-count">${fmtInt(p.Stores)} stores · ${fmtNum(p["SalesShare_%"], 1)}% of sales</span></div>
+          <div class="play-text">${PLAYS[key(p.Archetype)]}</div>
+        </div>`;
+      })
+      .join("");
+  }
+
+  // ---------------------------------------------------------------------
   // Init
   // ---------------------------------------------------------------------
   Chart.defaults.font.family = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif";
@@ -690,4 +824,9 @@
 
   setupRankingControls();
   renderRankingTable();
+
+  renderSignificance();
+  renderArchetypeScatter();
+  renderSegmentTable();
+  renderArchetypePlaybook();
 })();

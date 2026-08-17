@@ -19,6 +19,8 @@
     <button class="tab-btn" data-page="promo">Promo &amp; Holiday Analysis</button>
     <button class="tab-btn" data-page="segments">Store Segments</button>
     <button class="tab-btn" data-page="ranking">Store Ranking</button>
+    <button class="tab-btn" data-page="archetypes">Store Archetypes</button>
+    <button class="tab-btn" data-page="summary">Executive Summary</button>
   </nav>
 </header>
 
@@ -92,6 +94,11 @@
       <h2>School holidays <span class="hint">moderate effect — neutral colors</span></h2>
       <div class="chart-wrap chart-wrap-sm"><canvas id="chart-school-holidays"></canvas></div>
     </div>
+    <div class="card">
+      <h2>Statistical confidence <span class="badge-signature">rigor</span> <span class="hint">per-store paired test · 95% confidence intervals</span></h2>
+      <div class="table-scroll"><table class="sig-table" id="significance-table"></table></div>
+      <p class="annotation">With hundreds of thousands of store-days, almost any difference is "significant" (p ≈ 0) — so the decision-relevant output is the <b>confidence interval on the effect size</b>. Promo is a large, tightly-estimated lever; the general public-holiday effect's CI <b>includes zero</b>, quantifying the selection-effect caveat.</p>
+    </div>
   </section>
 
   <!-- ================= PAGE 4: STORE SEGMENTS ================= -->
@@ -158,6 +165,61 @@
         </table>
       </div>
       <p class="hint" id="ranking-count"></p>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 6: STORE ARCHETYPES (k-means) ================= -->
+  <section class="page" id="page-archetypes">
+    <h1>Store Archetypes <span class="hint" style="font-size:13px;">k-means segmentation · silhouette-checked</span></h1>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Archetype map <span class="hint">frequency (x) vs. basket (y) · bubble = sales/day</span></h2>
+        <div class="chart-wrap"><canvas id="chart-archetypes"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Segment profiles <span class="hint">mean drivers per archetype</span></h2>
+        <div class="table-scroll"><table class="segment-table" id="segment-table"></table></div>
+        <p class="annotation annotation-petrol">A flat ranking says <em>who</em> is ahead; archetypes say <em>how</em> stores differ — and each carries its own lever (traffic vs. basket size).</p>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Archetype playbook <span class="hint">so-what per segment</span></h2>
+      <div class="playbook" id="archetype-playbook"></div>
+    </div>
+  </section>
+
+  <!-- ================= PAGE 7: EXECUTIVE SUMMARY ================= -->
+  <section class="page" id="page-summary">
+    <h1>Executive Summary <span class="hint" style="font-size:13px;">hypothesis-driven · MECE · so-what</span></h1>
+    <div class="card">
+      <p class="scq"><b>Situation.</b> Management needs to know where sales come from, which levers move them, and where to act across 1,115 stores (1M+ store-days, 2013–2015).</p>
+      <p class="scq"><b>Complication.</b> Raw rankings and naive averages mislead — outliers inflate performance gaps, and holiday "uplifts" are largely a store-selection artefact.</p>
+    </div>
+    <div class="card">
+      <h2>Key findings <span class="hint">MECE, with confidence</span></h2>
+      <div class="table-scroll"><table class="summary-table">
+        <thead><tr><th>#</th><th>Finding</th><th>Confidence</th><th>So-what</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Top-vs-bottom-decile gap ≈ <b>factor 3</b> (raw factor 8 is outlier-driven)</td><td>Robust decile method</td><td>Benchmark within peer groups, not against outliers</td></tr>
+          <tr><td>2</td><td>Distance alone barely explains sales (r ≈ −0.05)</td><td>Store-level corr.</td><td>Score location/frequency, not raw competition distance</td></tr>
+          <tr><td>3</td><td><b>December peak</b>; strong Mon &amp; Sun, weak Sat</td><td>Full-period pattern</td><td>Align staffing, stock &amp; promo to the seasonal/weekly curve</td></tr>
+          <tr><td>4</td><td>Naive holiday ≈ +40 % is a <b>selection artefact</b>; general public-holiday effect ≈ 0 (95 % CI −8…+2 %); school holidays a robust +4.5 %</td><td>95 % CI</td><td>Don't budget a general holiday uplift; treat school holidays &amp; specific dates separately</td></tr>
+          <tr><td>5</td><td>Daily promo ≈ <b>+41 %</b> per store (95 % CI 40–43 %, d ≈ 2.3) — strongest, best-evidenced lever</td><td>95 % CI</td><td>Shift promo budget by store type &amp; archetype (type a reacts most)</td></tr>
+          <tr><td>6</td><td>Type b = high-frequency format; type d = high basket</td><td>Segment means</td><td>Manage formats on their own economics</td></tr>
+          <tr><td>7</td><td>46 <b>flagship</b> stores (~4 %) ≈ 9 % of sales; 356 <b>watchlist</b> (32 %) only ≈ 23 %</td><td>k-means</td><td>Give each archetype its own playbook (traffic vs. basket)</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <h2>Recommendations <span class="hint">prioritised</span></h2>
+      <ol class="reco-list">
+        <li><b>Reallocate promo spend by store type &amp; archetype</b> — deploy the ~41 % (CI-backed) lever where uplift is largest, not uniformly. <span class="reco-meta">Owner: Category/Trade Marketing · Impact: high · Effort: low</span></li>
+        <li><b>Run an archetype playbook</b> — traffic tactics for frequency-driven, basket/cross-sell for basket-driven, turnaround review for the watchlist. <span class="reco-meta">Owner: Regional Ops · Impact: high · Effort: medium</span></li>
+        <li><b>Benchmark within peer groups</b> — compare each store to its archetype median, not the global ranking. <span class="reco-meta">Owner: Controlling · Impact: medium · Effort: low</span></li>
+        <li><b>Seasonal &amp; holiday planning on corrected effects</b> — size capacity to the December/weekly curve and the within-store holiday reality. <span class="reco-meta">Owner: S&amp;OP · Impact: medium · Effort: medium</span></li>
+        <li><b>Upgrade location scoring</b> — add location/frequency indicators beyond raw competition distance. <span class="reco-meta">Owner: Expansion · Impact: medium · Effort: medium</span></li>
+      </ol>
+      <p class="annotation">Every figure is reproducible from the notebook; effect sizes carry 95 % confidence intervals and segments are cross-checked by silhouette score.</p>
     </div>
   </section>
 

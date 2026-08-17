@@ -246,3 +246,42 @@ h2 { font-size: 15px; margin: 0 0 12px 0; color: var(--ink); display: flex; alig
   padding: 20px;
 }
 .footer a { color: var(--petrol); }
+
+/* ============================================================================
+   Consulting modules (statistical rigor · archetypes · executive summary)
+   ========================================================================== */
+:root { --green: #2E7D5B; --green-light: rgba(46, 125, 91, 0.12); }
+
+/* Significance table -------------------------------------------------------- */
+.table-scroll { overflow-x: auto; }
+.sig-table, .segment-table, .summary-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.sig-table th, .segment-table th, .summary-table th {
+  color: var(--ink-soft); font-weight: 600; font-size: 11px; text-transform: uppercase;
+  text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--border);
+}
+.sig-table td, .segment-table td { padding: 7px 9px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.sig-table td.num, .segment-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.sig-pill { font-weight: 600; padding: 1px 7px; border-radius: 8px; font-size: 12px; }
+.sig-pill.pos { background: var(--green-light); color: var(--green); }
+.sig-pill.neg { background: var(--red-light); color: var(--red); }
+.sig-pill.neutral { background: var(--grey-light); color: var(--ink-soft); }
+
+/* Segment profile table ----------------------------------------------------- */
+.seg-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+
+/* Archetype playbook -------------------------------------------------------- */
+.playbook { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 900px) { .playbook { grid-template-columns: 1fr; } }
+.play-card { background: var(--grey-light); border-radius: 8px; padding: 12px 14px; }
+.play-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.play-count { font-size: 11px; color: var(--ink-soft); font-weight: 400; }
+.play-text { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+/* Executive summary --------------------------------------------------------- */
+.scq { font-size: 14px; color: var(--ink); line-height: 1.6; margin: 4px 0; }
+.summary-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+.summary-table td:first-child { color: var(--ink-soft); font-weight: 700; }
+.summary-table tbody tr:hover { background: var(--grey-light); }
+.reco-list { margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.6; }
+.reco-list li { margin-bottom: 10px; }
+.reco-meta { display: inline-block; font-size: 11.5px; color: var(--ink-soft); background: var(--grey-light); padding: 1px 8px; border-radius: 8px; margin-top: 3px; }

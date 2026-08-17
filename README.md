@@ -12,7 +12,7 @@ A **controlling cockpit** on the same real 1M+-row Rossmann data: budget vs. act
 **Stack:** Python (pandas), Docker, HTML/JS (Chart.js) | **[▶ Open the live interactive dashboard](https://susannschmelzer29-lab.github.io/analytics-portfolio/09_controlling_kpi_analysis/dashboard/index.html)** · [Methodology & assumptions (README)](09_controlling_kpi_analysis/README.md)
 
 ### [08 · Rossmann Store Sales Analysis](08_rossmann_sales_analysis/)
-End-to-end sales analysis of **1,115 stores / 1M+ rows** answering six strategic management questions — from raw Kaggle data through a Dockerized Python pipeline to a live interactive dashboard and a strategic management presentation.
+End-to-end sales analysis of **1,115 stores / 1M+ rows** answering six strategic management questions — from raw Kaggle data through a Dockerized Python pipeline to a live interactive dashboard and a strategic management presentation. Extended with **consulting-grade modules**: statistical rigor (95 % confidence intervals & significance), k-means **store segmentation** into performance archetypes, and a MECE **executive summary**.
 
 [![Interactive Rossmann dashboard — click to open the live version](08_rossmann_sales_analysis/dashboard_preview.gif)](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)
 
@@ -35,15 +35,15 @@ End-to-end content strategy analysis on **1.45M news headlines** from ABC News (
 | 05 | [Python Analytics Workflow](05_python_analytics_workflow/) | Data cleaning & validation pipeline | pandas |
 | 06 | [Automation & Reporting](06_automation_reporting/) | Automated KPI report generation | Python automation |
 | 07 | [Media Consumption Analysis](07_media_consumption_analysis/) | Full pipeline to interactive dashboard | Python, Tableau, storytelling |
-| 08 | [Rossmann Store Sales Analysis](08_rossmann_sales_analysis/) | 1M+ rows → live interactive dashboard | Python, Docker, dashboarding |
+| 08 | [Rossmann Store Sales Analysis](08_rossmann_sales_analysis/) | 1M+ rows → dashboard + segmentation & stats | Python, Docker, k-means, CIs/significance |
 | 09 | [Rossmann Controlling & KPIs](09_controlling_kpi_analysis/) | Plan/actual, variance, contribution-margin P&L | Controlling, variance analysis, Python |
 
 ---
 
 ## 🛠 Skills
 
-**Languages & Tools:** SQL (SQLite) · Python (pandas, numpy, matplotlib) · Tableau · Power BI · Jupyter
-**Techniques:** Data cleaning & validation · Statistical testing · Window functions & CTEs · Dashboard design · Automated reporting · Controlling & FP&A (plan/actual, variance analysis, contribution-margin accounting)
+**Languages & Tools:** SQL (SQLite) · Python (pandas, numpy, matplotlib, scikit-learn, scipy) · Tableau · Power BI · Jupyter
+**Techniques:** Data cleaning & validation · Statistical inference (confidence intervals, significance, effect sizes) · Clustering / segmentation (k-means) · Window functions & CTEs · Dashboard design · Automated reporting · Controlling & FP&A (plan/actual, variance analysis, contribution-margin accounting)
 **Approach:** Business-problem-first — every project starts from a decision-making question, not just a dataset.
 
 ---

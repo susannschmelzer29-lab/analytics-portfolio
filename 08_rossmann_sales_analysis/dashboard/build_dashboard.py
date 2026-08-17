@@ -119,9 +119,30 @@ def build_store_ranking() -> list[dict]:
     return df[cols].round(2).to_dict("records")
 
 
+def build_segments() -> dict:
+    profiles = load("segment_profiles.csv").sort_values("SalesPerDay", ascending=False)
+    stores = load("store_segments.csv")
+    return {
+        "profiles": profiles[
+            ["Segment", "Archetype", "Stores", "StoreShare_%", "SalesShare_%",
+             "SalesPerDay", "SalesPerCustomer", "CustomersPerDay", "CompetitionDistance"]
+        ].round(2).to_dict("records"),
+        "stores": stores[
+            ["Store", "StoreType", "SalesPerDay", "SalesPerCustomer",
+             "CustomersPerDay", "Segment", "Archetype"]
+        ].round(2).to_dict("records"),
+    }
+
+
+def build_significance() -> list[dict]:
+    return load("stats_significance.csv").to_dict("records")
+
+
 def main() -> None:
     data = {
         "kpis": build_kpis(),
+        "segments": build_segments(),
+        "significance": build_significance(),
         "daily": build_daily_series(),
         "month": build_month(),
         "weekday": build_weekday(),

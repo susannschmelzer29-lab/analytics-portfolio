@@ -54,6 +54,24 @@ Portfolio project `08_rossmann_sales_analysis`.
   The dashboard is also published live via GitHub Pages and is the project's
   canonical interactive deliverable.
 
+## Consulting modules added (§7–§9)
+- **§7 Statistical rigor:** paired (per-store) 95% CIs + p-values + Cohen's d on
+  the promo/holiday levers via scipy. Promo +41% (CI 40–43%, d≈2.3); school
+  holiday +4.5% (robust); general public-holiday effect NOT significant (CI
+  −8…+2%) — quantifies the Q4 selection-effect caveat. Exports
+  `stats_significance.csv`.
+- **§8 Segmentation:** k-means (sklearn) on 4 standardized drivers → 4
+  archetypes (Flagship / Watchlist / Frequency-driven / Basket-driven),
+  silhouette-checked, rule-based names. Exports `store_segments.csv`,
+  `segment_profiles.csv`.
+- **§9 Consulting exec summary:** replaced the old "Management Summary" with a
+  MECE / SCQ / owner-impact-effort structure.
+- Dashboard gained two pages (**Store Archetypes**, **Executive Summary**) and a
+  statistical-confidence panel on the Promo page; `build_dashboard.py` now emits
+  `segments` + `significance` into `data.js`. scikit-learn + scipy added to
+  requirements. All verified rendering in-browser, no console errors.
+- Notebook now 45 cells (§0–§9), runs error-free end-to-end.
+
 ## Still open / possible next steps
 1. Optional: add `docker-compose.yml` with Postgres if a SQL part is desired.
 

@@ -27,9 +27,40 @@ strategic questions and exports prepared CSVs for the dashboard.
 | Promo uplift | `q5_promo*.csv` |
 | Store type & assortment | `q6_*.csv` |
 | Management KPIs | `kpi_management.csv` |
+| **Statistical rigor** (CIs & significance) | `stats_significance.csv` |
+| **Store segmentation** (k-means archetypes) | `store_segments.csv`, `segment_profiles.csv` |
 
 Additionally: `rossmann_master_tableau.csv` (full master dataset, ~165 MB, is
 **not** checked in, but generated locally).
+
+## Consulting modules (§7–§9)
+
+Beyond the descriptive analysis, the notebook adds three consulting-grade
+modules — and the dashboard gains a **Store Archetypes** page, an **Executive
+Summary** page, and a statistical-confidence panel.
+
+**§7 · Statistical rigor — confidence intervals & significance.** The headline
+levers are re-estimated with a *paired* design (each store is its own control),
+reporting **95 % confidence intervals**, a paired-*t* *p*-value and Cohen's *d*.
+Key result: promo is a large, tightly-estimated lever (**+41 %**, 95 % CI
+40–43 %, *d* ≈ 2.3); school holidays a small but robust **+4.5 %**; the general
+public-holiday effect is **not significant** once each store is its own control
+(95 % CI −8 %…+2 %), quantifying the earlier selection-effect caveat. *Note:*
+with 10⁵–10⁶ store-days almost anything is "significant" (*p* ≈ 0), so the
+decision-relevant output is the **CI on the effect size**, not the *p*-value.
+
+**§8 · Store segmentation — performance archetypes (k-means).** All 1,115 stores
+are clustered on four standardized drivers (sales/day, basket, frequency,
+competition distance; *k* chosen with the silhouette score). The result is four
+actionable archetypes: **Flagship** (46 stores ≈ 9 % of sales), **Watchlist**
+(356 stores, only ≈ 23 % of sales), and two mid-tiers split by *shape* —
+**Frequency-driven** (many small baskets) vs. **Basket-driven** (fewer, larger
+baskets). Each carries its own playbook (grow traffic vs. grow basket).
+
+**§9 · Consulting executive summary.** Findings are restructured
+hypothesis-driven and MECE (Situation → Complication → findings-with-confidence
+→ prioritised recommendations with owner / impact / effort), the way a
+consulting deck reads.
 
 ## Getting the data
 
