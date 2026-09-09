@@ -4,4 +4,8 @@
 07_media_consumption_analysis/News_Category_Dataset_v3.json
 
 # Local Claude Code tooling (machine-specific, not project config)
-.claude/
+# Leading slash: root only. Project 10 commits its own .claude/ on purpose.
+/.claude/
+
+# Claude working files — notes, drafts, PDFs. Not part of the portfolio.
+Claude outputs/
