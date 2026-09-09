@@ -73,7 +73,10 @@ def write_csv(name: str, header: list[str], rows: list[list]) -> None:
     SEED_DIR.mkdir(parents=True, exist_ok=True)
     path = SEED_DIR / f"{name}.csv"
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
+        # Fixed at LF: csv.writer defaults to CRLF, which would make this
+        # generator produce different bytes on Linux CI vs local Windows
+        # checkouts and break the byte-identity check in CI.
+        w = csv.writer(f, lineterminator="\n")
         w.writerow(header)
         w.writerows(rows)
     print(f"{path.name}: {len(rows)} rows")
