@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: int_rossmann__train_enriched
+    description: Train data with date parts, weekday label, holiday/promo labels applied.
+    columns:
+      - name: store_id
+        data_tests:
+          - not_null
+      - name: holiday_label
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["No Holiday", "Public Holiday", "Easter", "Christmas"]
+
+  - name: int_rossmann__store_cleaned
+    description: Store master data with missing-value handling and derived labels/buckets applied.
+    columns:
+      - name: store_id
+        data_tests:
+          - not_null
+          - unique
+      - name: competition_distance
+        description: Never null after cleaning — missing distance is imputed as 2x the observed max.
+        data_tests:
+          - not_null
+      - name: competition_proximity
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["<500m", "500-1500m", "1.5-5km", ">5km"]
+
+  - name: int_rossmann__master
+    description: >
+      Train enriched left-joined to store cleaned — one row per store/day,
+      the full analysis base table (equivalent of the notebook's `master`
+      / rossmann_master_tableau.csv).
+    columns:
+      - name: store_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('int_rossmann__store_cleaned')
+                field: store_id
+
+  - name: int_rossmann__analysis_scope
+    description: >
+      `int_rossmann__master` filtered to is_open = 1 and sales > 0 — the
+      base for every Q1-Q6 mart and the KPI cockpit (the notebook's `frame`).
+    columns:
+      - name: is_open
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1]

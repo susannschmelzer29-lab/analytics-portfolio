@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: stg_rossmann__train
+    description: >
+      One row per store per day of sales. Typed/renamed 1:1 from the
+      raw_train_sample seed — no business logic applied yet.
+    columns:
+      - name: store_id
+        description: Store identifier.
+        data_tests:
+          - not_null
+      - name: sale_date
+        description: Calendar date of the sales record.
+        data_tests:
+          - not_null
+      - name: sales
+        description: Turnover in EUR for that store/day.
+        data_tests:
+          - not_null
+      - name: customers
+        description: Number of customers for that store/day.
+        data_tests:
+          - not_null
+      - name: is_open
+        description: 1 = store was open that day, 0 = closed.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+      - name: is_promo
+        description: 1 = a daily promo was running that day.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+      - name: state_holiday_code
+        description: >
+          Raw Kaggle code — '0' none, 'a' public holiday, 'b' Easter,
+          'c' Christmas. See int_rossmann__train_enriched for the label.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ["0", "a", "b", "c"]
+      - name: is_school_holiday
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+  - name: stg_rossmann__store
+    description: >
+      One row per store — master data (type, assortment, competition,
+      Promo2 status). Typed/renamed 1:1 from the raw_store_sample seed.
+    columns:
+      - name: store_id
+        description: Store identifier, unique per store.
+        data_tests:
+          - not_null
+          - unique
+      - name: store_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["a", "b", "c", "d"]
+      - name: assortment_code
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["a", "b", "c"]

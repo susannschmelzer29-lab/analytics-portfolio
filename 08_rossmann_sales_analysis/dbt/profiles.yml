@@ -1,0 +1,12 @@
+# Local dev/demo profile — DuckDB needs no server, no credentials, no cloud
+# account. This file lives inside the project (not in the usual ~/.dbt/)
+# purely so the portfolio project is clone-and-run. Point dbt at it with:
+#   dbt --profiles-dir . <command>          (PowerShell/bash, one-off)
+#   $env:DBT_PROFILES_DIR = "."             (PowerShell, for the session)
+rossmann_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "rossmann.duckdb"
+      threads: 4

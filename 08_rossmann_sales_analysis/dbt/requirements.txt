@@ -1,0 +1,9 @@
+dbt-core==1.12.3
+dbt-duckdb==1.11.0
+
+# Only needed for stats_and_segmentation.py (the ML/stats step outside dbt):
+duckdb
+pandas
+numpy
+scipy
+scikit-learn

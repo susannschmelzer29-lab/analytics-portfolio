@@ -62,6 +62,21 @@ hypothesis-driven and MECE (Situation → Complication → findings-with-confide
 → prioritised recommendations with owner / impact / effort), the way a
 consulting deck reads.
 
+## Data Engineering Layer — dbt
+
+The pandas pipeline above (cleaning, merging, the six business-question
+aggregations, the KPI cockpit) has also been rebuilt as a **dbt project**
+(staging → intermediate → marts) running on **DuckDB**, with `schema.yml`
+data tests and a **GitHub Actions** CI workflow that runs `dbt build` on
+every push. Same analysis, same numbers — restated with the tooling
+(dbt, tests, CI/CD) that's part of a modern analytics-engineering stack.
+The statistical-significance and k-means segmentation modules (§7–§8 below)
+stay in Python, reading straight out of the dbt-built database — they're
+not SQL-expressible.
+
+▶ [`dbt/README.md`](dbt/README.md) — architecture, the notebook → dbt-model
+map, and how to run it.
+
 ## Getting the data
 
 The raw data is not in the repo due to its size. Only `data/train_sample.csv`

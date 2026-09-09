@@ -1,0 +1,52 @@
+name: "rossmann_dbt"
+version: "1.0.0"
+config-version: 2
+
+profile: "rossmann_dbt"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+seeds:
+  rossmann_dbt:
+    +schema: seeds
+    raw_train_sample:
+      +column_types:
+        Store: integer
+        DayOfWeek: integer
+        Date: date
+        Sales: integer
+        Customers: integer
+        Open: integer
+        Promo: integer
+        StateHoliday: varchar
+        SchoolHoliday: integer
+    raw_store_sample:
+      +column_types:
+        Store: integer
+        StoreType: varchar
+        Assortment: varchar
+        CompetitionDistance: double
+        CompetitionOpenSinceMonth: integer
+        CompetitionOpenSinceYear: integer
+        Promo2: integer
+        Promo2SinceWeek: integer
+        Promo2SinceYear: integer
+        PromoInterval: varchar
+
+models:
+  rossmann_dbt:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts

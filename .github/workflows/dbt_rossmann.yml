@@ -1,0 +1,47 @@
+name: dbt build — Rossmann
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "08_rossmann_sales_analysis/dbt/**"
+      - ".github/workflows/dbt_rossmann.yml"
+  pull_request:
+    paths:
+      - "08_rossmann_sales_analysis/dbt/**"
+      - ".github/workflows/dbt_rossmann.yml"
+  workflow_dispatch: {}
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 08_rossmann_sales_analysis/dbt
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt-core + dbt-duckdb
+        run: pip install dbt-core dbt-duckdb
+
+      - name: dbt seed (load sample CSVs into DuckDB)
+        run: dbt seed --profiles-dir .
+
+      - name: dbt build (run models + data tests)
+        run: dbt build --profiles-dir .
+
+      - name: Upload dbt artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-logs
+          path: |
+            08_rossmann_sales_analysis/dbt/logs
+            08_rossmann_sales_analysis/dbt/target

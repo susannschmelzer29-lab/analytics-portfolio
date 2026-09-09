@@ -1,0 +1,95 @@
+version: 2
+
+models:
+  - name: mart_store_performance
+    description: "Q1 - store ranking by average daily sales."
+    columns:
+      - name: store_id
+        data_tests: [not_null, unique]
+      - name: sales_rank
+        data_tests: [not_null]
+
+  - name: mart_competition_proximity
+    description: "Q2 - avg sales by competition-distance bucket."
+    columns:
+      - name: competition_proximity
+        data_tests:
+          - unique
+          - accepted_values:
+              arguments:
+                values: ["<500m", "500-1500m", "1.5-5km", ">5km"]
+
+  - name: mart_competition_correlation
+    description: "Q2 - correlation (r) between competition distance and avg sales, one row."
+
+  - name: mart_seasonality_monthly
+    description: "Q3 - avg sales by calendar month."
+    columns:
+      - name: sale_month
+        data_tests:
+          - unique
+          - not_null
+
+  - name: mart_seasonality_weekday
+    description: "Q3 - avg sales by weekday."
+    columns:
+      - name: weekday_name
+        data_tests: [unique, not_null]
+
+  - name: mart_seasonality_daily
+    description: "Q3 - chain-wide daily sales aggregate, for time-series charts."
+    columns:
+      - name: sale_date
+        data_tests: [unique, not_null]
+
+  - name: mart_holidays
+    description: "Q4 - avg sales by holiday type, naive (all stores)."
+    columns:
+      - name: holiday_label
+        data_tests: [unique, not_null]
+
+  - name: mart_holidays_within_store
+    description: "Q4 - same as mart_holidays, restricted to stores that ever open on a holiday (selection-effect check)."
+    columns:
+      - name: holiday_label
+        data_tests: [unique, not_null]
+
+  - name: mart_school_holidays
+    description: "Q4 - avg sales, school holiday vs. normal days."
+
+  - name: mart_promo
+    description: "Q5 - avg sales with vs. without a daily promo."
+    columns:
+      - name: promo_label
+        data_tests:
+          - unique
+          - accepted_values:
+              arguments:
+                values: ["With Promo", "No Promo"]
+
+  - name: mart_promo_by_storetype
+    description: "Q5 - promo uplift, split by store type."
+    columns:
+      - name: store_type
+        data_tests: [unique, not_null]
+
+  - name: mart_store_type
+    description: "Q6 - avg sales by store type."
+    columns:
+      - name: store_type
+        data_tests: [unique, not_null]
+
+  - name: mart_store_type_x_assortment
+    description: "Q6 - avg sales, store type x assortment."
+
+  - name: mart_kpi_cockpit
+    description: "Management KPI cockpit - single row of headline numbers."
+    columns:
+      - name: number_of_stores
+        data_tests: [not_null]
+
+  - name: mart_rossmann_master
+    description: "Full grain master table (all rows, incl. closed days) - BI-tool export equivalent."
+    columns:
+      - name: store_id
+        data_tests: [not_null]
