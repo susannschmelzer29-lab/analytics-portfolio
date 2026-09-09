@@ -1,0 +1,10 @@
+.git
+__pycache__
+*.pyc
+.venv
+venv
+dbt/target
+dbt/logs
+dbt/dbt_packages
+*.duckdb
+build.log

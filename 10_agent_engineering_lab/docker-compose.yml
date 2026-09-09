@@ -1,0 +1,41 @@
+# Two services, two purposes.
+#
+#   docker compose run --rm lab     -> tests and pipeline (no model, no network)
+#   docker compose run --rm agent   -> Claude Code inside the container
+#
+# The difference is deliberate: the test run needs neither network nor a
+# key, and should not be given either.
+
+services:
+  lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # No network. If the tests needed network, they would not be tests.
+    network_mode: none
+    volumes:
+      - .:/work
+      # Raw data mounted read-only — the boundary holds at the filesystem
+      # level, not only inside the application.
+      - ./data/raw:/work/data/raw:ro
+    command: python -m pytest -q
+
+  agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.agent
+    volumes:
+      - .:/work
+      - ./data/raw:/work/data/raw:ro
+      # Login survives between runs but lives in a named volume rather
+      # than in the project folder.
+      - claude-home:/home/agent/.claude
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    working_dir: /work
+    stdin_open: true
+    tty: true
+    command: bash
+
+volumes:
+  claude-home:

@@ -1,0 +1,3 @@
+# Gitignored files copied into every new worktree.
+# Without this a fresh working copy has no key.
+.env

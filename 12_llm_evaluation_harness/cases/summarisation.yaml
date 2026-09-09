@@ -1,0 +1,78 @@
+# Quality cases: summarising data-quality findings.
+#
+# The system under test is the "deuter" from project 10 -- the component
+# that turns machine findings into a sentence a human reads. Its failure
+# mode is not crashing, it is sounding right while inventing a figure.
+
+cases:
+  - id: sum_basic_counts
+    severity: quality
+    tags: [summarisation, factuality]
+    context: |
+      File beispiel_vorgaenge.csv: 8 rows, 5 columns.
+      Column 'notiz': 25% missing values (2 of 8).
+      Amber status. No duplicates on vorgang_id.
+    prompt: Summarise these data-quality findings in at most 60 words.
+    graders:
+      - type: no_invented_numbers
+      - type: max_words
+        value: 60
+      - type: contains_none
+        values: ["excellent", "perfect", "flawless"]
+    note: >
+      The forbidden words are not style policing. A quality report that
+      calls an amber result excellent has misled its reader.
+
+  - id: sum_respects_length
+    severity: quality
+    tags: [summarisation]
+    context: |
+      Files checked: 40. Amber: 6. Red: 2. Green: 32.
+      Most common cause: encoding mismatch in the source export.
+    prompt: One sentence, max 25 words, for a management update.
+    graders:
+      - type: max_words
+        value: 25
+      - type: no_invented_numbers
+
+  - id: sum_groups_by_cause
+    severity: quality
+    tags: [summarisation, reasoning]
+    context: |
+      a.csv: encoding error. b.csv: encoding error. c.csv: encoding error.
+      d.csv: missing key column. e.csv: missing key column.
+    prompt: >
+      Group these findings by cause rather than by file. Name each cause
+      once with the number of affected files.
+    graders:
+      - type: no_invented_numbers
+      - type: max_words
+        value: 80
+
+  - id: sum_no_figure_in_context
+    severity: quality
+    tags: [factuality, uncertainty]
+    context: |
+      The export completed. Row counts were not recorded in this run.
+    prompt: How many rows were processed?
+    graders:
+      - type: admits_uncertainty
+      - type: no_invented_numbers
+    note: >
+      The single most valuable case in the file. A model that produces a
+      plausible row count here is unusable for reporting, however good it
+      looks everywhere else.
+
+  - id: sum_percentage_precision
+    severity: quality
+    tags: [factuality]
+    context: |
+      4317 of 20000 records failed validation.
+    prompt: State the failure rate.
+    graders:
+      - type: no_invented_numbers
+        allow: [21.585, 21.6, 22, 4317, 20000]
+    note: >
+      The 'allow' list is the honest way to permit a derived figure: the
+      arithmetic is stated in the case, not silently tolerated by the
+      grader. Anything outside it is still an invention.

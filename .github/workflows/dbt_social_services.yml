@@ -1,0 +1,50 @@
+name: dbt build — Social Services Analytics
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "11_analytics_engineering_dbt/**"
+      - ".github/workflows/dbt_social_services.yml"
+  pull_request:
+    paths:
+      - "11_analytics_engineering_dbt/**"
+      - ".github/workflows/dbt_social_services.yml"
+  workflow_dispatch: {}
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 11_analytics_engineering_dbt
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Regenerate seeds and check they are byte-identical to the committed ones
+        run: |
+          python scripts/generate_seeds.py
+          git diff --exit-code -- dbt/seeds
+
+      - name: dbt build (seed + run models + data tests)
+        working-directory: 11_analytics_engineering_dbt/dbt
+        run: dbt build --profiles-dir . --target ci
+
+      - name: Upload dbt artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-logs
+          path: |
+            11_analytics_engineering_dbt/dbt/logs
+            11_analytics_engineering_dbt/dbt/target

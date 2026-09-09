@@ -1,0 +1,34 @@
+# The agent container.
+#
+# Why a second container exists
+# ------------------------------
+# `Dockerfile` is the build and test environment. THIS one is where the
+# AGENT itself runs. That is what makes far-reaching autonomy defensible:
+# whatever goes wrong in here stays in here.
+#
+# Using --dangerously-skip-permissions on a working machine is reckless.
+# Using it in here means a boundary has been drawn.
+
+FROM python:3.12-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        curl ca-certificates git jq \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g @anthropic-ai/claude-code
+
+# Not as root. An agent with root inside the container has one boundary
+# fewer than it could have.
+RUN useradd --create-home --shell /bin/bash agent
+WORKDIR /work
+
+COPY pyproject.toml README.md ./
+COPY src/ ./src/
+RUN pip install --no-cache-dir -e ".[dev]"
+
+USER agent
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+
+CMD ["bash"]

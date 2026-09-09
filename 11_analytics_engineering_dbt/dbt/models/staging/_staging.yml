@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: stg_clients
+    description: >
+      One row per client. Empty exit dates in the source mean "still in
+      care" and are cast to NULL, not to a far-future date.
+    columns:
+      - name: client_id
+        description: Natural key from the source system.
+        data_tests: [unique, not_null]
+      - name: care_level
+        description: Care level 1-5 as recorded at intake.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5]
+      - name: entry_date
+        data_tests: [not_null]
+
+  - name: stg_staff
+    description: One row per member of staff, with their contracted hours.
+    columns:
+      - name: staff_id
+        data_tests: [unique, not_null]
+      - name: cost_centre_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_cost_centres')
+                field: cost_centre_id
+      - name: contract_hours_week
+        data_tests: [not_null]
+      - name: fte_share
+        description: Contracted hours as a share of a full-time post.
+
+  - name: stg_cost_centres
+    columns:
+      - name: cost_centre_id
+        data_tests: [unique, not_null]
+      - name: funding_source
+        description: Who pays for this cost centre's work.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  ["Integration Assistance", "Youth Welfare",
+                   "Municipal Funding", "Donations"]
+
+  - name: stg_service_types
+    columns:
+      - name: service_type_code
+        data_tests: [unique, not_null]
+      - name: is_billable
+        data_tests: [not_null]
+      - name: rate_per_hour_eur
+        data_tests: [not_null]
+
+  - name: stg_services
+    description: >
+      One row per delivered service, exact duplicates removed. Rows with
+      broken references or impossible durations are deliberately KEPT so
+      that the tests can find them.
+    columns:
+      - name: service_id
+        description: >
+          Not unique on purpose at this layer -- the source can redeliver
+          an id with different content. Uniqueness is asserted on the
+          fact table, where the grain is defined.
+        data_tests: [not_null]
+      - name: client_id
+        data_tests: [not_null]
+      - name: service_date
+        data_tests: [not_null]
+      - name: duration_minutes
+        data_tests: [not_null]

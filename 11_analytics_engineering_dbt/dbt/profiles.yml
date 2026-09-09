@@ -1,0 +1,15 @@
+# Checked in on purpose: DuckDB is a file, there is no secret here.
+# A Postgres or Snowflake profile would NOT belong in the repository.
+social_services_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "../warehouse.duckdb"
+      threads: 4
+    ci:
+      type: duckdb
+      # A file, not an in-memory DB: a second command in the same job
+      # must see the same tables. :memory: dies with the process.
+      path: "../warehouse_ci.duckdb"
+      threads: 4

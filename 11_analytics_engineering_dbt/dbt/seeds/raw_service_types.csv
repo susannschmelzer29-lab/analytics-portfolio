@@ -1,0 +1,8 @@
+service_type_code,name,is_billable,rate_per_hour_eur
+AST,Assistance Hour,true,48.50
+BEG,Appointment Support,true,44.00
+SCH,School Support,true,39.75
+BER,Counselling Session,true,62.00
+GRP,Group Session,true,21.00
+DOK,Documentation,false,0.00
+FAL,Case Review,false,0.00

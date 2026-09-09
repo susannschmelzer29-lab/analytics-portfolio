@@ -1,0 +1,45 @@
+name: social_services_analytics
+version: "1.0.0"
+config-version: 2
+profile: social_services_analytics
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  social_services_analytics:
+    staging:
+      # Views: cheap, always current, never the thing a dashboard queries.
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: ephemeral
+    marts:
+      # Tables: a dashboard must not re-run the whole DAG on every refresh.
+      +materialized: table
+      +schema: marts
+
+seeds:
+  social_services_analytics:
+    +schema: raw
+    raw_services:
+      +column_types:
+        duration_minutes: INTEGER
+    raw_service_types:
+      +column_types:
+        rate_per_hour_eur: DECIMAL(8,2)
+    raw_staff:
+      +column_types:
+        contract_hours_week: DECIMAL(4,1)
+
+vars:
+  # One place for the reporting window. Changing it must not require
+  # touching a single model.
+  reporting_start: "2025-01-01"
+  reporting_end: "2025-12-31"
+  # A full-time week in this organisation. Drives capacity maths.
+  full_time_hours_week: 39.0

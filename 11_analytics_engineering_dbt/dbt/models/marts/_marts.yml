@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: dim_client
+    description: Client dimension, one row per client.
+    columns:
+      - name: client_id
+        data_tests: [unique, not_null]
+      - name: days_in_care
+        description: Days between entry and exit, or the reporting end date.
+
+  - name: dim_staff
+    columns:
+      - name: staff_id
+        data_tests: [unique, not_null]
+      - name: funding_source
+        data_tests: [not_null]
+
+  - name: dim_service_type
+    columns:
+      - name: service_type_code
+        data_tests: [unique, not_null]
+
+  - name: fct_service_delivery
+    description: >
+      GRAIN: one row per delivered service event. Every additive measure
+      below is only correct while that grain holds, which is what the
+      uniqueness test on service_id protects.
+    columns:
+      - name: service_id
+        data_tests: [unique, not_null]
+      - name: client_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_client')
+                field: client_id
+      - name: staff_id
+        description: >
+          Nullable in effect -- an orphan staff reference survives into
+          this table so the relationship test fails visibly instead of
+          the row disappearing.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_staff')
+                field: staff_id
+              config:
+                severity: warn
+                store_failures: true
+      - name: service_type_code
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_service_type')
+                field: service_type_code
+              config:
+                severity: warn
+                store_failures: true
+      - name: duration_hours
+        data_tests: [not_null]
+      - name: billable_amount_eur
+        data_tests: [not_null]
+
+  - name: mart_utilisation_monthly
+    description: >
+      Delivered hours against contracted capacity per cost centre and
+      month. Capacity assumes 4.33 weeks/month and a 12 % absence
+      allowance -- both stated in int_staff_capacity_monthly.
+    columns:
+      - name: cost_centre_id
+        data_tests: [not_null]
+      - name: month_start
+        data_tests: [not_null]
+      - name: capacity_hours
+        data_tests: [not_null]
+
+  - name: mart_funding_mix
+    description: >
+      Revenue and unfunded hours by funding source and quarter. The
+      unbillable_share column is the negotiating figure.
+    columns:
+      - name: funding_source
+        data_tests: [not_null]
+      - name: quarter_start
+        data_tests: [not_null]
