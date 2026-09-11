@@ -1,0 +1,23 @@
+# Line endings: LF in the repository, native in the working tree.
+# Without this, every file Windows touches shows up as fully modified.
+* text=auto
+
+# Must stay LF even on Windows — these run inside Linux containers.
+*.sh        text eol=lf
+Dockerfile  text eol=lf
+Dockerfile.* text eol=lf
+
+# Byte-for-byte reproducibility: CI regenerates or diffs these.
+11_analytics_engineering_dbt/dbt/seeds/*.csv text eol=lf
+09_controlling_kpi_analysis/output/*.csv     text eol=lf
+
+# Never convert.
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.pdf     binary
+*.xlsx    binary
+*.db      binary
+*.duckdb  binary
+*.parquet binary
