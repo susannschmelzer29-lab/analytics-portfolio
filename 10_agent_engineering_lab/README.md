@@ -1,5 +1,8 @@
 # 10 · Agent Engineering Lab
 
+[![10 agent lab](https://github.com/susannschmelzer29-lab/analytics-portfolio/actions/workflows/agent_lab.yml/badge.svg)](https://github.com/susannschmelzer29-lab/analytics-portfolio/actions/workflows/agent_lab.yml)
+
+
 A data-checking pipeline where the **guardrails are visible in the file
 tree**.
 

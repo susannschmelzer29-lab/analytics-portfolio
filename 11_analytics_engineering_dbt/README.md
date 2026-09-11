@@ -1,5 +1,8 @@
 # 11 · Analytics Engineering — Service Delivery Warehouse (dbt + DuckDB)
 
+[![dbt build](https://github.com/susannschmelzer29-lab/analytics-portfolio/actions/workflows/dbt_social_services.yml/badge.svg)](https://github.com/susannschmelzer29-lab/analytics-portfolio/actions/workflows/dbt_social_services.yml)
+
+
 A dimensional model for a **social-services provider**: what was delivered,
 by whom, under which funding stream, and whether the teams were staffed
 for it. Built with dbt on DuckDB, layered staging → intermediate → marts,

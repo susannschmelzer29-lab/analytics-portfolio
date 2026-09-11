@@ -1,5 +1,8 @@
 # 12 · LLM Evaluation Harness
 
+[![12 eval harness](https://github.com/susannschmelzer29-lab/analytics-portfolio/actions/workflows/eval_harness.yml/badge.svg)](https://github.com/susannschmelzer29-lab/analytics-portfolio/actions/workflows/eval_harness.yml)
+
+
 Measuring whether a language-model component is reliable enough to ship —
 and catching it when it stops being.
 
