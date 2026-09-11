@@ -3,7 +3,13 @@ data/*.csv
 !data/train_sample.csv
 
 # --- Generated outputs ---------------------------------------------------------
-output/
+# The eight CSVs under output/ ARE committed. They are the published result,
+# not working scratch: the README quotes them, the dashboard quotes them, and
+# tests/test_outputs.py reconciles them in CI. Re-running the notebook here is
+# not an option -- it needs the 38 MB Kaggle file, which stays out of the repo.
+# Same reasoning as dashboard/data.js below.
+output/*
+!output/*.csv
 figures/
 executed.ipynb
 executed_test.ipynb

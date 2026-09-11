@@ -1,0 +1,7 @@
+﻿Parameter,Value,Note
+Planned YoY growth target,+3%,Applied to each store's prior-year avg. daily sales to set its plan.
+Variable cost ratio - type a (Basic),80% of sales,COGS + variable operating cost.
+Variable cost ratio - type b (Extra),83% of sales,Broader assortment -> more low-margin volume (illustrative).
+Variable cost ratio - type c (Extended),79% of sales,Leaner assortment (illustrative).
+Variable cost ratio - type d,81% of sales,COGS + variable operating cost.
+Fixed cost per open trading day,EUR 900,"Per store per open day: rent, base staffing, utilities."

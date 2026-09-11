@@ -1,0 +1,57 @@
+name: 12 eval harness
+
+on:
+  push:
+    branches: [main]
+    paths: ["12_llm_evaluation_harness/**"]
+  pull_request:
+    paths: ["12_llm_evaluation_harness/**"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: 12_llm_evaluation_harness
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -e ".[dev]"
+
+      - name: Tests of the harness itself
+        run: python -m pytest -q
+
+      # The gate: the intended behaviour must pass with no blocking
+      # failure and no named regression against the committed baseline.
+      - name: Evaluation gate
+        run: python scripts/run_eval.py --model stub-good
+
+      # The counter-check, and the more interesting one. A harness that
+      # cannot fail is not measuring anything. If this step ever exits 0,
+      # the harness is broken - not the model.
+      - name: Harness must catch a broken model
+        run: |
+          set +e
+          python scripts/run_eval.py --model stub-bad > /dev/null 2>&1
+          CODE=$?
+          set -e
+          echo "stub-bad exited with $CODE (expected 1)"
+          if [ "$CODE" -ne 1 ]; then
+            echo "::error::The harness failed to block a deliberately broken model."
+            exit 1
+          fi
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-report
+          path: 12_llm_evaluation_harness/reports/latest.md
+          if-no-files-found: ignore

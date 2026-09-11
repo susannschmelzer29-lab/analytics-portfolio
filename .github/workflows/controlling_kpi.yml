@@ -1,0 +1,44 @@
+name: 09 controlling reconciliation
+
+on:
+  push:
+    branches: [main]
+    paths: ["09_controlling_kpi_analysis/**"]
+  pull_request:
+    paths: ["09_controlling_kpi_analysis/**"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: 09_controlling_kpi_analysis
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install pandas pytest
+
+      # The tests read output/*.csv, which is committed on purpose - see the
+      # note in 09_controlling_kpi_analysis/.gitignore. Re-running the notebook
+      # here is not possible: it needs the 38 MB Kaggle file.
+      # This guard fails with one clear message instead of eight confusing
+      # missing-file errors if that rule is ever reverted.
+      - name: Outputs present
+        run: |
+          if [ ! -f output/kpi_controlling.csv ]; then
+            echo "::error::output/*.csv is not committed, so there is nothing to reconcile."
+            echo "Fix: keep '!output/*.csv' in 09_controlling_kpi_analysis/.gitignore"
+            echo "and commit the eight CSVs."
+            exit 1
+          fi
+          ls -1 output/*.csv
+
+      - name: Reconciliation tests
+        run: python -m pytest tests -q
