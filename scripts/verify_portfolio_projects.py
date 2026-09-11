@@ -32,9 +32,9 @@ def main() -> int:
         "pip",
         "install",
         "-e",
-        str(PROJECTS[0]),
+        f"{PROJECTS[0]}[dev]",
         "-e",
-        str(PROJECTS[1]),
+        f"{PROJECTS[1]}[dev]",
     ]
     test_cmd = [
         sys.executable,
