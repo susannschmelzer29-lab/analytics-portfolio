@@ -17,12 +17,30 @@ import yaml
 from . import graders
 from .models import Case, CaseResult, RunResult
 
+
+def _resolve_project_path(raw_path: str | Path) -> Path:
+    """Resolve a project-relative path from either the current CWD or the package root."""
+    candidate = Path(raw_path)
+    if candidate.is_absolute():
+        return candidate
+
+    roots = [
+        Path.cwd(),
+        Path(__file__).resolve().parents[2],
+        Path(__file__).resolve().parents[3],
+    ]
+    for root in roots:
+        resolved = (root / candidate).resolve()
+        if resolved.exists():
+            return resolved
+    return (Path(__file__).resolve().parents[2] / candidate).resolve()
+
 Model = Callable[[str, str], str]
 
 
 def load_cases(pfad: str | Path) -> list[Case]:
     """Reads case definitions from a YAML file or a directory of them."""
-    p = Path(pfad)
+    p = _resolve_project_path(pfad)
     dateien = sorted(p.glob("*.yaml")) if p.is_dir() else [p]
 
     faelle: list[Case] = []

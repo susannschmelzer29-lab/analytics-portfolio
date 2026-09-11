@@ -37,6 +37,24 @@ from typing import Protocol, runtime_checkable
 
 from .models import Answer, Evidence
 
+
+def _resolve_project_path(raw_path: str | Path) -> Path:
+    """Resolve relative project data paths from either the current CWD or the package root."""
+    candidate = Path(raw_path)
+    if candidate.is_absolute():
+        return candidate
+
+    roots = [
+        Path.cwd(),
+        Path(__file__).resolve().parents[2],
+        Path(__file__).resolve().parents[3],
+    ]
+    for root in roots:
+        resolved = (root / candidate).resolve()
+        if resolved.exists():
+            return resolved
+    return (Path(__file__).resolve().parents[2] / candidate).resolve()
+
 MAX_EXCERPT = 400
 
 _SUSPICIOUS = (
@@ -92,7 +110,7 @@ class DocsKnowledge:
     name = "project docs"
 
     def __init__(self, docs_dir: str | Path = "docs") -> None:
-        self.docs_dir = Path(docs_dir)
+        self.docs_dir = _resolve_project_path(docs_dir)
         self._sections: list[tuple[str, str]] | None = None
         self._idf_cache: dict[str, float] | None = None
 

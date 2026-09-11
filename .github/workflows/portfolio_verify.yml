@@ -1,0 +1,35 @@
+name: portfolio verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "10_agent_engineering_lab/**"
+      - "11_analytics_engineering_dbt/**"
+      - "12_llm_evaluation_harness/**"
+      - "scripts/verify_portfolio_projects.py"
+      - ".github/workflows/portfolio_verify.yml"
+  pull_request:
+    paths:
+      - "10_agent_engineering_lab/**"
+      - "11_analytics_engineering_dbt/**"
+      - "12_llm_evaluation_harness/**"
+      - "scripts/verify_portfolio_projects.py"
+      - ".github/workflows/portfolio_verify.yml"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Run verified portfolio check
+        run: python scripts/verify_portfolio_projects.py

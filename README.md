@@ -79,6 +79,44 @@ broken model must be caught.
 
 ---
 
+## ✅ Verified project setup
+
+The reliability-focused projects are set up to run from the repository root without relying on a specific working directory.
+
+```bash
+python -m pip install -e "10_agent_engineering_lab" -e "12_llm_evaluation_harness"
+python -m pytest -q 10_agent_engineering_lab/tests 12_llm_evaluation_harness/tests
+```
+
+For the dbt project:
+
+```bash
+cd 11_analytics_engineering_dbt
+python -m pip install -r requirements.txt
+python scripts/generate_seeds.py
+"%APPDATA%\Python\Python313\Scripts\dbt.exe" build --project-dir dbt --profiles-dir dbt
+```
+
+There is also a helper script at [scripts/verify_portfolio_projects.py](scripts/verify_portfolio_projects.py) that verifies the Python-based portfolio projects in one step.
+
+```bash
+python scripts/verify_portfolio_projects.py
+```
+
+The same root-level check runs automatically in GitHub Actions through
+[.github/workflows/portfolio_verify.yml](.github/workflows/portfolio_verify.yml)
+for changes to projects 10, 11, and 12, and can also be started manually.
+
+A dbt-specific helper script is available at [11_analytics_engineering_dbt/scripts/verify_dbt_build.py](11_analytics_engineering_dbt/scripts/verify_dbt_build.py).
+
+```bash
+python 11_analytics_engineering_dbt/scripts/verify_dbt_build.py
+```
+
+These are the same command paths that were validated successfully in the current workspace, with exit code 0.
+
+---
+
 ## 🎓 Background
 
 Coming from pedagogy and social economy, I bring strong stakeholder communication and training experience alongside newly built technical analytics skills — a combination that's valuable in roles that bridge data and people (digitalization, internal training, change management).
