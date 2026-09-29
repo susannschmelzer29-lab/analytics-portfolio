@@ -6,14 +6,14 @@
 A dimensional model for a **social-services provider**: what was delivered,
 by whom, under which funding stream, and whether the teams were staffed
 for it. Built with dbt on DuckDB, layered staging → intermediate → marts,
-with 61 tests that run in CI.
+with 45 tests that run in CI.
 
 **Stack:** dbt-core 1.12 · DuckDB · Python · GitHub Actions
 
 ```bash
 pip install -r requirements.txt
 python scripts/generate_seeds.py          # deterministic synthetic source data
-cd dbt && DBT_PROFILES_DIR=$PWD dbt build # 11 models, 61 tests
+cd dbt && DBT_PROFILES_DIR=$PWD dbt build # 13 models, 45 tests
 ```
 
 Runs offline. No warehouse account, no credentials, no network.
@@ -135,7 +135,7 @@ test on `service_id` is what keeps it holding.
 
 ## Tests
 
-61 total: 57 pass, 4 warn — one warning per planted defect that reaches the
+45 total: 41 pass, 4 warn — one warning per planted defect that reaches the
 fact table.
 
 **Generic** (in `_staging.yml`, `_marts.yml`): uniqueness and not-null on
