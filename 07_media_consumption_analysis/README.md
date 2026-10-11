@@ -14,11 +14,14 @@ topics matter, when, and how two very different newsrooms set their agenda.
 
 
 
-![Dashboard: Medienanalyse ABC News vs. HuffPost](dashboard_preview.png)
+[![Dashboard: Medienanalyse ABC News vs. HuffPost — click to open the live interactive version](dashboard_preview.png)](https://susannschmelzer29-lab.github.io/analytics-portfolio/07_media_consumption_analysis/dashboard/index.html)
 
-*Interaktive Tableau-Public-Version folgt.* 
+*Static preview of the Tableau dashboard — **[open the live interactive version →](https://susannschmelzer29-lab.github.io/analytics-portfolio/07_media_consumption_analysis/dashboard/index.html)***
+
 | | |
 |---|---|
+| **🖥️ Interactive dashboard (live)** | [View on GitHub Pages →](https://susannschmelzer29-lab.github.io/analytics-portfolio/07_media_consumption_analysis/dashboard/index.html) |
+| **🖥️ Interactive dashboard (source)** | [`dashboard/`](dashboard/) — Chart.js build from `data/*.csv`, eight pages, one per key question |
 | **🎤 Narrated presentation** | [View on Prezi →](https://prezi.com/view/LqAgJegDiX5cM839IIjB/) |
  
 <!--
@@ -91,12 +94,15 @@ topics matter, when, and how two very different newsrooms set their agenda.
 | `data/04_tableau_vergleich.csv` | Topic share ABC vs. HuffPost (shared categories) |
 | `data/kategorie_summary.csv` | ABC category distribution summary |
 | `data/VS_quellenvergleich.csv` | Source comparison (long form) |
+| `dashboard/index.html` | Interactive dashboard (open in a browser or via GitHub Pages) |
+| `dashboard/build_dashboard.py` | Builds `dashboard/data.js` from `data/*.csv` |
+| `dashboard/test_dashboard.py` | Checks the dashboard figures against the source CSVs (runs in CI) |
 
 ---
 
 ## 🧰 Tools
 
-Python (pandas) · Tableau Public · Prezi
+Python (pandas) · Tableau Public · Chart.js · Prezi
 
 ---
 

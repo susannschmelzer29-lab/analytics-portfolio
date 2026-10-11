@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Media Consumption Analysis — Interactive Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-title">Media Consumption Analysis</span>
+    <span class="brand-sub">ABC News (AU) &amp; HuffPost (US) · 1.45M headlines · 2003–2022 · analytics-portfolio / 07_media_consumption_analysis</span>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Dashboard pages">
+    <button class="tab-btn active" data-page="overview">Overview</button>
+    <button class="tab-btn" data-page="distribution">1 · Distribution</button>
+    <button class="tab-btn" data-page="trend">2 · Trend</button>
+    <button class="tab-btn" data-page="seasonality">3 · Seasonality</button>
+    <button class="tab-btn" data-page="keywords">4 · Keywords</button>
+    <button class="tab-btn" data-page="authors">5 · Authors</button>
+    <button class="tab-btn" data-page="length">6 · Length</button>
+    <button class="tab-btn" data-page="method">Method</button>
+  </nav>
+</header>
+
+<main id="app">
+
+  <!-- ================= OVERVIEW ================= -->
+  <section class="page active" id="page-overview">
+    <h1>Overview</h1>
+    <p class="question">Two newsrooms, twenty years: which topics does each one set on its agenda?</p>
+    <div class="kpi-grid" id="kpi-grid"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>Articles per year <span class="hint"><span class="src-dot src-abc"></span>ABC News · <span class="src-dot src-hp"></span>HuffPost</span></h2>
+        <div class="chart-wrap"><canvas id="chart-per-year"></canvas></div>
+        <p class="annotation">The HuffPost dataset thins out sharply after 2017. Trends after that year rest on few articles.</p>
+      </div>
+      <div class="card">
+        <h2>Key findings <span class="hint">computed from the data on each page</span></h2>
+        <ul class="findings" id="findings"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 1 DISTRIBUTION ================= -->
+  <section class="page" id="page-distribution">
+    <h1>1 · Distribution</h1>
+    <p class="question">How do articles split across categories?</p>
+    <div class="card">
+      <div class="card-header-row">
+        <h2>Topic share in the shared categories <span class="hint">shared period, normalised to 100 % per source</span></h2>
+        <div class="filter-chips" id="dist-other-toggle"></div>
+      </div>
+      <div class="chart-wrap"><canvas id="chart-shared"></canvas></div>
+      <p class="annotation annotation-petrol" id="dist-shared-note"></p>
+    </div>
+    <div class="card">
+      <div class="card-header-row">
+        <h2>All categories of one source <span class="hint">share of classified articles (without “Other”)</span></h2>
+        <div class="control-group"><label for="dist-source">Source</label><select id="dist-source"></select></div>
+      </div>
+      <div class="chart-wrap chart-wrap-tall"><canvas id="chart-dist-source"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ================= 2 TREND ================= -->
+  <section class="page" id="page-trend">
+    <h1>2 · Trend</h1>
+    <p class="question">Which topics gain or lose relevance over time?</p>
+    <div class="card">
+      <div class="card-header-row">
+        <h2>Category share per year <span class="hint">% of the source's articles in that year</span></h2>
+        <div class="controls">
+          <div class="control-group"><label for="trend-source">Source</label><select id="trend-source"></select></div>
+          <div class="filter-chips" id="trend-from2014"></div>
+        </div>
+      </div>
+      <div class="filter-chips" id="trend-categories" style="margin-bottom:10px"></div>
+      <div class="chart-wrap"><canvas id="chart-trend"></canvas></div>
+      <p class="annotation annotation-coral" id="trend-note"></p>
+    </div>
+  </section>
+
+  <!-- ================= 3 SEASONALITY ================= -->
+  <section class="page" id="page-seasonality">
+    <h1>3 · Seasonality</h1>
+    <p class="question">Are there recurring patterns over the year per category?</p>
+    <div class="card">
+      <div class="card-header-row">
+        <h2>Month index per category <span class="hint">100 = average month · above 100 = category over-represented</span></h2>
+        <div class="control-group"><label for="season-source">Source</label><select id="season-source"></select></div>
+      </div>
+      <div class="heatmap-scroll"><table class="heatmap" id="heatmap"></table></div>
+      <div class="heatmap-legend" id="heatmap-legend"></div>
+      <p class="annotation">The index compares each month's share of a category with that month's share of all articles of the source, so months with generally more articles do not distort the picture.</p>
+    </div>
+  </section>
+
+  <!-- ================= 4 KEYWORDS ================= -->
+  <section class="page" id="page-keywords">
+    <h1>4 · Keywords</h1>
+    <p class="question">Which terms dominate each category?</p>
+    <div class="card">
+      <div class="card-header-row">
+        <h2 id="kw-title">Top 15 keywords</h2>
+        <div class="controls">
+          <div class="control-group"><label for="kw-source">Source</label><select id="kw-source"></select></div>
+          <div class="control-group"><label for="kw-category">Category</label><select id="kw-category"></select></div>
+        </div>
+      </div>
+      <div class="chart-wrap chart-wrap-tall"><canvas id="chart-keywords"></canvas></div>
+      <p class="annotation" id="kw-note"></p>
+    </div>
+  </section>
+
+  <!-- ================= 5 AUTHORS ================= -->
+  <section class="page" id="page-authors">
+    <h1>5 · Authors</h1>
+    <p class="question">Which author focuses on which topic? (HuffPost only — ABC has no author field)</p>
+    <div class="kpi-grid" id="author-kpis"></div>
+    <div class="grid-2">
+      <div class="card">
+        <h2>How specialised are the regular authors? <span class="hint" id="author-hist-hint"></span></h2>
+        <div class="chart-wrap"><canvas id="chart-author-hist"></canvas></div>
+        <p class="annotation annotation-petrol" id="author-note"></p>
+      </div>
+      <div class="card">
+        <div class="card-header-row">
+          <h2>Top 10 authors</h2>
+          <div class="control-group"><label for="author-category">Category</label><select id="author-category"></select></div>
+        </div>
+        <table class="mini-table" id="author-table"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6 LENGTH ================= -->
+  <section class="page" id="page-length">
+    <h1>6 · Length</h1>
+    <p class="question">Do headline and description lengths differ by category?</p>
+    <div class="card">
+      <h2>Average headline length <span class="hint">words per headline, categories with ≥ 1,000 articles</span></h2>
+      <div class="chart-wrap chart-wrap-tall"><canvas id="chart-headline"></canvas></div>
+      <p class="annotation" id="length-head-note"></p>
+    </div>
+    <div class="card">
+      <h2>HuffPost description length <span class="hint">words, article-weighted mean of the monthly medians (approximation)</span></h2>
+      <div class="chart-wrap chart-wrap-tall"><canvas id="chart-description"></canvas></div>
+      <p class="annotation annotation-coral" id="length-desc-note"></p>
+    </div>
+  </section>
+
+  <!-- ================= METHOD ================= -->
+  <section class="page" id="page-method">
+    <h1>Method &amp; caveats</h1>
+    <p class="question">What the numbers can and cannot say.</p>
+    <div class="card">
+      <ul class="method-list" id="method-list"></ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Built with Chart.js from the pre-aggregated CSVs in <code>data/</code> (<code>dashboard/build_dashboard.py</code>) ·
+  <a href="https://github.com/susannschmelzer29-lab/analytics-portfolio/tree/main/07_media_consumption_analysis">Source on GitHub</a>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

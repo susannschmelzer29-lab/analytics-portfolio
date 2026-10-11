@@ -1,0 +1,37 @@
+﻿name: 07 media dashboard
+
+on:
+  push:
+    branches: [main]
+    paths: ["07_media_consumption_analysis/**", ".github/workflows/media_dashboard.yml"]
+  pull_request:
+    paths: ["07_media_consumption_analysis/**", ".github/workflows/media_dashboard.yml"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: 07_media_consumption_analysis/dashboard
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install "pandas>=3,<4" pytest
+
+      - name: Rebuild data.js from data/*.csv
+        run: python build_dashboard.py
+
+      # The committed data.js must be exactly what the build produces,
+      # otherwise the live dashboard shows numbers the CSVs do not support.
+      - name: data.js is up to date
+        run: git diff --exit-code -- data.js
+
+      - name: Check figures against the source CSVs
+        run: python -m pytest test_dashboard.py -q
