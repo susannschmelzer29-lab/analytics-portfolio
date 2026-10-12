@@ -19,8 +19,8 @@ End-to-end sales analysis of **1,115 stores / 1M+ rows** answering six strategic
 **Stack:** Python (pandas), dbt, DuckDB, GitHub Actions, Docker, HTML/JS (Chart.js) | **[▶ Open the live interactive dashboard](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)** · [dbt project](08_rossmann_sales_analysis/dbt/README.md) · [Management presentation (PPTX)](08_rossmann_sales_analysis/Rossmann_Strategische_Analyse.pptx)
 
 ### [07 · Media Consumption Analysis](07_media_consumption_analysis/)
-End-to-end content strategy analysis on **1.45M news headlines** from ABC News (AU) and HuffPost (US), spanning 20 years. Python data pipeline → Tableau dashboard → stakeholder presentation.
-**Stack:** Python (pandas), Tableau, Prezi | [Dashboard preview](07_media_consumption_analysis/dashboard_preview.png) · [Presentation](https://prezi.com/view/LqAgJegDiX5cM839IIjB/)
+End-to-end content strategy analysis on **1.45M news headlines** from ABC News (AU) and HuffPost (US), spanning 20 years. Python data pipeline → Tableau dashboard → live interactive web dashboard.
+**Stack:** Python (pandas), Tableau, HTML/JS (Chart.js) | **[▶ Open the live interactive dashboard](https://susannschmelzer29-lab.github.io/analytics-portfolio/07_media_consumption_analysis/dashboard/index.html)** · [Dashboard preview](07_media_consumption_analysis/dashboard_preview.png)
 
 ---
 

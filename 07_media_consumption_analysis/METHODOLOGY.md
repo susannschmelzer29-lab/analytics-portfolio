@@ -33,11 +33,12 @@ against the source data.
 These are honest limitations of the data, not errors in the analysis. Naming them
 up front strengthens the credibility of the conclusions.
 
-**a) ABC categorisation: 60 % "Other".**
+**a) ABC categorisation: 67.7 % "Other".**
 ABC News provides only headlines, with no native category labels. Categories were
 assigned by keyword matching on the headline text. This rule cleanly classifies
-~40 % of articles; the remaining **60.0 % fall into "Other" (Sonstiges)**.
-Consequence: every ABC distribution statement describes the *classified* 40 %, not
+~32 % of articles; the remaining **67.7 % fall into "Other" (Sonstiges)**
+(see 2a for why an earlier version said 60 %).
+Consequence: every ABC distribution statement describes the *classified* 32 %, not
 the full corpus. The pattern (crime- and politics-heavy) is robust, but absolute
 shares should be read as "share of classified articles".
 
@@ -87,15 +88,16 @@ too little context for unambiguous keyword matches.
 ### Fazit-Folie — methodische Hinweise
 > **Transparente Hinweise zur Methodik**
 > - ABC liefert nur Schlagzeilen; Kategorien wurden per Keyword-Zuordnung
->   gebildet. **60 % bleiben „Sonstiges"** — ABC-Verteilungsaussagen beziehen sich
->   auf die klassifizierten 40 %.
+>   gebildet. **67,7 % bleiben „Sonstiges"** — ABC-Verteilungsaussagen beziehen sich
+>   auf die klassifizierten 32 %.
 > - Quellenvergleich nur auf gemeinsamem Zeitraum und gemeinsamen Kategorien,
 >   je Quelle auf 100 % normiert.
 > - HuffPost-Politik erst ab 2014 belastbar erfasst — Trend ab 2014 lesen.
 > - Daten bewusst vor-aggregiert für ein schnelles, interaktives Dashboard.
 >
 > *Trotz dieser Grenzen sind die Kernmuster stabil: ABC = Hard News
-> (Kriminalität, Politik), HuffPost = Lifestyle (Entertainment, Gesundheit).*
+> (Kriminalität, Politik, Wirtschaft), HuffPost = Politik und Ratgeber-Themen
+> (Politik, Gesundheit, Gesellschaft).*
 
 ---
 
@@ -110,14 +112,15 @@ too little context for unambiguous keyword matches.
 ### Closing slide — methodological notes
 > **Transparent notes on methodology**
 > - ABC provides headlines only; categories were derived by keyword matching.
->   **60 % remain "Other"** — ABC distribution figures describe the classified 40 %.
+>   **67.7 % remain "Other"** — ABC distribution figures describe the classified 32 %.
 > - The source comparison uses only the shared period and shared categories,
 >   normalised to 100 % per source.
 > - HuffPost politics is reliably tracked only from 2014 — read the trend from 2014 on.
 > - Data is intentionally pre-aggregated for a fast, interactive dashboard.
 >
 > *Despite these limits the core patterns are stable: ABC = hard news
-> (crime, politics), HuffPost = lifestyle (entertainment, health).*
+> (crime, politics, business), HuffPost = politics and service topics
+> (politics, health, society).*
 
 ---
 
