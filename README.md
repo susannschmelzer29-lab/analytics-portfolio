@@ -6,17 +6,17 @@
 
 ## 🏆 Featured Projects
 
-### [09 · Rossmann Controlling — Plan/Actual, Variance & Profitability](09_controlling_kpi_analysis/)
-A **controlling cockpit** on the same real 1M+-row Rossmann data: budget vs. actual, variance analysis (€ and %), and a contribution-margin cost/profit model (*Deckungsbeitragsrechnung* → operating profit), in a five-page interactive dashboard. Costs/budgets are **transparent, clearly-flagged model assumptions** (the dataset has none) — the emphasis is honest controlling *method*, with assumptions, formulas and limitations documented throughout.
-
-**Stack:** Python (pandas), Docker, HTML/JS (Chart.js) | **[▶ Open the live interactive dashboard](https://susannschmelzer29-lab.github.io/analytics-portfolio/09_controlling_kpi_analysis/dashboard/index.html)** · [Methodology & assumptions (README)](09_controlling_kpi_analysis/README.md)
-
 ### [08 · Rossmann Store Sales Analysis](08_rossmann_sales_analysis/)
 End-to-end sales analysis of **1,115 stores / 1M+ rows** answering six strategic management questions — from raw Kaggle data through a Dockerized Python pipeline to a live interactive dashboard and a strategic management presentation. Extended with **consulting-grade modules**: statistical rigor (95 % confidence intervals & significance), k-means **store segmentation** into performance archetypes, and a MECE **executive summary**. The data-prep pipeline is also rebuilt as a **dbt project** (staging → intermediate → marts) on **DuckDB**, with schema tests and a **GitHub Actions** CI workflow.
 
 [![Interactive Rossmann dashboard — click to open the live version](08_rossmann_sales_analysis/dashboard_preview.gif)](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)
 
 **Stack:** Python (pandas), dbt, DuckDB, GitHub Actions, Docker, HTML/JS (Chart.js) | **[▶ Open the live interactive dashboard](https://susannschmelzer29-lab.github.io/analytics-portfolio/08_rossmann_sales_analysis/dashboard/index.html)** · [dbt project](08_rossmann_sales_analysis/dbt/README.md) · [Management presentation (PPTX)](08_rossmann_sales_analysis/Rossmann_Strategische_Analyse.pptx)
+
+### [09 · Rossmann Controlling — Plan/Actual, Variance & Profitability](09_controlling_kpi_analysis/)
+A **controlling cockpit** on the same real 1M+-row Rossmann data: budget vs. actual, variance analysis (€ and %), and a contribution-margin cost/profit model (*Deckungsbeitragsrechnung* → operating profit), in a five-page interactive dashboard. Costs/budgets are **transparent, clearly-flagged model assumptions** (the dataset has none) — the emphasis is honest controlling *method*, with assumptions, formulas and limitations documented throughout.
+
+**Stack:** Python (pandas), Docker, HTML/JS (Chart.js) | **[▶ Open the live interactive dashboard](https://susannschmelzer29-lab.github.io/analytics-portfolio/09_controlling_kpi_analysis/dashboard/index.html)** · [Methodology & assumptions (README)](09_controlling_kpi_analysis/README.md)
 
 ### [07 · Media Consumption Analysis](07_media_consumption_analysis/)
 End-to-end content strategy analysis on **1.45M news headlines** from ABC News (AU) and HuffPost (US), spanning 20 years. Python data pipeline → Tableau dashboard → live interactive web dashboard.
@@ -56,13 +56,13 @@ broken model must be caught.
 
 | # | Project | Focus | Key Skills |
 |---|---------|-------|------------|
-| 01 | [Statistics Foundations](01_statistics_foundations/) | Mean/median/outliers in business data | Descriptive statistics |
-| 02 | [A/B Testing & Experimentation](02_ab_testing_statistics/) | Conversion testing for business decisions | Hypothesis testing |
+| 01 | [Statistics Foundations](01_statistics_foundations/) | Which number is the typical order? Mean vs. median with one outlier | Descriptive statistics, IQR outlier rule, pytest |
+| 02 | [A/B Testing & Experimentation](02_ab_testing_statistics/) | Is B really better? Significance, confidence intervals, sample size | Fisher's exact test, Wilson/Newcombe CIs, power analysis, pytest |
 | 03 | [SQL Foundations](03_sql_foundations/) | Joins, aggregations, KPI queries | SQL (SQLite) |
 | 04 | [Advanced SQL Analytics](04_sql_advanced_cases/) | Multi-table schema, churn detection | Window functions, CTEs |
 | 05 | [Python Analytics Workflow](05_python_analytics_workflow/) | Data cleaning & validation pipeline | pandas |
-| 06 | [Automation & Reporting](06_automation_reporting/) | Automated KPI report generation | Python automation |
-| 07 | [Media Consumption Analysis](07_media_consumption_analysis/) | Full pipeline to interactive dashboard | Python, Tableau, storytelling |
+| 06 | [Automation & Reporting](06_automation_reporting/) | One command rebuilds charts + sales report | Python automation, matplotlib, pytest |
+| 07 | [Media Consumption Analysis](07_media_consumption_analysis/) | 1.45M headlines → interactive dashboard | Python, Tableau, Chart.js, storytelling |
 | 08 | [Rossmann Store Sales Analysis](08_rossmann_sales_analysis/) | 1M+ rows → dashboard + segmentation & stats | Python, dbt, DuckDB, CI/CD, Docker, k-means, CIs/significance |
 | 09 | [Rossmann Controlling & KPIs](09_controlling_kpi_analysis/) | Plan/actual, variance, contribution-margin P&L | Controlling, variance analysis, Python |
 | 10 | [Agent Engineering Lab](10_agent_engineering_lab/) | A bounded, verifiable AI agent | Agent guardrails, prompt-injection boundaries, canary testing, Docker |

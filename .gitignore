@@ -10,3 +10,8 @@
 
 # Claude working files — notes, drafts, PDFs. Not part of the portfolio.
 Claude outputs/
+
+# Python caches (created when running tests or notebooks locally)
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
