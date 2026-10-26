@@ -26,7 +26,7 @@ End-to-end content strategy analysis on **1.45M news headlines** from ABC News (
 
 ## ⚙️ Engineering & Reliability
 
-Projects 01–09 show that an analysis can be computed. These three show something
+Projects 01–09 show that an analysis can be computed. These four show something
 different: that it can be trusted, bounded, and proven to still work tomorrow.
 
 ### [10 · Agent Engineering Lab](10_agent_engineering_lab/)
@@ -50,6 +50,16 @@ case*, not a moved average. CI also proves the harness can still fail — a deli
 broken model must be caught.
 **Stack:** Python · pytest · YAML case files · GitHub Actions — 37 tests, runs offline.
 
+### [13 · Pflegeleistungen-RAG](13_pflegeleistungen_rag/)
+A question-answering assistant for German long-term-care benefits (SGB XI, 2026) that
+**cites every answer and refuses when its sources are silent**. Retrieval runs on local
+embeddings, so no care question leaves the machine. The evaluation from project 12 earned
+its keep here: the first run with the real model failed because semantic search rated
+*Bürgergeld* close to *Pflegegeld*. A second, lexical check fixed it, and a test now proves
+the fix holds. Amounts in the knowledge base are reconciled like data, and a Pflegegrad
+calculator does the arithmetic in code instead of in the language model.
+**Stack:** Python · sentence-transformers · ChromaDB · Claude API · Streamlit · GitHub Actions — 94 tests, 37 evaluation cases.
+
 ---
 
 ## 📊 All Projects
@@ -68,12 +78,13 @@ broken model must be caught.
 | 10 | [Agent Engineering Lab](10_agent_engineering_lab/) | A bounded, verifiable AI agent | Agent guardrails, prompt-injection boundaries, canary testing, Docker |
 | 11 | [Analytics Engineering — Service Delivery](11_analytics_engineering_dbt/) | Dimensional model, 45 tests, severity by ownership | dbt, DuckDB, data-quality testing, CI |
 | 12 | [LLM Evaluation Harness](12_llm_evaluation_harness/) | Can this model component be shipped? | Deterministic graders, regression baselines, CI gates |
+| 13 | [Pflegeleistungen-RAG](13_pflegeleistungen_rag/) | Cited answers on care benefits, refuses when unsure | RAG, ChromaDB, local embeddings, Claude API, evaluation |
 
 ---
 
 ## 🛠 Skills
 
-**Languages & Tools:** SQL (SQLite, DuckDB) · Python (pandas, numpy, matplotlib, scikit-learn, scipy) · dbt · Tableau · Power BI · Jupyter · GitHub Actions
+**Languages & Tools:** SQL (SQLite, DuckDB) · Python (pandas, numpy, matplotlib, scikit-learn, scipy) · dbt · Tableau · ChromaDB · sentence-transformers · Claude API · Jupyter · GitHub Actions
 **Techniques:** Data cleaning & validation · Data-pipeline testing & CI/CD · Statistical inference (confidence intervals, significance, effect sizes) · Clustering / segmentation (k-means) · Window functions & CTEs · Dashboard design · Automated reporting · Controlling & FP&A (plan/actual, variance analysis, contribution-margin accounting)
 **Approach:** Business-problem-first — every project starts from a decision-making question, not just a dataset.
 
