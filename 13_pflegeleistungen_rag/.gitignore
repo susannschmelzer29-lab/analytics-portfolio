@@ -1,0 +1,4 @@
+# Built locally by scripts/build_index.py - reproducible, so not committed.
+index/
+# Written by scripts/run_eval.py. CI uploads it as an artifact instead.
+reports/latest.*

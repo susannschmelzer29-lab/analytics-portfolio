@@ -1,0 +1,59 @@
+name: 13 pflege rag
+
+on:
+  push:
+    branches: [main]
+    paths: ["13_pflegeleistungen_rag/**", ".github/workflows/pflege_rag.yml"]
+  pull_request:
+    paths: ["13_pflegeleistungen_rag/**"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: 13_pflegeleistungen_rag
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # No torch, no model download, no API key: CI runs on the offline
+      # hashing embedder and the extractive generator.
+      - name: Install
+        run: pip install -r requirements-ci.txt
+
+      - name: Tests (sources, chunking, store, pipeline, graders)
+        run: python -m pytest
+
+      - name: Evaluation gate
+        run: python scripts/run_eval.py
+
+      # A gate that cannot fail measures nothing. The broken generator
+      # invents a figure and cites nothing - this step must see exit 1.
+      - name: Evaluation must catch a broken generator
+        run: |
+          set +e
+          python scripts/run_eval.py --generator stub-bad --out /tmp/bad > /dev/null 2>&1
+          CODE=$?
+          set -e
+          echo "stub-bad exited with $CODE (expected 1)"
+          if [ "$CODE" -ne 1 ]; then
+            echo "::error::The evaluation failed to block a deliberately broken generator."
+            exit 1
+          fi
+
+      - name: Build the ChromaDB index (offline embedder)
+        run: python scripts/build_index.py --embedder hashing
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pflege-rag-evaluation
+          path: 13_pflegeleistungen_rag/reports/latest.md
+          if-no-files-found: ignore

@@ -1,0 +1,4 @@
+# What CI needs: no model download, no API key, no torch.
+numpy>=1.26
+chromadb>=1.0
+pytest>=8.0

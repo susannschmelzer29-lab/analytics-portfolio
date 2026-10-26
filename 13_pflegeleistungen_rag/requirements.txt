@@ -1,0 +1,7 @@
+# Full system: local embeddings, vector DB, Claude answers, UI.
+numpy>=1.26
+chromadb>=1.0
+sentence-transformers>=3.0
+anthropic>=0.40
+streamlit>=1.38
+pytest>=8.0
