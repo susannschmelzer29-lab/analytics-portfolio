@@ -53,14 +53,17 @@ def test_out_of_range_citation_is_dropped(pipeline):
 
 
 class FakeClient:
-    def __init__(self, reply):
+    def __init__(self, reply, stop_reason="end_turn"):
         self.calls = []
         self.messages = SimpleNamespace(create=self._create)
         self._reply = reply
+        self._stop_reason = stop_reason
 
     def _create(self, **kw):
         self.calls.append(kw)
-        return SimpleNamespace(content=[SimpleNamespace(type="text", text=self._reply)])
+        return SimpleNamespace(
+            content=[SimpleNamespace(type="text", text=self._reply)], stop_reason=self._stop_reason
+        )
 
 
 def test_claude_generator_sends_sources_as_tagged_data(pipeline):
@@ -70,10 +73,19 @@ def test_claude_generator_sends_sources_as_tagged_data(pipeline):
     call = client.calls[0]
     user = call["messages"][0]["content"]
     assert call["system"] == SYSTEM_PROMPT
-    assert call["temperature"] == 0
+    # The 2026-10-21 API rejects sampling parameters; sending one is a 400.
+    assert not {"temperature", "top_p", "top_k"} & call.keys()
+    assert call["thinking"] == {"type": "between_tools"}
     assert user.startswith("<quellen>") and '<quelle nr="1"' in user
     assert "<frage>\nWie hoch ist das Pflegegeld bei Pflegegrad 3?\n</frage>" in user
     assert a.text == "Das Pflegegeld beträgt 599 Euro [1]." and len(a.cited) == 1
+
+
+def test_claude_safety_decline_becomes_the_fixed_refusal(pipeline):
+    client = FakeClient("", stop_reason="refusal")
+    gen = ClaudeGenerator(model="test-model", client=client)
+    a = RagPipeline(pipeline.embedder, pipeline.store, gen).ask("Wie hoch ist das Pflegegeld bei Pflegegrad 3?")
+    assert a.refused and a.text == REFUSAL
 
 
 def test_system_prompt_states_the_non_negotiables():

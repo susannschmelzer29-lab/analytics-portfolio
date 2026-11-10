@@ -64,13 +64,23 @@ class ClaudeGenerator:
 
     def generate(self, question: str, chunks: Sequence[Chunk]) -> str:
         user = f"{format_context(chunks)}\n\n<frage>\n{question}\n</frage>"
+        # No `temperature`: API version 2026-10-21 (anthropic SDK >= 2.x) rejects
+        # sampling parameters on every model, and Sonnet 5.5 never accepted a
+        # non-default value. Runs are therefore not bit-identical; the
+        # evaluation is a snapshot, not a replay.
+        # `between_tools` switches thinking off on Sonnet 5.5, so the short
+        # max_tokens budget goes to the answer, not to reasoning.
         msg = self._client.messages.create(
             model=self.model,
             max_tokens=600,
-            temperature=0,  # reproducibility matters more than variety here
+            thinking={"type": "between_tools"},
             system=SYSTEM_PROMPT,
             messages=[{"role": "user", "content": user}],
         )
+        # A safety decline is not an answer. Treat it like missing sources, so
+        # the user gets the fixed refusal text instead of an empty reply.
+        if getattr(msg, "stop_reason", None) == "refusal":
+            return NOT_FOUND
         return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text").strip()
 
 
