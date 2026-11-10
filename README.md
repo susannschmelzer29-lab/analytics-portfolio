@@ -26,7 +26,7 @@ End-to-end content strategy analysis on **1.45M news headlines** from ABC News (
 
 ## ⚙️ Engineering & Reliability
 
-Projects 01–09 show that an analysis can be computed. These four show something
+Projects 01–09 show that an analysis can be computed. These five show something
 different: that it can be trusted, bounded, and proven to still work tomorrow.
 
 ### [10 · Agent Engineering Lab](10_agent_engineering_lab/)
@@ -60,6 +60,15 @@ the fix holds. Amounts in the knowledge base are reconciled like data, and a Pfl
 calculator does the arithmetic in code instead of in the language model.
 **Stack:** Python · sentence-transformers · ChromaDB · Claude API · Streamlit · GitHub Actions — 94 tests, 37 evaluation cases.
 
+### [14 · Career Pipeline](14_career_pipeline/)
+Keeps a German CV and LinkedIn texts in step with this portfolio, and (in the planned
+steps) researches the job market and measures where the profile falls short. Two checks
+run in code before anything is written: **no sentence may claim a skill or a number the
+profile does not hold**, and **private search criteria must never reach a public text**.
+Each check has a canary that proves it can still fail. Step 1 is built; job research,
+bottleneck analysis and a supervised-learning loop against a rule baseline are planned.
+**Stack:** Python · PyYAML · pytest · GitHub Actions (tests only) — 60 tests, runs offline on fictional data.
+
 ---
 
 ## 📊 All Projects
@@ -79,6 +88,7 @@ calculator does the arithmetic in code instead of in the language model.
 | 11 | [Analytics Engineering — Service Delivery](11_analytics_engineering_dbt/) | Dimensional model, 45 tests, severity by ownership | dbt, DuckDB, data-quality testing, CI |
 | 12 | [LLM Evaluation Harness](12_llm_evaluation_harness/) | Can this model component be shipped? | Deterministic graders, regression baselines, CI gates |
 | 13 | [Pflegeleistungen-RAG](13_pflegeleistungen_rag/) | Cited answers on care benefits, refuses when unsure | RAG, ChromaDB, local embeddings, Claude API, evaluation |
+| 14 | [Career Pipeline](14_career_pipeline/) | CV and LinkedIn texts that claim nothing unproven | Grounding checks, leak testing, canaries, privacy by design |
 
 ---
 

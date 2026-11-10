@@ -11,7 +11,7 @@ recommends, it never decides: every next step is the owner's choice.
 |---|---|---|
 | Content | projects, certificates, skills, experience | search filters, search fields, schedule |
 | Outputs | CV, LinkedIn text suggestions, README sections | job list, bottleneck analysis, recommendations |
-| Location | this repository | outside the repository (`~/.career-pipeline/`), local only |
+| Location | this repository | a private folder outside the repository, local only |
 
 The private search filters (work model, working hours) are personal research
 criteria. They never appear in a public output, and they are not written
@@ -22,7 +22,10 @@ down in this repository, this file included.
 ### 1. Profile source and LinkedIn suggestions
 - One YAML file (`profile.yaml`) is the single source for projects, certificates
   and skills.
-- The real profile lives in `~/.career-pipeline/`, next to the private config.
+- The real profile lives in the private folder, next to the private config.
+  The folder is set by `--home` or `CAREERPIPE_HOME` (default `~/.career-pipeline/`).
+  It may sit inside the application folder; it is then the only place there the
+  pipeline writes to, and it is skipped when the application folder is read.
   The repository holds only a fictional test profile. Entries start as
   drafts (`confirmed: false`), and only confirmed entries reach a text.
 - LinkedIn pinning is the owner's explicit choice (`pin: true`, at most 3).
@@ -47,7 +50,7 @@ down in this repository, this file included.
 - The owner's application folder is the second input next to `profile.yaml`.
   Its path lives in the private config only.
 - **Read-only.** The pipeline never writes, moves or deletes anything there,
-  as with `data/raw/` in project 10. Drafts go to `~/.career-pipeline/`.
+  as with `data/raw/` in project 10. Drafts go to the private folder.
 - What it is used for:
   - the current CV and skills overview, as the starting point for `profile.yaml`
     (the owner confirms each entry before it counts)
@@ -153,7 +156,7 @@ The research runs every week, so it must not fill the disk or the owner's head.
 - Default: weekly. It can be set in the private config (weekly, fortnightly,
   monthly).
 - **Runs as a local scheduled task in the Claude desktop app**, on the owner's
-  machine. The task reads the private config from `~/.career-pipeline/` and
+  machine. The task reads the private config from the private folder and
   writes its report there.
 - **Not in GitHub Actions and not as a cloud routine.** The repository is
   public, and CI logs would expose the private filters. A cloud run would need

@@ -69,3 +69,10 @@ def test_compare_lists_missing_entries(tmp_path, capsys):
     pasted.write_text("Python und SQL", encoding="utf-8")
     assert main(["compare", "--home", str(home), "--linkedin-text", str(pasted)]) == 0
     assert "pandas" in capsys.readouterr().out
+
+
+def test_the_home_folder_can_come_from_the_environment(tmp_path, monkeypatch):
+    home = home_with(tmp_path)
+    monkeypatch.setenv("CAREERPIPE_HOME", str(home))
+    assert main(["build"]) == 0
+    assert (home / "out" / "lebenslauf.md").exists()

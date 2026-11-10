@@ -41,3 +41,12 @@ def test_subfolders_list_the_applications(folder):
 def test_a_missing_folder_is_reported(tmp_path):
     with pytest.raises(FileNotFoundError):
         ApplicationFolder(tmp_path / "nope")
+
+
+def test_the_pipeline_folder_is_skipped_when_reading(tmp_path):
+    (tmp_path / "Pipeline" / "out").mkdir(parents=True)
+    (tmp_path / "Pipeline" / "config.yaml").write_text("contact: secret", encoding="utf-8")
+    (tmp_path / "Lebenslauf.pdf").write_bytes(b"%PDF")
+    folder = ApplicationFolder(tmp_path, skip="Pipeline")
+    assert [str(p) for p in folder.files()] == ["Lebenslauf.pdf"]
+    assert folder.subfolders() == []

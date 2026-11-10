@@ -1,0 +1,30 @@
+name: 14 career pipeline
+
+# Tests only, on fictional data. The pipeline itself never runs in CI:
+# the repository is public, and the logs would expose private filters.
+
+on:
+  push:
+    branches: [main]
+    paths: ["14_career_pipeline/**"]
+  pull_request:
+    paths: ["14_career_pipeline/**"]
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: 14_career_pipeline
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Tests
+        run: python -m pytest -q

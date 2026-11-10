@@ -4,7 +4,8 @@
     python -m careerpipe compare  [--home DIR] --linkedin-text FILE
     python -m careerpipe validate [--home DIR]
 
-DIR defaults to ~/.career-pipeline (private config, profile, outputs).
+DIR is the private folder (config, profile, outputs). Order: --home, then the
+environment variable CAREERPIPE_HOME, then ~/.career-pipeline.
 Outputs have fixed names and are overwritten on every run: no pile-up.
 Nothing is written unless every check passes.
 """
@@ -12,6 +13,7 @@ Nothing is written unless every check passes.
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -24,7 +26,8 @@ from careerpipe.profile import ProfileError, load_profile
 from careerpipe.render import render_cv, render_linkedin
 
 VOCABULARY = Path(__file__).resolve().parents[2] / "vocabulary" / "skills.yaml"
-DEFAULT_HOME = Path.home() / ".career-pipeline"
+def default_home() -> Path:
+    return Path(os.environ.get("CAREERPIPE_HOME") or Path.home() / ".career-pipeline")
 
 
 def _load(home: Path):
@@ -95,9 +98,10 @@ def validate(home: Path) -> int:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="careerpipe")
     parser.add_argument("command", choices=["build", "compare", "validate"])
-    parser.add_argument("--home", type=Path, default=DEFAULT_HOME)
+    parser.add_argument("--home", type=Path, default=None)
     parser.add_argument("--linkedin-text", type=Path)
     args = parser.parse_args(argv)
+    args.home = args.home or default_home()
     try:
         if args.command == "build":
             return build(args.home)
