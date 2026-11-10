@@ -1,11 +1,18 @@
 import shutil
 from pathlib import Path
 
+import pytest
 import yaml
 
 from careerpipe.cli import main
 
 FIXTURES = Path(__file__).parent / "fixtures"
+
+
+@pytest.fixture(autouse=True)
+def no_browser(monkeypatch, tmp_path):
+    # CLI tests stay fast and offline: no PDF printing here (test_pdf.py covers it)
+    monkeypatch.setenv("CAREERPIPE_BROWSER", str(tmp_path / "no-browser.exe"))
 
 
 def home_with(tmp_path, mutate=None):
@@ -21,7 +28,7 @@ def test_build_writes_fixed_file_names(tmp_path):
     home = home_with(tmp_path)
     assert main(["build", "--home", str(home)]) == 0
     first = sorted(p.name for p in (home / "out").iterdir())
-    assert "lebenslauf.md" in first
+    assert "lebenslauf.md" in first and "lebenslauf.html" in first
     assert main(["build", "--home", str(home)]) == 0
     assert sorted(p.name for p in (home / "out").iterdir()) == first  # overwritten, not piled up
 

@@ -17,9 +17,9 @@ Claude desktop app (scheduled local run)
 
 ```bash
 pip install -e ".[dev]"
-python -m pytest                          # 63 tests, offline, fictional data
+python -m pytest                          # 74 tests, offline, fictional data
 python -m careerpipe validate             # how much of the profile is confirmed
-python -m careerpipe build                # CV + LinkedIn texts, checked twice
+python -m careerpipe build                # CV (Markdown, HTML, PDF) + LinkedIn texts, checked twice
 python -m careerpipe compare --linkedin-text pasted.txt
 ```
 
@@ -34,7 +34,7 @@ repository.
 
 | Step | What | State |
 |---|---|---|
-| 1 | Profile, German CV and LinkedIn texts, grounding check, leak test | **built**, 63 tests |
+| 1 | Profile, German CV and LinkedIn texts, grounding check, leak test | **built**, 74 tests |
 | 2 | Job research (Jobsuche API of the Bundesagentur für Arbeit) | planned |
 | 3 | Profile bottleneck and market bottleneck | planned |
 | 4 | Recommendation: certificate *or* project, side by side | planned |
@@ -135,7 +135,9 @@ The research runs every week, so it must not fill the disk:
 
 ## Limitations
 
-* The CV is Markdown for now. The PDF is still open.
+* The PDF is printed by a local Edge or Chrome. Without one, the HTML is written
+  and can be printed by hand. The PDF adds no text of its own: it comes from the
+  HTML whose visible text went through both checks.
 * The grounding check knows the skills in its vocabulary. A skill the list
   does not contain is not checked. The list is meant to grow.
 * Numbers are checked; free-text claims ("led a team of …") are not. That

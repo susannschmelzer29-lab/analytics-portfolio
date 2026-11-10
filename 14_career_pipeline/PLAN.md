@@ -171,7 +171,7 @@ The research runs every week, so it must not fill the disk or the owner's head.
 ### Step 1: Profile and public outputs
 - [x] `profile.yaml` schema with a validating test
 - [x] CV and LinkedIn suggestions generated from it, in German (CV as Markdown)
-- [ ] CV as PDF
+- [x] CV as PDF (printed from the checked HTML by a local Edge or Chrome)
 - [ ] Owner has confirmed the profile entries
 - [x] **Grounding check:** a generated text with one claim not backed by
       `profile.yaml` fails the run. Covered by a test with a planted invented skill.

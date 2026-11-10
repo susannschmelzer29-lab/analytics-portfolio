@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -22,6 +23,7 @@ import yaml
 from careerpipe.compare import compare_profile
 from careerpipe.grounding import check_grounding, load_vocabulary
 from careerpipe.leak import LeakCanaryError, check_leak, private_terms, run_canary
+from careerpipe.pdf import find_browser, html_text, html_to_pdf, render_cv_html
 from careerpipe.profile import ProfileError, load_profile
 from careerpipe.render import render_cv, render_linkedin
 
@@ -47,15 +49,22 @@ def build(home: Path) -> int:
     run_canary(public_terms)
     run_canary(cv_terms)
 
-    outputs = {"lebenslauf.md": (render_cv(confirmed, contact), cv_terms, [str(v) for v in contact.values()])}
+    contact_values = [str(v) for v in contact.values()]
+    cv_html = render_cv_html(confirmed, contact)
+    # name -> (content to write, text the checks see, private terms, extra sources)
+    outputs = {
+        "lebenslauf.md": (render_cv(confirmed, contact), None, cv_terms, contact_values),
+        "lebenslauf.html": (cv_html, html_text(cv_html), cv_terms, contact_values),
+    }
     for section, text in render_linkedin(confirmed).items():
         name = "linkedin_" + section.lower().split(" ")[0].replace("(", "") + ".txt"
         if section == "Skills (anpinnen)":
             name = "linkedin_skills_anpinnen.txt"
-        outputs[name] = (text, public_terms, [])
+        outputs[name] = (text, None, public_terms, [])
 
     findings = []
-    for name, (text, terms, extra) in outputs.items():
+    for name, (content, checked, terms, extra) in outputs.items():
+        text = checked if checked is not None else content
         for f in check_leak(text, terms) + check_grounding(text, confirmed, vocabulary, extra):
             findings.append(f"[{name}] {f}")
     if findings:
@@ -64,9 +73,20 @@ def build(home: Path) -> int:
 
     out = home / "out"
     out.mkdir(exist_ok=True)
-    for name, (text, _, _) in outputs.items():
-        (out / name).write_text(text, encoding="utf-8")
+    for name, (content, _, _, _) in outputs.items():
+        (out / name).write_text(content, encoding="utf-8")
     print(f"{len(outputs)} file(s) written to {out} (leak test and grounding check passed)")
+
+    # The PDF is printed from the checked HTML; it adds no text of its own.
+    browser = find_browser()
+    if browser is None:
+        print("No Edge or Chrome found: lebenslauf.pdf skipped (the HTML can be printed by hand).")
+        return 0
+    try:
+        html_to_pdf(out / "lebenslauf.html", out / "lebenslauf.pdf", browser)
+        print(f"lebenslauf.pdf written to {out}")
+    except (RuntimeError, OSError, subprocess.TimeoutExpired) as exc:
+        print(f"lebenslauf.pdf not written: {exc}", file=sys.stderr)
     return 0
 
 

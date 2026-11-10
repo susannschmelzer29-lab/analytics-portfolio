@@ -65,6 +65,13 @@ def test_contact_details_are_not_allowed_in_the_profile(raw_profile):
     assert any("contact" in e for e in validate_profile(raw))
 
 
+def test_a_detail_with_an_unquoted_colon_is_rejected(raw_profile):
+    # "Machine Learning: Regression" without quotes is a YAML mapping, not text
+    raw = copy.deepcopy(raw_profile)
+    raw["certificates"][0]["details"].append({"Machine Learning": "Regression"})
+    assert any("must be text" in e for e in validate_profile(raw))
+
+
 def test_focus_may_only_name_skills_in_the_profile(raw_profile):
     raw = copy.deepcopy(raw_profile)
     raw["focus"] = ["Power BI"]

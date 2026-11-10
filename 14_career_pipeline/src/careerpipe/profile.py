@@ -59,6 +59,12 @@ def validate_profile(raw: dict) -> list[str]:
                     errors.append(f"{where}: duplicate id {entry_id!r}")
                 else:
                     known_ids.add(entry_id)
+            # "Thema: Text" without quotes turns into a mapping in YAML;
+            # it would print as {'Thema': 'Text'} in a CV
+            for field in ("highlights", "details"):
+                for item in entry.get(field, []) or []:
+                    if not isinstance(item, str):
+                        errors.append(f"{where}: every {field} item must be text, got {item!r} (put it in quotes)")
             for field in DATE_FIELDS:
                 if field in entry:
                     value = _as_date(entry[field])
