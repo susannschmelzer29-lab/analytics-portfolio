@@ -12,7 +12,7 @@ verifiable.
 - [x] Knowledge lookup self-contained, no external project needed
 - [x] README explains the decisions, not the theory
 - [x] First run over a real dataset documented ([FIRST_REAL_RUN.md](FIRST_REAL_RUN.md))
-- [ ] CI green on GitHub
+- [x] CI green on GitHub (agent_lab workflow, run on 4993ca8, 2026-11-10)
 
 ## Not part of this round
 - Dashboard, web interface, database connection
