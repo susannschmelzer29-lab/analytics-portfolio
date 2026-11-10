@@ -67,7 +67,7 @@ run in code before anything is written: **no sentence may claim a skill or a num
 profile does not hold**, and **private search criteria must never reach a public text**.
 Each check has a canary that proves it can still fail. Step 1 is built; job research,
 bottleneck analysis and a supervised-learning loop against a rule baseline are planned.
-**Stack:** Python · PyYAML · pytest · GitHub Actions (tests only) — 60 tests, runs offline on fictional data.
+**Stack:** Python · PyYAML · pytest · GitHub Actions (tests only) — 63 tests, runs offline on fictional data.
 
 ---
 

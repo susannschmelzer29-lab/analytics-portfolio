@@ -8,9 +8,6 @@ from __future__ import annotations
 
 from careerpipe.profile import Profile
 
-TRANSFERABLE = "Transferable"
-
-
 def _month(value) -> str:
     if value is None:
         return "heute"
@@ -37,12 +34,22 @@ def _pinned(profile: Profile) -> list[str]:
 def _ranked_skills(profile: Profile) -> list[str]:
     """Pinned first, then technical skills by level, transferable skills last.
 
+    A skill is transferable when it says so (`transferable: true`), not because
+    of the name of its category: category names are free German labels.
     Ties keep the owner's order in the profile.
     """
     pinned = _pinned(profile)
     rest = [(i, s) for i, s in enumerate(profile.skills) if s["name"] not in pinned]
-    rest.sort(key=lambda p: (p[1]["category"] == TRANSFERABLE, -p[1]["level"], p[0]))
+    rest.sort(key=lambda p: (bool(p[1].get("transferable")), -p[1]["level"], p[0]))
     return pinned + [s["name"] for _, s in rest]
+
+
+def _focus(profile: Profile, ranked: list[str], size: int = 6) -> list[str]:
+    """The focus line of the LinkedIn Info: the owner's own list, else the ranking.
+
+    The ranking follows levels; what the owner is looking for does not.
+    """
+    return list(profile.focus) or ranked[:size]
 
 
 def render_cv(profile: Profile, contact: dict | None = None) -> str:
@@ -94,7 +101,7 @@ def render_linkedin(profile: Profile) -> dict[str, str]:
     ranked = _ranked_skills(p)
     sections = {
         "Info": p.summary["text"].strip()
-        + ("\n\nSchwerpunkte: " + " · ".join(ranked[:6]) if ranked else "")
+        + ("\n\nSchwerpunkte: " + " · ".join(_focus(p, ranked)) if ranked else "")
         + (f"\n\nPortfolio: {p.links['github']}" if p.links.get("github") else ""),
         "Skills (anpinnen)": "\n".join(_pinned(p)),
         "Skills (alle)": "\n".join(ranked),

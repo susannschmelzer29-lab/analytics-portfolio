@@ -54,12 +54,15 @@ projects:
     skills: [Python, pandas]
     confirmed: true
 
+# shown as "Schwerpunkte" in the LinkedIn Info, in this order
+focus: [SQL, Stakeholder-Management, Tableau]
+
 skills:
-  - {name: Python, category: Analytics, level: 2, evidence: [p1], pin: true, confirmed: true}
-  - {name: SQL, category: Analytics, level: 2, evidence: [cert-sql], pin: true, confirmed: true}
-  - {name: pandas, category: Tools, level: 2, evidence: [p1], confirmed: true}
-  - {name: Stakeholder-Management, category: Transferable, level: 3, evidence: [verein], confirmed: true}
-  - {name: Tableau, category: Tools, level: 1, evidence: [course], confirmed: false}
+  - {name: Python, category: Datenanalyse, level: 2, evidence: [p1], pin: true, confirmed: true}
+  - {name: SQL, category: Datenanalyse, level: 2, evidence: [cert-sql], pin: true, confirmed: true}
+  - {name: pandas, category: Werkzeuge, level: 2, evidence: [p1], confirmed: true}
+  - {name: Stakeholder-Management, category: Überfachliche Kompetenzen, level: 3, evidence: [verein], transferable: true, confirmed: true}
+  - {name: Tableau, category: Werkzeuge, level: 1, evidence: [course], confirmed: false}
 
 languages:
   - {name: Deutsch, level: Muttersprache, confirmed: true}

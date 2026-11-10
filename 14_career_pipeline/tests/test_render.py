@@ -48,6 +48,27 @@ def test_transferable_skills_rank_after_technical_ones(profile):
     assert ranked[-1] == "Stakeholder-Management"
 
 
+def test_the_focus_line_follows_the_owner_not_the_levels(profile):
+    info = render_linkedin(profile.confirmed())["Info"]
+    # Tableau is in the focus list but unconfirmed, so it is dropped
+    assert "Schwerpunkte: SQL · Stakeholder-Management\n" in info
+
+
+def test_without_a_focus_list_the_ranking_is_used(raw_profile):
+    from careerpipe.profile import Profile
+
+    raw = dict(raw_profile)
+    raw.pop("focus")
+    info = render_linkedin(Profile(raw).confirmed())["Info"]
+    assert "Schwerpunkte: Python · SQL · pandas · Stakeholder-Management" in info
+
+
+def test_cv_categories_are_the_owners_german_labels(profile):
+    cv = render_cv(profile.confirmed())
+    assert "**Überfachliche Kompetenzen:** Stakeholder-Management" in cv
+    assert "Transferable" not in cv
+
+
 def test_the_comparison_lists_what_linkedin_is_missing(profile):
     pasted = "Ich arbeite mit Python und SQL. Zertifikat: SQL Grundlagen."
     missing = compare_profile(pasted, profile.confirmed())

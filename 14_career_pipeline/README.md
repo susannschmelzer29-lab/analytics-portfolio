@@ -17,7 +17,7 @@ Claude desktop app (scheduled local run)
 
 ```bash
 pip install -e ".[dev]"
-python -m pytest                          # 60 tests, offline, fictional data
+python -m pytest                          # 63 tests, offline, fictional data
 python -m careerpipe validate             # how much of the profile is confirmed
 python -m careerpipe build                # CV + LinkedIn texts, checked twice
 python -m careerpipe compare --linkedin-text pasted.txt
@@ -34,7 +34,7 @@ repository.
 
 | Step | What | State |
 |---|---|---|
-| 1 | Profile, German CV and LinkedIn texts, grounding check, leak test | **built**, 60 tests |
+| 1 | Profile, German CV and LinkedIn texts, grounding check, leak test | **built**, 63 tests |
 | 2 | Job research (Jobsuche API of the Bundesagentur für Arbeit) | planned |
 | 3 | Profile bottleneck and market bottleneck | planned |
 | 4 | Recommendation: certificate *or* project, side by side | planned |

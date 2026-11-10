@@ -65,6 +65,12 @@ def test_contact_details_are_not_allowed_in_the_profile(raw_profile):
     assert any("contact" in e for e in validate_profile(raw))
 
 
+def test_focus_may_only_name_skills_in_the_profile(raw_profile):
+    raw = copy.deepcopy(raw_profile)
+    raw["focus"] = ["Power BI"]
+    assert any("focus" in e for e in validate_profile(raw))
+
+
 def test_at_most_three_skills_can_be_pinned(raw_profile):
     raw = copy.deepcopy(raw_profile)
     for skill in raw["skills"]:

@@ -69,6 +69,11 @@ def validate_profile(raw: dict) -> list[str]:
     if len(pinned) > MAX_PINNED:
         errors.append(f"skills: at most {MAX_PINNED} can be pinned on LinkedIn, got {len(pinned)}: {pinned}")
 
+    skill_names = {s.get("name") for s in raw.get("skills", []) or []}
+    for name in raw.get("focus", []) or []:
+        if name not in skill_names:
+            errors.append(f"focus: {name!r} is not a skill in the profile")
+
     for i, skill in enumerate(raw.get("skills", []) or []):
         where = f"skills[{i}] ({skill.get('name', '?')})"
         level = skill.get("level")
@@ -85,7 +90,7 @@ class Profile:
         self.raw = raw
 
     def __getattr__(self, name):
-        if name in LIST_SECTIONS:
+        if name in LIST_SECTIONS or name == "focus":
             return self.raw.get(name, []) or []
         if name in ("person", "summary", "links"):
             return self.raw.get(name, {}) or {}
@@ -99,6 +104,9 @@ class Profile:
         raw = copy.deepcopy(self.raw)
         for section in LIST_SECTIONS:
             raw[section] = [e for e in raw.get(section, []) or [] if e.get("confirmed") is True]
+        # the focus line may only name skills that survived confirmation
+        kept = {s["name"] for s in raw["skills"]}
+        raw["focus"] = [name for name in raw.get("focus", []) or [] if name in kept]
         return Profile(raw)
 
     def as_text(self) -> str:
