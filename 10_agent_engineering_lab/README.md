@@ -160,6 +160,7 @@ than the *column*, so every question was too generic to retrieve anything.
 ```
 ├── CLAUDE.md               project rules — under 60 lines, always in context
 ├── PLAN.md                 current assignment with acceptance criteria
+├── FIRST_REAL_RUN.md       first run over real Rossmann data, and what it found
 ├── .claude/
 │   ├── settings.json       permissions: deny / ask / allow
 │   ├── hooks/guard.sh      gatekeeper before every Bash call
@@ -206,6 +207,13 @@ cp .env.example .env        # ANTHROPIC_API_KEY, .env is gitignored
   a bounded amount.
 * **`jq` before the model.** Collapsing the individual findings costs zero
   tokens; the model only sees the flagged files.
+
+## First run on real data
+
+The pipeline ran over 2,000 real Rossmann rows (project 08). The data was clean,
+but two columns came out constant: the sample covers only two days. The checks
+found a sampling problem, not a data problem. Details in
+[FIRST_REAL_RUN.md](FIRST_REAL_RUN.md).
 
 ## Limitations
 

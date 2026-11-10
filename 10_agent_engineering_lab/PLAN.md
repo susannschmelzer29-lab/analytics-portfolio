@@ -11,7 +11,7 @@ verifiable.
 - [x] Runs end to end without an API key
 - [x] Knowledge lookup self-contained, no external project needed
 - [x] README explains the decisions, not the theory
-- [ ] First run over a real dataset documented
+- [x] First run over a real dataset documented ([FIRST_REAL_RUN.md](FIRST_REAL_RUN.md))
 - [ ] CI green on GitHub
 
 ## Not part of this round
