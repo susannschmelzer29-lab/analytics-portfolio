@@ -1,0 +1,10 @@
+# Safety net: private config and run data belong in ~/.career-pipeline/,
+# never in this repository. Should they land here by mistake, git ignores them.
+private/
+.career-pipeline/
+config.private.yaml
+*.private.*
+runs/
+reports/*
+!reports/.gitkeep
+.env
