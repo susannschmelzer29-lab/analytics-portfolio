@@ -22,6 +22,12 @@ down in this repository, this file included.
 ### 1. Profile source and LinkedIn suggestions
 - One YAML file (`profile.yaml`) is the single source for projects, certificates
   and skills.
+- The real profile lives in `~/.career-pipeline/`, next to the private config.
+  The repository holds only a fictional test profile. Entries start as
+  drafts (`confirmed: false`), and only confirmed entries reach a text.
+- LinkedIn pinning is the owner's explicit choice (`pin: true`, at most 3).
+  Recruiters filter by exact skill names, so the pipeline does not guess it
+  from levels.
 - Generated from it: the CV (PDF), README sections, and LinkedIn text suggestions
   for About, Projects, Skills and Certificates, plus an optional post draft.
 - Triggers: a new project folder or release tag, or a new certificate in the YAML.
@@ -84,6 +90,65 @@ down in this repository, this file included.
   has decided on it or finished it, no new recommendation is issued. This stops
   the loop "new certificate → new gap → new certificate".
 
+### 5. Learning loop: proposals, never silent changes
+The research gets better from the owner's feedback, but every change waits
+for the owner's approval. Without that gate it drifts, until it searches for
+something else than what the owner wants.
+
+- **What can learn:**
+  - Match-score weights from the owner's ratings (*fits*, *does not fit*,
+    *applied*). Outcomes from the application folder (invitation or rejection)
+    are a weak extra signal.
+  - New search terms: job titles found in good matches are proposed. They are
+    never added on their own.
+  - Work-model check: every correction becomes a fixed test case, as in
+    project 12, so the same mistake cannot come back unnoticed.
+  - Sources: a source with no matching ads over several runs is proposed for
+    switch-off.
+- **What never changes on its own:** the private filters, the search fields,
+  the pipeline's own code and checks.
+- **Safeguards:**
+  - The weekly report has a section "Proposed adjustments", each with its
+    reason and sample size.
+  - Minimum sample size: weights only change after a fixed number of ratings
+    (default 20).
+  - Every adopted change is logged with its date and can be reverted.
+  - Regression check: a change must not push a known good match out of the
+    top results.
+- **Supervised learning, honestly sized.** Two places in the loop are
+  supervised learning problems, and they close the gap the portfolio has had
+  since the IHK course (taught, no own project):
+  - *Match score:* the owner's ratings are the labels. A classifier
+    (logistic regression, then a decision tree for comparison) learns from
+    features such as skill overlap, must-have coverage, field and work model.
+  - *Work-model check:* the owner's corrections are the labels for a text
+    classifier over the four classes.
+  - Both are measured against the rule-based version as a baseline, with
+    cross-validation and stated metrics (precision, recall, confusion matrix).
+  - A model replaces the rule only after it beats the baseline on held-out
+    data. Until then the rule stays in charge, and the report says why.
+  - The data stays small (dozens of ratings, not thousands). The README says
+    so, and the models stay simple and explainable for that reason.
+
+## Data hygiene: no pile-up
+The research runs every week, so it must not fill the disk or the owner's head.
+
+- **Fixed file names, overwritten in place.** One current report, one set of
+  CV and LinkedIn texts. No timestamped copies.
+- **Ads are deduplicated** by their ID at the source. A repost updates the
+  existing record; it does not create a new one.
+- **Raw ads are pruned.** Full ad texts are kept for a set number of weeks
+  (default 8, set in the private config). After that only the aggregate
+  counts remain, which is all the bottleneck analysis needs.
+- **History as one compact file**, one row per run with counts only, not one
+  folder per run.
+- **Ratings and the change log are kept.** They are small, and they are the
+  training data and the audit trail.
+- **The report has a size cap**: at most a fixed number of top matches
+  (default 10), at most one recommendation.
+- **A cleanup step ends every run**, and a test proves that two runs in a row
+  leave the same set of files behind.
+
 ## Schedule
 - Default: weekly. It can be set in the private config (weekly, fortnightly,
   monthly).
@@ -101,14 +166,16 @@ down in this repository, this file included.
 ## Done when
 
 ### Step 1: Profile and public outputs
-- [ ] `profile.yaml` schema with a validating test
-- [ ] CV and LinkedIn suggestions generated from it, in German
-- [ ] **Grounding check:** a generated text with one claim not backed by
+- [x] `profile.yaml` schema with a validating test
+- [x] CV and LinkedIn suggestions generated from it, in German (CV as Markdown)
+- [ ] CV as PDF
+- [ ] Owner has confirmed the profile entries
+- [x] **Grounding check:** a generated text with one claim not backed by
       `profile.yaml` fails the run. Covered by a test with a planted invented skill.
-- [ ] Profile comparison: pasted text vs. YAML → list of gaps
-- [ ] Application folder read-only (test: a write attempt is refused); its path
+- [x] Profile comparison: pasted text vs. YAML → list of gaps
+- [x] Application folder read-only (test: a write attempt is refused); its path
       and company names never appear in a public output
-- [ ] **Leak test:** every public output is checked against the terms in the
+- [x] **Leak test:** every public output is checked against the terms in the
       private config. A single hit fails the run. A canary output with a planted
       private term must be caught.
 
@@ -127,12 +194,24 @@ down in this repository, this file included.
 - [ ] Stability threshold before a recommendation appears
 - [ ] Learning-goal brake, covered by a test
 
+### Step 5: Learning loop
+- [ ] Ratings stored locally, outside the repository
+- [ ] Proposals shown with reason and sample size, applied only after approval
+- [ ] Minimum sample size enforced, covered by a test
+- [ ] Change log with revert
+- [ ] Regression check against known good matches
+- [ ] Match-score classifier with cross-validation, compared against the rule baseline
+- [ ] Work-model text classifier trained on the owner's corrections, same comparison
+- [ ] A model takes over only after it beats the baseline; covered by a test
+
 ### Throughout
-- [ ] `python -m pytest` green, runs offline without an API key
+- [x] `python -m pytest` green, runs offline without an API key
 - [ ] Schedule configurable, weekly by default
 - [ ] Local scheduled task in the Claude desktop app set up; its prompt holds
       no private values
 - [ ] README explains the decisions, not the theory
+- [ ] Retention: raw ads pruned after the set weeks; two runs in a row leave the
+      same file set (test)
 
 ## Not part of this round
 - Automated applications, automated messages to recruiters
@@ -145,3 +224,4 @@ down in this repository, this file included.
 - Counts in code. The language model only words texts and never adds facts.
 - Runs locally as a Claude desktop scheduled task. Never in CI, never as a cloud routine.
 - Code and repository in English. CV and LinkedIn texts in German.
+- No pile-up: fixed file names, pruned raw data, counts kept, one report.

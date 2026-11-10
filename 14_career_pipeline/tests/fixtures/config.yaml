@@ -1,0 +1,10 @@
+# A fictional private config. The real one lives in ~/.career-pipeline/.
+application_folder: "C:/Users/example/Bewerbungen"
+contact:
+  phone: "0170/1234567"
+  email: "alex@example.org"
+  address: "Musterweg 1, 12345 Beispielstadt"
+leak_terms:
+  filters: [Gleitzeit, Dienstwagen, Vier-Tage-Woche]
+  companies: [Acme Logistik, beispiel.werke, Beispielverein]
+public_terms: [Beispielverein]

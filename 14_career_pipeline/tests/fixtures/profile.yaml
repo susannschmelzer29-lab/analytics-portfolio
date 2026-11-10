@@ -1,0 +1,66 @@
+# A fictional person. Tests never use a real profile.
+person:
+  name: Alex Beispiel
+  headline: Data Analyst · Reporting und Automatisierung
+  confirmed: true
+
+summary:
+  text: Data Analyst mit 7 Jahren Erfahrung in Organisation und Reporting.
+  confirmed: true
+
+links:
+  github: https://github.com/example/portfolio
+  linkedin: https://www.linkedin.com/in/alex-beispiel
+
+experience:
+  - id: verein
+    role: Projektkoordinatorin
+    organisation: Beispielverein e. V.
+    start: 2018-04
+    end: null
+    highlights:
+      - Planung und Dokumentation von Projekten
+    confirmed: true
+  - id: draft-job
+    role: Erfundene Stelle
+    organisation: Nicht bestätigt GmbH
+    start: 2015-01
+    end: 2016-01
+    highlights: []
+    confirmed: false
+
+education:
+  - id: ba
+    title: Bachelor Soziale Arbeit
+    institution: Hochschule Beispielstadt
+    start: 2011-10
+    end: 2015-03
+    details: []
+    confirmed: true
+
+certificates:
+  - id: cert-sql
+    title: SQL Grundlagen
+    issuer: Beispielakademie
+    date: 2025-11
+    details: [SQL, Excel]
+    confirmed: true
+
+projects:
+  - id: p1
+    title: Umsatzanalyse
+    path: 01_sales
+    pitch: Analyse von 2.000 Bestellungen
+    skills: [Python, pandas]
+    confirmed: true
+
+skills:
+  - {name: Python, category: Analytics, level: 2, evidence: [p1], pin: true, confirmed: true}
+  - {name: SQL, category: Analytics, level: 2, evidence: [cert-sql], pin: true, confirmed: true}
+  - {name: pandas, category: Tools, level: 2, evidence: [p1], confirmed: true}
+  - {name: Stakeholder-Management, category: Transferable, level: 3, evidence: [verein], confirmed: true}
+  - {name: Tableau, category: Tools, level: 1, evidence: [course], confirmed: false}
+
+languages:
+  - {name: Deutsch, level: Muttersprache, confirmed: true}
+  - {name: Englisch, level: B2, confirmed: true}
