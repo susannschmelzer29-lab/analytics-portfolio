@@ -16,16 +16,21 @@ import argparse
 import os
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 import yaml
 
 from careerpipe.compare import compare_profile
 from careerpipe.grounding import check_grounding, load_vocabulary
+from careerpipe.apifysource import TOKEN_ENV, apify_sources
+from careerpipe.jobsource import BAJobsuche
+from careerpipe.landmv import LandMV
 from careerpipe.leak import LeakCanaryError, check_leak, private_terms, run_canary
 from careerpipe.pdf import find_browser, html_text, html_to_pdf, render_cv_html
 from careerpipe.profile import ProfileError, load_profile
 from careerpipe.render import render_cv, render_linkedin
+from careerpipe.research import run_research
 
 VOCABULARY = Path(__file__).resolve().parents[2] / "vocabulary" / "skills.yaml"
 def default_home() -> Path:
@@ -102,6 +107,36 @@ def compare(home: Path, linkedin_text: Path) -> int:
     return 0
 
 
+def research(home: Path) -> int:
+    config, profile = _load(home)
+    names = config.get("sources") or ["ba"]
+    place = (config.get("search") or {}).get("location") or "Deutschland"
+    sources: list = []
+    if "ba" in names:
+        sources.append(BAJobsuche())
+    if "landmv" in names:
+        sources.append(LandMV())
+    boards = [n for n in names if n not in ("ba", "landmv")]
+    if boards:
+        token = os.environ.get(TOKEN_ENV, "")
+        if token:
+            sources += apify_sources(boards, token, place)
+        else:
+            print(f"Hinweis: {TOKEN_ENV} ist nicht gesetzt, übersprungen: {', '.join(boards)}")
+    try:
+        summary = run_research(home, sources, config, profile.confirmed(),
+                               load_vocabulary(VOCABULARY), date.today())
+    except (OSError, ValueError) as exc:
+        print(f"Research stopped: {exc}", file=sys.stderr)
+        return 1
+    for error in summary["errors"]:
+        print(f"Quelle ausgefallen: {error}", file=sys.stderr)
+    print(f"{summary['found']} Anzeigen gefunden, {summary['checked']} geprüft, "
+          f"{summary['shown']} im Bericht, {summary['new']} neu.")
+    print(f"Bericht: {summary['report']}")
+    return 0
+
+
 def validate(home: Path) -> int:
     _, profile = _load(home)
     raw = profile.raw
@@ -117,7 +152,7 @@ def validate(home: Path) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="careerpipe")
-    parser.add_argument("command", choices=["build", "compare", "validate"])
+    parser.add_argument("command", choices=["build", "compare", "validate", "research"])
     parser.add_argument("--home", type=Path, default=None)
     parser.add_argument("--linkedin-text", type=Path)
     args = parser.parse_args(argv)
@@ -125,6 +160,8 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "build":
             return build(args.home)
+        if args.command == "research":
+            return research(args.home)
         if args.command == "compare":
             if not args.linkedin_text:
                 parser.error("compare needs --linkedin-text")

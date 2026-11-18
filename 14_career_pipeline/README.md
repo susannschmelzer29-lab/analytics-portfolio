@@ -12,15 +12,17 @@ The interesting part is not the text generation. Two things matter:
 owner's private search criteria must never reach a public text**. Both are
 enforced in code, with a test that proves each check can still fail.
 
-**Stack:** Python · PyYAML · pytest · GitHub Actions (tests only) ·
+**Stack:** Python · PyYAML · scikit-learn · pytest · Jobsuche API of the
+Bundesagentur für Arbeit · Apify actors · GitHub Actions (tests only) ·
 Claude desktop app (scheduled local run)
 
 ```bash
 pip install -e ".[dev]"
-python -m pytest                          # 74 tests, offline, fictional data
+python -m pytest                          # 133 tests, offline, fictional data
 python -m careerpipe validate             # how much of the profile is confirmed
 python -m careerpipe build                # CV (Markdown, HTML, PDF) + LinkedIn texts, checked twice
 python -m careerpipe compare --linkedin-text pasted.txt
+python -m careerpipe research             # job research, bottlenecks, recommendation, learning loop
 ```
 
 The commands read from a private folder: `--home DIR`, else the environment
@@ -34,11 +36,15 @@ repository.
 
 | Step | What | State |
 |---|---|---|
-| 1 | Profile, German CV and LinkedIn texts, grounding check, leak test | **built**, 74 tests |
-| 2 | Job research (Jobsuche API of the Bundesagentur für Arbeit) | planned |
-| 3 | Profile bottleneck and market bottleneck | planned |
-| 4 | Recommendation: certificate *or* project, side by side | planned |
-| 5 | Learning loop, with supervised learning against a rule baseline | planned |
+| 1 | Profile, German CV and LinkedIn texts, grounding check, leak test | **built** |
+| 2 | Job research: Arbeitsagentur API plus job boards via Apify, work model, match score | **built** |
+| 3 | Profile bottleneck and market bottleneck, pooled over runs | **built**, needs weeks of data |
+| 4 | Recommendation: certificate *or* project, side by side | **built**, waits for a stable gap |
+| 5 | Learning loop, with supervised learning against a rule baseline | **built**, waits for 20 ratings |
+
+All 133 tests run offline on fictional data. Steps 3–5 are built and tested,
+but they only say something once real weeks of data and ratings exist; until
+then the report says so instead of guessing.
 
 The full scope and the acceptance criteria are in [PLAN.md](PLAN.md).
 
@@ -54,6 +60,24 @@ private folder                                repository (public)
                                      all checks pass?  ├─ no  → nothing is written
                                                        └─ yes → private folder/out/
 ```
+
+## How steps 2–5 work
+
+```
+sources (one interface)        per ad                         per run, pooled over the kept weeks
+  Arbeitsagentur API  ──┐      work model: 4 classes + reason   profile bottleneck ─┐
+  job boards (Apify)  ──┴──►   match: known skills, met/missing  market bottleneck  ─┴─► overlap
+                               wishes from the private config     history (one row per run)
+                                     │                                    │
+                     clear ──► report (top 10)              stable 3 runs? ─► recommendation
+                     unclear ─► set-aside list                learning goal set? ─► brake
+                                     │
+                     owner rates ads ─► learning loop: rule vs. two models (cross-validated)
+                                        proposals only; owner switches on; regression check
+```
+
+Everything is counted in code. No language model decides a score, a gap or a
+recommendation.
 
 ## The five decisions worth explaining
 
@@ -116,6 +140,53 @@ highest level. It is true, but it is the wrong filter for a data role. Pinning
 is now an explicit `pin: true` in the profile (at most three). Transferable
 skills rank after technical ones in every list.
 
+## Four more decisions, from steps 2–5
+
+### 6. Unclear is set aside, not dropped and not guessed
+
+Most ads say nothing about where the work happens. The first live run put
+191 of 295 checked ads into *unclear*. Guessing would hide that; dropping them
+would lose real options. Two rules now split them into a separate list: ads
+that mention home office without a share (worth a question to the employer),
+and ads with no word about the place at all (usually on-site). The report
+shows only their counts. A stated share always wins over the vague rule, and
+each rule has its own test.
+
+### 7. API first, scraping only by the owner's explicit choice
+
+The Arbeitsagentur has a public API, and it is the first source. Three job
+boards without an API run through Apify actors, because the owner chose that
+on 2026-11-18; their terms still apply, and the decision is written down in
+PLAN.md. Two public-sector portals were checked. One was left out: no data interface,
+session-bound pages, so a scraper would break with every change. The state
+career portal of Mecklenburg-Vorpommern, ministries included, is read
+directly: plain pages, stable ad ids, and a robots.txt that allows it. Its
+own part-time filter is not used, because ads marked "teilzeitfähig" would
+drop out under it. One board
+failing never stops the others; the report names it. The detail budget only
+counts ads whose full text still has to be fetched: the first version capped
+all ads and silently skipped 130 of 425.
+
+### 8. Bottlenecks need time, and the report says so
+
+The market bottleneck uses ads that stay online at least three weeks as a
+proxy for "hard to fill". A search over the last 14 days cannot show that in
+its first run, so the report states "not measurable yet" with the sample size
+instead of a number. A recommendation appears only after the same gap has led
+three runs in a row, and a learning goal in the private config pauses all new
+recommendations. Effort and cost come from a catalog the owner checks; empty
+fields read "bitte prüfen", never an invented figure.
+
+### 9. The learning loop proposes; the owner switches on
+
+The owner rates offered ads in a CSV next to the config. From 20 ratings on,
+the rule is compared with a logistic regression and a decision tree under
+cross-validation (precision, recall, confusion matrix). A model ranks only if
+it beats the rule *and* the owner sets `use_model`, and even then a regression
+check falls back to the rule if a known good match would drop out of the top
+results. New search terms and switching off a quiet source are only proposed.
+Every change of these settings is logged with its date and previous value.
+
 ## Why it runs locally, not in CI
 
 The weekly research is meant to run as a **scheduled task in the Claude
@@ -129,8 +200,9 @@ The research runs every week, so it must not fill the disk:
 
 * outputs have fixed names and are overwritten in place (tested: two runs leave
   the same files);
-* raw ads are pruned after a set number of weeks, and only the counts are kept
-  (planned, step 2–3);
+* ad texts are not kept, except for ads offered for rating; every entry in the
+  list of seen ads is pruned after a set number of weeks (default 8);
+* the run history is one file with one row per run date;
 * the report is capped at ten matches and one recommendation.
 
 ## Limitations
@@ -143,9 +215,15 @@ The research runs every week, so it must not fill the disk:
 * Numbers are checked; free-text claims ("led a team of …") are not. That
   needs either a stricter template or a model-based check with its own
   evaluation, as in [project 12](../12_llm_evaluation_harness/).
-* Steps 2–5 are planned, not built. The supervised-learning part will start
-  with dozens of ratings, not thousands, so its models stay simple and
-  explainable.
+* The match score counts skills from the vocabulary only. An ad that names
+  none of them gets no score, and the report says so.
+* Must-have and nice-to-have requirements are not told apart yet; every known
+  skill in an ad counts the same.
+* Part-time is detected from wording in the ad text, except where a source can
+  filter for it itself.
+* The learning loop starts with dozens of ratings, not thousands, so its models
+  stay simple and explainable. A text classifier for the work model is
+  compared against the rule, but it does not take over on its own.
 
 ## Related
 

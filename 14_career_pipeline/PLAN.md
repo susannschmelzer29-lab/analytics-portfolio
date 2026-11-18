@@ -172,7 +172,7 @@ The research runs every week, so it must not fill the disk or the owner's head.
 - [x] `profile.yaml` schema with a validating test
 - [x] CV and LinkedIn suggestions generated from it, in German (CV as Markdown)
 - [x] CV as PDF (printed from the checked HTML by a local Edge or Chrome)
-- [ ] Owner has confirmed the profile entries
+- [x] Owner has confirmed the profile entries (50 of 50, 2026-11-10)
 - [x] **Grounding check:** a generated text with one claim not backed by
       `profile.yaml` fails the run. Covered by a test with a planted invented skill.
 - [x] Profile comparison: pasted text vs. YAML → list of gaps
@@ -183,43 +183,53 @@ The research runs every week, so it must not fill the disk or the owner's head.
       private term must be caught.
 
 ### Step 2: Job research
-- [ ] BA Jobsuche client behind an interface, tested offline with recorded responses
-- [ ] Work-model classification with test cases for each of the four classes
-- [ ] Match score with a stated reason per ad
+- [x] BA Jobsuche client behind an interface, tested offline with recorded responses
+      (job boards via Apify behind the same interface, see "Not part of this round")
+- [x] Work-model classification with test cases for each of the four classes
+- [x] Match score with a stated reason per ad
+- [x] Unclear ads set aside in their own list, split by two tested rules
 
 ### Step 3: Bottlenecks
-- [ ] Run history stored locally, outside the repository
-- [ ] Profile bottleneck and market bottleneck computed, each with its sample size
-- [ ] Overlap reported separately
+- [x] Run history stored locally, outside the repository
+- [x] Profile bottleneck and market bottleneck computed, each with its sample size
+- [x] Overlap reported separately
 
 ### Step 4: Recommendation
-- [ ] Certificate and project shown side by side
-- [ ] Stability threshold before a recommendation appears
-- [ ] Learning-goal brake, covered by a test
+- [x] Certificate and project shown side by side
+- [x] Stability threshold before a recommendation appears
+- [x] Learning-goal brake, covered by a test
 
 ### Step 5: Learning loop
-- [ ] Ratings stored locally, outside the repository
-- [ ] Proposals shown with reason and sample size, applied only after approval
-- [ ] Minimum sample size enforced, covered by a test
-- [ ] Change log with revert
-- [ ] Regression check against known good matches
-- [ ] Match-score classifier with cross-validation, compared against the rule baseline
-- [ ] Work-model text classifier trained on the owner's corrections, same comparison
-- [ ] A model takes over only after it beats the baseline; covered by a test
+- [x] Ratings stored locally, outside the repository
+- [x] Proposals shown with reason and sample size, applied only after approval
+- [x] Minimum sample size enforced, covered by a test
+- [x] Change log with revert (the log keeps the previous value; the owner reverts in the config)
+- [x] Regression check against known good matches
+- [x] Match-score classifier with cross-validation, compared against the rule baseline
+- [x] Work-model text classifier trained on the owner's corrections, same comparison
+- [x] A model takes over only after it beats the baseline; covered by a test
+      (match score only; the text classifier is compared but never takes over on its own)
 
 ### Throughout
 - [x] `python -m pytest` green, runs offline without an API key
-- [ ] Schedule configurable, weekly by default
-- [ ] Local scheduled task in the Claude desktop app set up; its prompt holds
+- [ ] Schedule configurable, weekly by default (the scheduled task is weekly; the
+      `schedule` key in the private config is not read yet)
+- [x] Local scheduled task in the Claude desktop app set up; its prompt holds
       no private values
-- [ ] README explains the decisions, not the theory
-- [ ] Retention: raw ads pruned after the set weeks; two runs in a row leave the
+- [x] README explains the decisions, not the theory
+- [x] Retention: raw ads pruned after the set weeks; two runs in a row leave the
       same file set (test)
 
 ## Not part of this round
 - Automated applications, automated messages to recruiters
 - Any write access to LinkedIn or other platforms
-- Scraping of sites whose terms forbid it
+- Scraping of sites whose terms forbid it, with one exception the owner chose on
+  2026-11-18: the job boards in `apifysource.py` are read through Apify actors.
+  Their terms still apply. API sources come first; a board without an API may be
+  read through Apify only, never in CI. Which boards run is set in the private config.
+- Interamt: no automated access. The site has no open data interface, and a
+  scraper on its session-bound pages would break with every change. The owner
+  uses Interamt's own saved search with e-mail alerts instead.
 
 ## Decisions (fixed, not to be renegotiated)
 - Private config and run data never enter the repository.

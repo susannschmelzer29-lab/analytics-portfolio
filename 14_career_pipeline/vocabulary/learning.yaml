@@ -1,0 +1,32 @@
+# Options the recommendation can offer for a skill gap: one certificate, one project.
+# Effort and cost stay empty until the owner has checked them; the report then
+# says "bitte prüfen" instead of inventing a figure.
+#
+# skill (canonical name from skills.yaml):
+#   certificate: {name, effort, cost}
+#   project: {idea, effort}
+
+Power BI:
+  certificate: {name: "Microsoft PL-300: Power BI Data Analyst", effort: null, cost: null}
+  project: {idea: "Power-BI-Bericht auf einem vorhandenen Portfolio-Datensatz (z. B. Rossmann)", effort: null}
+Excel:
+  certificate: {name: "Microsoft Office Specialist: Excel Associate (MO-200)", effort: null, cost: null}
+  project: {idea: "Excel-Modell mit Power Query für eine Controlling-Auswertung aus Projekt 09", effort: null}
+Azure:
+  certificate: {name: "Microsoft DP-900: Azure Data Fundamentals", effort: null, cost: null}
+  project: {idea: "Eine bestehende Pipeline als Azure-Funktion oder Container betreiben", effort: null}
+AWS:
+  certificate: {name: "AWS Certified Cloud Practitioner", effort: null, cost: null}
+  project: {idea: "Eine bestehende Pipeline auf AWS (z. B. Lambda + S3) betreiben", effort: null}
+Supervised Learning:
+  certificate: {name: null, effort: null, cost: null}
+  project: {idea: "Klassifikator für die Stellenbewertung aus Schritt 5 dieses Projekts, gegen die Regel als Baseline", effort: null}
+Machine Learning:
+  certificate: {name: null, effort: null, cost: null}
+  project: {idea: "Prognosemodell auf dem Rossmann-Datensatz, gegen eine naive Baseline", effort: null}
+Scrum:
+  certificate: {name: "Professional Scrum Master I (PSM I)", effort: null, cost: null}
+  project: {idea: null, effort: null}
+SAP:
+  certificate: {name: "SAP-Zertifizierung im passenden Modul (bitte Modul wählen)", effort: null, cost: null}
+  project: {idea: null, effort: null}
