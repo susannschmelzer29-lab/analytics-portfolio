@@ -50,6 +50,11 @@ def _skills_in(text: str, vocabulary: dict[str, str]) -> set[str]:
     return {canonical for spelling, canonical in vocabulary.items() if _find(spelling, text)}
 
 
+def skills_in(text: str, vocabulary: dict[str, str]) -> set[str]:
+    """Canonical skill names that occur in a text."""
+    return _skills_in(text, vocabulary)
+
+
 def check_grounding(
     text: str,
     profile: Profile,

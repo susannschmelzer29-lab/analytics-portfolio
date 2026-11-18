@@ -1,0 +1,45 @@
+{
+  "ergebnisliste": [
+    {
+      "stellenangebotsTitel": "Beispiel-Analyst (m/w/d)",
+      "firma": "Beispiel GmbH",
+      "referenznummer": "10001-0001-S",
+      "stellenlokationen": [{"adresse": {"ort": "Musterstadt"}}],
+      "homeofficemoeglich": true,
+      "homeofficeprozent": 100,
+      "datumErsteVeroeffentlichung": "2026-11-10",
+      "hauptberuf": "Data-Analyst/in"
+    },
+    {
+      "stellenangebotsTitel": "Prozessanalyst (m/w/d)",
+      "firma": "Muster AG",
+      "referenznummer": "10001-0002-S",
+      "stellenlokationen": [{"adresse": {"ort": "Beispielhausen"}}],
+      "homeofficemoeglich": true,
+      "datumErsteVeroeffentlichung": "2026-11-09",
+      "hauptberuf": "Business-Analyst/in"
+    },
+    {
+      "stellenangebotsTitel": "Controller (m/w/d)",
+      "firma": "Testwerk KG",
+      "referenznummer": "10001-0003-S",
+      "stellenlokationen": [{"adresse": {"ort": "Probingen"}}],
+      "homeofficemoeglich": false,
+      "datumErsteVeroeffentlichung": "2026-11-08",
+      "hauptberuf": "Controller/in"
+    },
+    {
+      "stellenangebotsTitel": "Datenspezialist (m/w/d)",
+      "firma": "Dummy e.V.",
+      "referenznummer": "10001-0004-S",
+      "stellenlokationen": [{"adresse": {"ort": "Fiktivdorf"}}],
+      "homeofficemoeglich": true,
+      "homeofficetyp": "NACH_VEREINBARUNG",
+      "datumErsteVeroeffentlichung": "2026-11-07",
+      "hauptberuf": "Data-Analyst/in"
+    }
+  ],
+  "maxErgebnisse": 4,
+  "page": 1,
+  "size": 100
+}
